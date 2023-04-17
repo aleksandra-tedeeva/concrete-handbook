@@ -1,46 +1,59 @@
-# Getting Started with Create React App
+# Справочник для расчета элементов железобетонных кострукций
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Предоставляет информацию для расчета элементов жбк.
 
-## Available Scripts
+## Установка
 
-In the project directory, you can run:
+1. Установить среду исполнения [node.js](https://nodejs.org/ru), если ее нет.
 
-### `npm start`
+2. Открыть [командную строку](https://ab57.ru/cmdlist.html) в папке проекта и ввести команду:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+npm install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+3. После окончания установки для запуска приложения ввести команду:
 
-### `npm test`
+```
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Стек технологий
 
-### `npm run build`
+Для реализации приложения был выбран следующий стек технологий:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Typescript](https://www.typescriptlang.org/) - язык разработки
+- [React](https://ru.reactjs.org/) - фреймворк (библиотека)
+- [React Router](https://reactrouter.com/en/main) - роутер ссылок для реакта
+- [Redux Toolkit](https://redux-toolkit.js.org/) - стейт менеджер
+- [MUI](https://mui.com/) - библиотека компонент юзер-интерфейса для реакта
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Содержание проекта
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Предоставляет справочную информацию (в виде таблиц):
 
-### `npm run eject`
+- Класс бетона - предельные состояния второй группы
+- Класс бетона - предельные состояния первой группы
+- Класс бетона - модуль упругости
+- Класс бетона - защитный слой
+- Марка бетона - предельные состояния второй группы
+- Марка бетона - предельные состояния первой группы
+- Марка бетона - соотношения между марками и классами бетона
+- Сортамент арматуры
+- Коэффициенты условий работы бетона
+- Предельные прогибы - вертикальные
+- Предельные прогибы - горизонтальные
+- Предельные прогибы - горизонтальные от ветра
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+А так же дополнительный функционал:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Поиск по классу бетона
+- Поиск по марке бетона
+- Вывод всей информации об определенном классе бетона в 1 таблице
+- Вывод всей информации об определенной марке бетона в 1 таблице
+- Поиск приближенных значений (с задаваемым искомым значением и погрешностью) расчетной площади поперечного стержня (арматура)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Выполнили
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Тедеева Александра
+- Тарасевич Алёна

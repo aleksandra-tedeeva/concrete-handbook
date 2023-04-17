@@ -1,0 +1,597 @@
+[
+  {
+    "name": "M15",
+    "second_group": {
+      "compression": {
+        "heavy": "",
+        "aerated": "",
+        "cellular_a": "10",
+        "cellular_b": "9.5"
+      },
+      "expansion": {
+        "heavy": "",
+        "aerated_dense": "",
+        "aerated_porous": "",
+        "cellular_a": "1.4",
+        "cellular_b": "1.2"
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "",
+        "aerated": "",
+        "cellular_a": "6.5",
+        "cellular_b": "5.5",
+        "large_porous": "4"
+      },
+      "expansion": {
+        "heavy": "",
+        "aerated_dense": "",
+        "aerated_porous": "",
+        "cellular_a": "0.6",
+        "cellular_b": "0.5"
+      }
+    },
+    "corresponding_class": ""
+  },
+  {
+    "name": "M25",
+    "second_group": {
+      "compression": {
+        "heavy": "",
+        "aerated": "15",
+        "cellular_a": "16.5",
+        "cellular_b": "16"
+      },
+      "expansion": {
+        "heavy": "",
+        "aerated_dense": "2.3",
+        "aerated_porous": "2.3",
+        "cellular_a": "2.3",
+        "cellular_b": "2.1"
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "",
+        "aerated": "12",
+        "cellular_a": "11",
+        "cellular_b": "9",
+        "large_porous": "6.5"
+      },
+      "expansion": {
+        "heavy": "",
+        "aerated_dense": "1.5",
+        "aerated_porous": "1.5",
+        "cellular_a": "1",
+        "cellular_b": "0.8"
+      }
+    },
+    "corresponding_class": ""
+  },
+  {
+    "name": "M35",
+    "second_group": {
+      "compression": {
+        "heavy": "",
+        "aerated": "21",
+        "cellular_a": "23",
+        "cellular_b": "22"
+      },
+      "expansion": {
+        "heavy": "",
+        "aerated_dense": "3.1",
+        "aerated_porous": "3.1",
+        "cellular_a": "3.1",
+        "cellular_b": "2.8"
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "",
+        "aerated": "16",
+        "cellular_a": "15",
+        "cellular_b": "12",
+        "large_porous": "9"
+      },
+      "expansion": {
+        "heavy": "",
+        "aerated_dense": "2.1",
+        "aerated_porous": "2.1",
+        "cellular_a": "1.4",
+        "cellular_b": "1.1"
+      }
+    },
+    "corresponding_class": ""
+  },
+  {
+    "name": "M50",
+    "second_group": {
+      "compression": {
+        "heavy": "30",
+        "aerated": "30",
+        "cellular_a": "33",
+        "cellular_b": "31"
+      },
+      "expansion": {
+        "heavy": "4.2",
+        "aerated_dense": "4.2",
+        "aerated_porous": "4.2",
+        "cellular_a": "4.2",
+        "cellular_b": "3.8"
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "23",
+        "aerated": "23",
+        "cellular_a": "22",
+        "cellular_b": "18",
+        "large_porous": "13"
+      },
+      "expansion": {
+        "heavy": "2.8",
+        "aerated_dense": "2.8",
+        "aerated_porous": "2.8",
+        "cellular_a": "1.8",
+        "cellular_b": "1.5"
+      }
+    },
+    "corresponding_class": "B3.5"
+  },
+  {
+    "name": "M75",
+    "second_group": {
+      "compression": {
+        "heavy": "45",
+        "aerated": "45",
+        "cellular_a": "48",
+        "cellular_b": "46"
+      },
+      "expansion": {
+        "heavy": "5.8",
+        "aerated_dense": "5.8",
+        "aerated_porous": "5.8",
+        "cellular_a": "5.7",
+        "cellular_b": "5.1"
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "35",
+        "aerated": "35",
+        "cellular_a": "32",
+        "cellular_b": "26",
+        "large_porous": "19"
+      },
+      "expansion": {
+        "heavy": "3.8",
+        "aerated_dense": "3.8",
+        "aerated_porous": "3.8",
+        "cellular_a": "2.5",
+        "cellular_b": "2"
+      }
+    },
+    "corresponding_class": "B5"
+  },
+  {
+    "name": "M100",
+    "second_group": {
+      "compression": {
+        "heavy": "60",
+        "aerated": "60",
+        "cellular_a": "64",
+        "cellular_b": "60"
+      },
+      "expansion": {
+        "heavy": "7.2",
+        "aerated_dense": "7.2",
+        "aerated_porous": "7.2",
+        "cellular_a": "7.2",
+        "cellular_b": "6.6"
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "45",
+        "aerated": "45",
+        "cellular_a": "42",
+        "cellular_b": "35",
+        "large_porous": "26"
+      },
+      "expansion": {
+        "heavy": "4.8",
+        "aerated_dense": "4.8",
+        "aerated_porous": "4.8",
+        "cellular_a": "3.1",
+        "cellular_b": "2.6"
+      }
+    },
+    "corresponding_class": "B7.5"
+  },
+  {
+    "name": "M150",
+    "second_group": {
+      "compression": {
+        "heavy": "85",
+        "aerated": "85",
+        "cellular_a": "93",
+        "cellular_b": "88"
+      },
+      "expansion": {
+        "heavy": "9.5",
+        "aerated_dense": "9.5",
+        "aerated_porous": "9.5",
+        "cellular_a": "9.5",
+        "cellular_b": "8.5"
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "70",
+        "aerated": "70",
+        "cellular_a": "62",
+        "cellular_b": "50",
+        "large_porous": ""
+      },
+      "expansion": {
+        "heavy": "6.3",
+        "aerated_dense": "6.3",
+        "aerated_porous": "6.3",
+        "cellular_a": "4.1",
+        "cellular_b": "3.4"
+      }
+    },
+    "corresponding_class": "B12.5"
+  },
+  {
+    "name": "M200",
+    "second_group": {
+      "compression": {
+        "heavy": "115",
+        "aerated": "115",
+        "cellular_a": "",
+        "cellular_b": ""
+      },
+      "expansion": {
+        "heavy": "11.5",
+        "aerated_dense": "11.5",
+        "aerated_porous": "11",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "90",
+        "aerated": "90",
+        "cellular_a": "",
+        "cellular_b": "",
+        "large_porous": ""
+      },
+      "expansion": {
+        "heavy": "7.5",
+        "aerated_dense": "7.5",
+        "aerated_porous": "7.3",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "corresponding_class": "B15"
+  },
+  {
+    "name": "M250",
+    "second_group": {
+      "compression": {
+        "heavy": "145",
+        "aerated": "145",
+        "cellular_a": "",
+        "cellular_b": ""
+      },
+      "expansion": {
+        "heavy": "13",
+        "aerated_dense": "13",
+        "aerated_porous": "12",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "110",
+        "aerated": "110",
+        "cellular_a": "",
+        "cellular_b": "",
+        "large_porous": ""
+      },
+      "expansion": {
+        "heavy": "8.8",
+        "aerated_dense": "8.8",
+        "aerated_porous": "8",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "corresponding_class": "B20"
+  },
+  {
+    "name": "M300",
+    "second_group": {
+      "compression": {
+        "heavy": "170",
+        "aerated": "170",
+        "cellular_a": "",
+        "cellular_b": ""
+      },
+      "expansion": {
+        "heavy": "15",
+        "aerated_dense": "15",
+        "aerated_porous": "13",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "135",
+        "aerated": "135",
+        "cellular_a": "",
+        "cellular_b": "",
+        "large_porous": ""
+      },
+      "expansion": {
+        "heavy": "10",
+        "aerated_dense": "10",
+        "aerated_porous": "8.7",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "corresponding_class": ""
+  },
+  {
+    "name": "M350",
+    "second_group": {
+      "compression": {
+        "heavy": "200",
+        "aerated": "200",
+        "cellular_a": "",
+        "cellular_b": ""
+      },
+      "expansion": {
+        "heavy": "16.5",
+        "aerated_dense": "16.5",
+        "aerated_porous": "14",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "155",
+        "aerated": "155",
+        "cellular_a": "",
+        "cellular_b": "",
+        "large_porous": ""
+      },
+      "expansion": {
+        "heavy": "11",
+        "aerated_dense": "11",
+        "aerated_porous": "9.3",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "corresponding_class": "B25"
+  },
+  {
+    "name": "M400",
+    "second_group": {
+      "compression": {
+        "heavy": "225",
+        "aerated": "225",
+        "cellular_a": "",
+        "cellular_b": ""
+      },
+      "expansion": {
+        "heavy": "18",
+        "aerated_dense": "18",
+        "aerated_porous": "14.5",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "175",
+        "aerated": "175",
+        "cellular_a": "",
+        "cellular_b": "",
+        "large_porous": ""
+      },
+      "expansion": {
+        "heavy": "12",
+        "aerated_dense": "12",
+        "aerated_porous": "9.8",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "corresponding_class": "B30"
+  },
+  {
+    "name": "M450",
+    "second_group": {
+      "compression": {
+        "heavy": "255",
+        "aerated": "",
+        "cellular_a": "",
+        "cellular_b": ""
+      },
+      "expansion": {
+        "heavy": "19",
+        "aerated_dense": "",
+        "aerated_porous": "",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "195",
+        "aerated": "",
+        "cellular_a": "",
+        "cellular_b": "",
+        "large_porous": ""
+      },
+      "expansion": {
+        "heavy": "12.8",
+        "aerated_dense": "",
+        "aerated_porous": "",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "corresponding_class": "B35"
+  },
+  {
+    "name": "M500",
+    "second_group": {
+      "compression": {
+        "heavy": "280",
+        "aerated": "",
+        "cellular_a": "",
+        "cellular_b": ""
+      },
+      "expansion": {
+        "heavy": "20",
+        "aerated_dense": "",
+        "aerated_porous": "",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "215",
+        "aerated": "",
+        "cellular_a": "",
+        "cellular_b": "",
+        "large_porous": ""
+      },
+      "expansion": {
+        "heavy": "13.5",
+        "aerated_dense": "",
+        "aerated_porous": "",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "corresponding_class": ""
+  },
+  {
+    "name": "M600",
+    "second_group": {
+      "compression": {
+        "heavy": "340",
+        "aerated": "",
+        "cellular_a": "",
+        "cellular_b": ""
+      },
+      "expansion": {
+        "heavy": "22",
+        "aerated_dense": "",
+        "aerated_porous": "",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "245",
+        "aerated": "",
+        "cellular_a": "",
+        "cellular_b": "",
+        "large_porous": ""
+      },
+      "expansion": {
+        "heavy": "14.5",
+        "aerated_dense": "",
+        "aerated_porous": "",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "corresponding_class": "B45"
+  },
+  {
+    "name": "M700",
+    "second_group": {
+      "compression": {
+        "heavy": "390",
+        "aerated": "",
+        "cellular_a": "",
+        "cellular_b": ""
+      },
+      "expansion": {
+        "heavy": "23.5",
+        "aerated_dense": "",
+        "aerated_porous": "",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "280",
+        "aerated": "",
+        "cellular_a": "",
+        "cellular_b": "",
+        "large_porous": ""
+      },
+      "expansion": {
+        "heavy": "15.5",
+        "aerated_dense": "",
+        "aerated_porous": "",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "corresponding_class": "B50"
+  },
+  {
+    "name": "M800",
+    "second_group": {
+      "compression": {
+        "heavy": "450",
+        "aerated": "",
+        "cellular_a": "",
+        "cellular_b": ""
+      },
+      "expansion": {
+        "heavy": "25",
+        "aerated_dense": "",
+        "aerated_porous": "",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "310",
+        "aerated": "",
+        "cellular_a": "",
+        "cellular_b": "",
+        "large_porous": ""
+      },
+      "expansion": {
+        "heavy": "16.5",
+        "aerated_dense": "",
+        "aerated_porous": "",
+        "cellular_a": "",
+        "cellular_b": ""
+      }
+    },
+    "corresponding_class": "B60"
+  }
+]
