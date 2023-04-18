@@ -599,7 +599,7 @@
       "compression": {
         "heavy": "22",
         "light": "22",
-        "cellular": "1.75"
+        "cellular": ""
       },
       "expansion": {
         "heavy": "1.75",
@@ -651,8 +651,8 @@
     "name": "B35",
     "second_group": {
       "compression": {
-        "heavy": "25",
-        "light": "25",
+        "heavy": "25.5",
+        "light": "25.5",
         "cellular": ""
       },
       "expansion": {
@@ -1161,6 +1161,276 @@
     },
     "resilience": {
       "heavy": "43",
+      "light_grain": {
+        "natural": "",
+        "autoclave": ""
+      },
+      "light_aerated_by_density": {
+        "d_800": "",
+        "d_1000": "",
+        "d_1200": "",
+        "d_1400": "",
+        "d_1600": "",
+        "d_1800": "",
+        "d_2000": ""
+      },
+      "cellular_autoclave_by_density": {
+        "d_500": "",
+        "d_600": "",
+        "d_700": "",
+        "d_800": "",
+        "d_900": "",
+        "d_1000": "",
+        "d_1100": "",
+        "d_1200": ""
+      }
+    },
+    "corresponding_mark": ""
+  },
+  {
+    "name": "B110",
+    "second_group": {
+      "compression": {
+        "heavy": "78",
+        "light": "",
+        "cellular": ""
+      },
+      "expansion": {
+        "heavy": "4",
+        "light": "",
+        "cellular": ""
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "50",
+        "light": "",
+        "cellular": ""
+      },
+      "expansion": {
+        "heavy": "2.2",
+        "light": "",
+        "cellular": ""
+      }
+    },
+    "resilience": {
+      "heavy": "43.5",
+      "light_grain": {
+        "natural": "",
+        "autoclave": ""
+      },
+      "light_aerated_by_density": {
+        "d_800": "",
+        "d_1000": "",
+        "d_1200": "",
+        "d_1400": "",
+        "d_1600": "",
+        "d_1800": "",
+        "d_2000": ""
+      },
+      "cellular_autoclave_by_density": {
+        "d_500": "",
+        "d_600": "",
+        "d_700": "",
+        "d_800": "",
+        "d_900": "",
+        "d_1000": "",
+        "d_1100": "",
+        "d_1200": ""
+      }
+    },
+    "corresponding_mark": ""
+  },
+  {
+    "name": "B120",
+    "second_group": {
+      "compression": {
+        "heavy": "85",
+        "light": "",
+        "cellular": ""
+      },
+      "expansion": {
+        "heavy": "4.2",
+        "light": "",
+        "cellular": ""
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "52",
+        "light": "",
+        "cellular": ""
+      },
+      "expansion": {
+        "heavy": "2.25",
+        "light": "",
+        "cellular": ""
+      }
+    },
+    "resilience": {
+      "heavy": "44",
+      "light_grain": {
+        "natural": "",
+        "autoclave": ""
+      },
+      "light_aerated_by_density": {
+        "d_800": "",
+        "d_1000": "",
+        "d_1200": "",
+        "d_1400": "",
+        "d_1600": "",
+        "d_1800": "",
+        "d_2000": ""
+      },
+      "cellular_autoclave_by_density": {
+        "d_500": "",
+        "d_600": "",
+        "d_700": "",
+        "d_800": "",
+        "d_900": "",
+        "d_1000": "",
+        "d_1100": "",
+        "d_1200": ""
+      }
+    },
+    "corresponding_mark": ""
+  },
+  {
+    "name": "B130",
+    "second_group": {
+      "compression": {
+        "heavy": "92",
+        "light": "",
+        "cellular": ""
+      },
+      "expansion": {
+        "heavy": "4.4",
+        "light": "",
+        "cellular": ""
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "54",
+        "light": "",
+        "cellular": ""
+      },
+      "expansion": {
+        "heavy": "2.25",
+        "light": "",
+        "cellular": ""
+      }
+    },
+    "resilience": {
+      "heavy": "44.5",
+      "light_grain": {
+        "natural": "",
+        "autoclave": ""
+      },
+      "light_aerated_by_density": {
+        "d_800": "",
+        "d_1000": "",
+        "d_1200": "",
+        "d_1400": "",
+        "d_1600": "",
+        "d_1800": "",
+        "d_2000": ""
+      },
+      "cellular_autoclave_by_density": {
+        "d_500": "",
+        "d_600": "",
+        "d_700": "",
+        "d_800": "",
+        "d_900": "",
+        "d_1000": "",
+        "d_1100": "",
+        "d_1200": ""
+      }
+    },
+    "corresponding_mark": ""
+  },
+  {
+    "name": "B140",
+    "second_group": {
+      "compression": {
+        "heavy": "99",
+        "light": "",
+        "cellular": ""
+      },
+      "expansion": {
+        "heavy": "4.6",
+        "light": "",
+        "cellular": ""
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "55.5",
+        "light": "",
+        "cellular": ""
+      },
+      "expansion": {
+        "heavy": "2.25",
+        "light": "",
+        "cellular": ""
+      }
+    },
+    "resilience": {
+      "heavy": "45",
+      "light_grain": {
+        "natural": "",
+        "autoclave": ""
+      },
+      "light_aerated_by_density": {
+        "d_800": "",
+        "d_1000": "",
+        "d_1200": "",
+        "d_1400": "",
+        "d_1600": "",
+        "d_1800": "",
+        "d_2000": ""
+      },
+      "cellular_autoclave_by_density": {
+        "d_500": "",
+        "d_600": "",
+        "d_700": "",
+        "d_800": "",
+        "d_900": "",
+        "d_1000": "",
+        "d_1100": "",
+        "d_1200": ""
+      }
+    },
+    "corresponding_mark": ""
+  },
+  {
+    "name": "B150",
+    "second_group": {
+      "compression": {
+        "heavy": "106",
+        "light": "",
+        "cellular": ""
+      },
+      "expansion": {
+        "heavy": "4.8",
+        "light": "",
+        "cellular": ""
+      }
+    },
+    "first_group": {
+      "compression": {
+        "heavy": "57",
+        "light": "",
+        "cellular": ""
+      },
+      "expansion": {
+        "heavy": "2.25",
+        "light": "",
+        "cellular": ""
+      }
+    },
+    "resilience": {
+      "heavy": "45.5",
       "light_grain": {
         "natural": "",
         "autoclave": ""

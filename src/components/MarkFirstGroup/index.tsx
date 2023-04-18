@@ -39,7 +39,7 @@ const MarkFirstGroup = () => {
           <TableBody>
             <TableRow>
               <TableCell className="sticky-cell">
-                Сжатие осевое (призменная прочность) Rnp и Rnpll
+                Сжатие осевое (призменная прочность) Rnp
               </TableCell>
               <TableCell className="sticky-cell">Тяжелый</TableCell>
               {first_group.compression_heavy.map((val, idx) => (
@@ -78,7 +78,7 @@ const MarkFirstGroup = () => {
             </TableRow>
             <TableRow>
               <TableCell className="sticky-cell">
-                Растяжение осевое Rp и Rpll
+                Растяжение осевое Rp
               </TableCell>
               <TableCell className="sticky-cell">Тяжелый</TableCell>
               {first_group.expansion_heavy.map((val, idx) => (
