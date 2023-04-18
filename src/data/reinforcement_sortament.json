@@ -88,8 +88,8 @@
     "armature_class": {
       "A240": true,
       "A400": true,
-      "A500": false,
-      "A600": false,
+      "A500": true,
+      "A600": true,
       "A600C": false,
       "B500": true,
       "Bp500": true
@@ -101,7 +101,7 @@
       "beam_1": 38.4,
       "beam_2": 77,
       "beam_3": 115.5,
-      "beam_4": 153,
+      "beam_4": 153.9,
       "beam_5": 192.4,
       "beam_6": 230.9,
       "beam_7": 269.4,
@@ -112,8 +112,8 @@
     "armature_class": {
       "A240": true,
       "A400": true,
-      "A500": false,
-      "A600": false,
+      "A500": true,
+      "A600": true,
       "A600C": false,
       "B500": true,
       "Bp500": false
@@ -136,8 +136,8 @@
     "armature_class": {
       "A240": true,
       "A400": true,
-      "A500": false,
-      "A600": false,
+      "A500": true,
+      "A600": true,
       "A600C": false,
       "B500": true,
       "Bp500": true
@@ -158,10 +158,10 @@
     },
     "theoretical_1m": 0.499,
     "armature_class": {
-      "A240": false,
-      "A400": false,
-      "A500": false,
-      "A600": false,
+      "A240": true,
+      "A400": true,
+      "A500": true,
+      "A600": true,
       "A600C": false,
       "B500": false,
       "Bp500": false

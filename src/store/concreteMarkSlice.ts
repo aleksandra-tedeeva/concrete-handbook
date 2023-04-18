@@ -79,7 +79,7 @@ data.forEach((concreteMark) => {
     concreteMark.first_group.compression.cellular_a
   );
   first_group.compression_cellular_b.push(
-    concreteMark.second_group.compression.cellular_b
+    concreteMark.first_group.compression.cellular_b
   );
   first_group.expansion_heavy.push(concreteMark.first_group.expansion.heavy);
   first_group.expansion_aerated_dense.push(
