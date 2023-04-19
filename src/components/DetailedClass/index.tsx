@@ -43,7 +43,10 @@ const DetailedClass = ({
         <Table size="small">
           <TableBody>
             <TableRow>
-              <TableCell colSpan={2} className="highlight-cell--gray">
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--dark-gray font-weight-600"
+              >
                 Общее
               </TableCell>
             </TableRow>
@@ -72,8 +75,19 @@ const DetailedClass = ({
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={2} className="highlight-cell--gray">
-                Предельные состояния второй группы (Сжатие) - МПа
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--dark-gray font-weight-600"
+              >
+                Предельные состояния второй группы - МПа
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--gray font-weight-500"
+              >
+                Сжатие
               </TableCell>
             </TableRow>
             <TableRow>
@@ -95,8 +109,11 @@ const DetailedClass = ({
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={2} className="highlight-cell--gray">
-                Предельные состояния второй группы (Растяжение) - МПа
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--gray font-weight-500"
+              >
+                Растяжение
               </TableCell>
             </TableRow>
             <TableRow>
@@ -115,8 +132,19 @@ const DetailedClass = ({
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={2} className="highlight-cell--gray">
-                Предельные состояния первой группы (Сжатие) - МПа
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--dark-gray font-weight-600"
+              >
+                Предельные состояния первой группы - МПа
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--gray font-weight-500"
+              >
+                Сжатие
               </TableCell>
             </TableRow>
             <TableRow>
@@ -134,8 +162,11 @@ const DetailedClass = ({
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={2} className="highlight-cell--gray">
-                Предельные состояния первой группы (Растяжение) - МПа
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--gray font-weight-500"
+              >
+                Растяжение
               </TableCell>
             </TableRow>
             <TableRow>
@@ -154,7 +185,10 @@ const DetailedClass = ({
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={2} className="highlight-cell--gray">
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--dark-gray font-weight-600"
+              >
                 Модуль упругости - МПа/1000
               </TableCell>
             </TableRow>
@@ -163,8 +197,11 @@ const DetailedClass = ({
               <TableCell>{data.resilience.heavy || "-"} </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={2} className="highlight-cell--gray">
-                Модуль упругости - мелкозернистый групп:
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--gray font-weight-500"
+              >
+                Мелкозернистый групп:
               </TableCell>
             </TableRow>
             <TableRow>
@@ -180,9 +217,11 @@ const DetailedClass = ({
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={2} className="highlight-cell--gray">
-                Модуль упругости - легкий и поризованый марки по средней
-                плотности D:
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--gray font-weight-500"
+              >
+                Легкий и поризованый марки по средней плотности D:
               </TableCell>
             </TableRow>
             <TableRow>
@@ -228,9 +267,11 @@ const DetailedClass = ({
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={2} className="highlight-cell--gray">
-                Модуль упругости - ячеистый автоклавного твердения марки по
-                средней плотности D:
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--gray font-weight-500"
+              >
+                Ячеистый автоклавного твердения марки по средней плотности D:
               </TableCell>
             </TableRow>
             <TableRow>

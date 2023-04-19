@@ -42,7 +42,10 @@ const DetailedMark = ({
         <Table size="small">
           <TableBody>
             <TableRow>
-              <TableCell colSpan={2} className="highlight-cell--gray">
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--dark-gray font-weight-600"
+              >
                 Общее
               </TableCell>
             </TableRow>
@@ -73,8 +76,19 @@ const DetailedMark = ({
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={2} className="highlight-cell--gray">
-                Предельные состояния второй группы (Сжатие) - кгс/см<sup>2</sup>
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--dark-gray font-weight-600"
+              >
+                Предельные состояния второй группы - кгс/см<sup>2</sup>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--gray font-weight-500"
+              >
+                Сжатие
               </TableCell>
             </TableRow>
             <TableRow>
@@ -102,9 +116,11 @@ const DetailedMark = ({
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={2} className="highlight-cell--gray">
-                Предельные состояния второй группы (Растяжение) - кгс/см
-                <sup>2</sup>
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--gray font-weight-500"
+              >
+                Растяжение
               </TableCell>
             </TableRow>
             <TableRow>
@@ -141,8 +157,19 @@ const DetailedMark = ({
             </TableRow>
 
             <TableRow>
-              <TableCell colSpan={2} className="highlight-cell--gray">
-                Предельные состояния первой группы (Сжатие) - кгс/см<sup>2</sup>
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--dark-gray font-weight-600"
+              >
+                Предельные состояния первой группы - кгс/см<sup>2</sup>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--gray font-weight-500"
+              >
+                Сжатие
               </TableCell>
             </TableRow>
             <TableRow>
@@ -174,9 +201,11 @@ const DetailedMark = ({
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={2} className="highlight-cell--gray">
-                Предельные состояния первой группы (Растяжение) - кгс/см
-                <sup>2</sup>
+              <TableCell
+                colSpan={2}
+                className="highlight-cell--gray font-weight-500"
+              >
+                Растяжение
               </TableCell>
             </TableRow>
             <TableRow>
