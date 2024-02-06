@@ -8,6 +8,7 @@ import Home from "../pages/Home";
 import Error from "../pages/Error";
 import AppBar from "../components/AppBar";
 import Container from "@mui/material/Container/Container";
+import AlyonaPage from "../pages/AlyonaPage";
 
 const Router = () => {
   return (
@@ -29,6 +30,7 @@ const Router = () => {
         <Route path="reinforcement" element={<Reinforcement />} />
         <Route path="service_factor" element={<ServiceFactor />} />
         <Route path="deflection_limits" element={<DeflectionLimits />} />
+        <Route path="alyona" element={<AlyonaPage />} />
 
         <Route path="*" element={<Error />} />
       </Route>
