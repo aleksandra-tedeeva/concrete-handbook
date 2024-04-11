@@ -1,12 +1,5 @@
 import List from "@mui/material/List";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
-import FormControl from "@mui/material/FormControl";
-import Input from "@mui/material/Input";
-import InputLabel from "@mui/material/InputLabel";
 import CircularProgress from "@mui/material/CircularProgress";
-import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../store/hooks";
 import { ConcreteClass } from "../../types/data/concrete_class";
@@ -14,6 +7,7 @@ import { ConcreteMark } from "../../types/data/concrete_mark";
 import SearchResult from "../SearchResult";
 import DetailedClass from "../DetailedClass";
 import DetailedMark from "../DetailedMark";
+import Searchbar from "./searchbar";
 
 const Search = () => {
   const classData = useAppSelector((state) => state.class.data);
@@ -67,39 +61,13 @@ const Search = () => {
     );
   };
 
-  const handleClearTextfield = () => {
-    setValue("");
-  };
-
   return (
     <>
       {detailedResult ? (
         detailedResult
       ) : (
         <>
-          <FormControl variant="standard" fullWidth>
-            <InputLabel htmlFor="search-input">
-              Поиск бетона по марке или классу
-            </InputLabel>
-            <Input
-              id="search-input"
-              fullWidth
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton onClick={handleClearTextfield} edge="end">
-                    {value ? <CloseIcon /> : ""}
-                  </IconButton>
-                </InputAdornment>
-              }
-              startAdornment={
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              }
-            />
-          </FormControl>
+          <Searchbar value={value} setValue={setValue} />
           <List>
             {classFound.map((concreteClass) => (
               <SearchResult
