@@ -8,7 +8,8 @@ const menuItems: MenuItem[] = [
   { name: 'Марка Бетона', link: '/mark' },
   { name: 'Арматура', link: '/reinforcement' },
   { name: 'Коэф Условий Работы', link: '/service_factor' },
-  { name: 'Предельные Прогибы', link: '/deflection_limits' }
+  { name: 'Предельные Прогибы', link: '/deflection_limits' },
+  { name: 'Проверка прочности изгибаемого железобетонного элемента', link: '/bending_rc_strength' }
 ];
 
 export default menuItems;
