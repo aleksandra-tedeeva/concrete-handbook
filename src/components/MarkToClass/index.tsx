@@ -1,21 +1,21 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import { useAppSelector } from "../../store/hooks";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import { useAppSelector } from '../../store/hooks';
 
 const MarkFirstGroup = () => {
   const { classToMarkMap } = useAppSelector((state) => state.class);
   return (
     <>
-      <Box sx={{ padding: "0px 16px 16px 16px" }}>
+      <Box sx={{ padding: '0px 16px 16px 16px' }}>
         <Typography component="div">
-          Соотношения между марками и классами бетона по прочности на сжатие и
-          сарками при нормативном коэффициенте равном 13.5% (по ГОСТ 26633-91)
+          Соотношения между марками и классами бетона по прочности на сжатие и сарками при
+          нормативном коэффициенте равном 13.5% (по ГОСТ 26633-91)
         </Typography>
       </Box>
       <TableContainer>

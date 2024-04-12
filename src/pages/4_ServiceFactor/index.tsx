@@ -1,4 +1,4 @@
-import ServiceFactorCoefficients from "../../components/ServiceFactorCoefficients";
+import ServiceFactorCoefficients from '../../components/ServiceFactorCoefficients';
 
 const ServiceFactor = () => {
   return <ServiceFactorCoefficients />;

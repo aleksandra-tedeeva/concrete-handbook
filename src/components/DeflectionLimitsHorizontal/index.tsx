@@ -1,9 +1,9 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 const DeflectionLimitsHorizontal = () => {
   return (
@@ -11,9 +11,7 @@ const DeflectionLimitsHorizontal = () => {
       <Table stickyHeader size="small">
         <TableHead>
           <TableRow>
-            <TableCell className="highlight-cell--gray">
-              Группы режимов работы кранов
-            </TableCell>
+            <TableCell className="highlight-cell--gray">Группы режимов работы кранов</TableCell>
             <TableCell className="highlight-cell--gray">
               Предельные прогибы колонн зданий и крытых крановых эстакад
             </TableCell>
@@ -21,8 +19,8 @@ const DeflectionLimitsHorizontal = () => {
               Предельные прогибы колонн открытых крановых эстакад
             </TableCell>
             <TableCell className="highlight-cell--gray">
-              Предельные прогибы балок крановых путей и тормозных конструкций,
-              зданий и крановых эстакад (крытых и открытых)
+              Предельные прогибы балок крановых путей и тормозных конструкций, зданий и крановых
+              эстакад (крытых и открытых)
             </TableCell>
           </TableRow>
         </TableHead>

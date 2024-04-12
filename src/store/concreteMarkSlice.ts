@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import raw_data from "../data/concrete_mark.json";
-import { ConcreteMark } from "../types/data/concrete_mark";
+import { createSlice } from '@reduxjs/toolkit';
+import raw_data from '../data/concrete_mark.json';
+import { ConcreteMark } from '../types/data/concrete_mark';
 const data = raw_data as ConcreteMark[];
 
 // Классы бетона
@@ -16,7 +16,7 @@ const second_group: ConcreteMarkSecondGroupState = {
   expansion_aerated_dense: [],
   expansion_aerated_porous: [],
   expansion_cellular_a: [],
-  expansion_cellular_b: [],
+  expansion_cellular_b: []
 };
 
 // Значения для предельных состояний первой группы
@@ -30,7 +30,7 @@ const first_group: ConcreteMarkFirstGroupState = {
   expansion_aerated_dense: [],
   expansion_aerated_porous: [],
   expansion_cellular_a: [],
-  expansion_cellular_b: [],
+  expansion_cellular_b: []
 };
 
 // Соотношение марки бетона к классу бетона
@@ -40,60 +40,26 @@ const markToClassMap = new Map<string, string>();
 data.forEach((concreteMark) => {
   headers.push(concreteMark.name);
 
-  second_group.compression_heavy.push(
-    concreteMark.second_group.compression.heavy
-  );
-  second_group.compression_aerated.push(
-    concreteMark.second_group.compression.aerated
-  );
-  second_group.compression_cellular_a.push(
-    concreteMark.second_group.compression.cellular_a
-  );
-  second_group.compression_cellular_b.push(
-    concreteMark.second_group.compression.cellular_b
-  );
+  second_group.compression_heavy.push(concreteMark.second_group.compression.heavy);
+  second_group.compression_aerated.push(concreteMark.second_group.compression.aerated);
+  second_group.compression_cellular_a.push(concreteMark.second_group.compression.cellular_a);
+  second_group.compression_cellular_b.push(concreteMark.second_group.compression.cellular_b);
   second_group.expansion_heavy.push(concreteMark.second_group.expansion.heavy);
-  second_group.expansion_aerated_dense.push(
-    concreteMark.second_group.expansion.aerated_dense
-  );
-  second_group.expansion_aerated_porous.push(
-    concreteMark.second_group.expansion.aerated_porous
-  );
-  second_group.expansion_cellular_a.push(
-    concreteMark.second_group.expansion.cellular_a
-  );
-  second_group.expansion_cellular_b.push(
-    concreteMark.second_group.expansion.cellular_b
-  );
+  second_group.expansion_aerated_dense.push(concreteMark.second_group.expansion.aerated_dense);
+  second_group.expansion_aerated_porous.push(concreteMark.second_group.expansion.aerated_porous);
+  second_group.expansion_cellular_a.push(concreteMark.second_group.expansion.cellular_a);
+  second_group.expansion_cellular_b.push(concreteMark.second_group.expansion.cellular_b);
 
-  first_group.compression_heavy.push(
-    concreteMark.first_group.compression.heavy
-  );
-  first_group.compression_aerated.push(
-    concreteMark.first_group.compression.aerated
-  );
-  first_group.compression_large_porous.push(
-    concreteMark.first_group.compression.large_porous!
-  );
-  first_group.compression_cellular_a.push(
-    concreteMark.first_group.compression.cellular_a
-  );
-  first_group.compression_cellular_b.push(
-    concreteMark.first_group.compression.cellular_b
-  );
+  first_group.compression_heavy.push(concreteMark.first_group.compression.heavy);
+  first_group.compression_aerated.push(concreteMark.first_group.compression.aerated);
+  first_group.compression_large_porous.push(concreteMark.first_group.compression.large_porous!);
+  first_group.compression_cellular_a.push(concreteMark.first_group.compression.cellular_a);
+  first_group.compression_cellular_b.push(concreteMark.first_group.compression.cellular_b);
   first_group.expansion_heavy.push(concreteMark.first_group.expansion.heavy);
-  first_group.expansion_aerated_dense.push(
-    concreteMark.first_group.expansion.aerated_dense
-  );
-  first_group.expansion_aerated_porous.push(
-    concreteMark.first_group.expansion.aerated_porous
-  );
-  first_group.expansion_cellular_a.push(
-    concreteMark.first_group.expansion.cellular_a
-  );
-  first_group.expansion_cellular_b.push(
-    concreteMark.first_group.expansion.cellular_b
-  );
+  first_group.expansion_aerated_dense.push(concreteMark.first_group.expansion.aerated_dense);
+  first_group.expansion_aerated_porous.push(concreteMark.first_group.expansion.aerated_porous);
+  first_group.expansion_cellular_a.push(concreteMark.first_group.expansion.cellular_a);
+  first_group.expansion_cellular_b.push(concreteMark.first_group.expansion.cellular_b);
 
   markToClassMap.set(concreteMark.name, concreteMark.corresponding_class);
 });
@@ -118,21 +84,20 @@ export interface ConcreteMarkSecondGroupState {
   expansion_cellular_b: string[];
 }
 
-export interface ConcreteMarkFirstGroupState
-  extends ConcreteMarkSecondGroupState {
+export interface ConcreteMarkFirstGroupState extends ConcreteMarkSecondGroupState {
   compression_large_porous: string[];
 }
 
 export const concreteMarkSlice = createSlice({
-  name: "concrete_mark",
+  name: 'concrete_mark',
   initialState: {
     data,
     headers,
     second_group,
     first_group,
-    markToClassMap,
+    markToClassMap
   },
-  reducers: {},
+  reducers: {}
 });
 
 export default concreteMarkSlice.reducer;

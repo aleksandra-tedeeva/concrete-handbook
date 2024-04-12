@@ -1,22 +1,21 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import { useAppSelector } from "../../store/hooks";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import { useAppSelector } from '../../store/hooks';
 
 const ClassFirstGroup = () => {
   const { headers, first_group } = useAppSelector((state) => state.class);
   return (
     <>
-      <Box sx={{ padding: "0px 16px 16px 16px" }}>
+      <Box sx={{ padding: '0px 16px 16px 16px' }}>
         <Typography component="div">
-          Расчетные сопротивления бетона для предельных состояний первой группы
-          R<sub>b</sub> и R<sub>bt</sub> (МПа) при классе бетона по прочности на
-          сжатие
+          Расчетные сопротивления бетона для предельных состояний первой группы R<sub>b</sub> и R
+          <sub>bt</sub> (МПа) при классе бетона по прочности на сжатие
         </Typography>
       </Box>
       <TableContainer>
@@ -38,12 +37,8 @@ const ClassFirstGroup = () => {
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell className="sticky-cell">
-                Сжатие осевое (призменная прочность) Rb
-              </TableCell>
-              <TableCell className="sticky-cell">
-                Тяжелый и мелкозернистый и напрягающий
-              </TableCell>
+              <TableCell className="sticky-cell">Сжатие осевое (призменная прочность) Rb</TableCell>
+              <TableCell className="sticky-cell">Тяжелый и мелкозернистый и напрягающий</TableCell>
               {first_group.compression_heavy.map((val, idx) => (
                 <TableCell key={idx}>{val}</TableCell>
               ))}
@@ -63,12 +58,8 @@ const ClassFirstGroup = () => {
               ))}
             </TableRow>
             <TableRow>
-              <TableCell className="sticky-cell">
-                Растяжение осевое Rbt
-              </TableCell>
-              <TableCell className="sticky-cell">
-                Тяжелый, мелкозернистый и напрягающий
-              </TableCell>
+              <TableCell className="sticky-cell">Растяжение осевое Rbt</TableCell>
+              <TableCell className="sticky-cell">Тяжелый, мелкозернистый и напрягающий</TableCell>
               {first_group.expansion_heavy.map((val, idx) => (
                 <TableCell key={idx}>{val}</TableCell>
               ))}
