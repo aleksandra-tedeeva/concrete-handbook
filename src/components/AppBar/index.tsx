@@ -2,23 +2,16 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Button from "@mui/material/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import SearchIcon from "@mui/icons-material/Search";
-const menuItems = [
-  { name: "Класс Бетона", link: "/class" },
-  { name: "Марка Бетона", link: "/mark" },
-  { name: "Арматура", link: "/reinforcement" },
-  { name: "Коэф Условий Работы", link: "/service_factor" },
-  { name: "Предельные Прогибы", link: "/deflection_limits" },
-];
+import { Stack } from "@mui/material";
+import Searchbar from "../Search/searchbar";
 const AppBar = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [value, setValue] = useState("");
   const navigate = useNavigate();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -29,12 +22,6 @@ const AppBar = () => {
     setAnchorElNav(null);
   };
 
-  const handleNavigateLink = (to: string) => {
-    handleCloseNavMenu();
-    if (to) {
-      navigate(to);
-    }
-  };
   return (
     <MuiAppBar position="static">
       <Toolbar disableGutters>
@@ -73,14 +60,7 @@ const AppBar = () => {
               display: { xs: "block", md: "none" },
             }}
           >
-            {menuItems.map((item) => (
-              <MenuItem
-                key={item.name}
-                onClick={() => handleNavigateLink(item.link)}
-              >
-                <Typography textAlign="center">{item.name}</Typography>
-              </MenuItem>
-            ))}
+            <Searchbar value={value} setValue={setValue} />
           </Menu>
         </Box>
 
@@ -93,8 +73,12 @@ const AppBar = () => {
               alignItems: "center",
             }}
           >
-            <SearchIcon sx={{ marginRight: "4px" }}></SearchIcon>
-            <span>ЖБ СПРАВОЧНИК</span>
+            <Stack justifyContent="center">
+              <Typography variant="h5">СЖБК</Typography>
+              <Typography variant="caption">
+                Справочник Железобетонных Конструкций
+              </Typography>
+            </Stack>
           </Typography>
         </Box>
         <Box
@@ -105,15 +89,11 @@ const AppBar = () => {
             padding: "0px 16px",
           }}
         >
-          {menuItems.map((item) => (
-            <Button
-              key={item.name}
-              onClick={() => handleNavigateLink(item.link)}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              {item.name}
-            </Button>
-          ))}
+          <Searchbar
+            value={value}
+            setValue={setValue}
+            sx={{ maxWidth: "300px", color: "white" }}
+          />
         </Box>
       </Toolbar>
     </MuiAppBar>
