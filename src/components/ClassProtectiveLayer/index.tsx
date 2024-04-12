@@ -1,19 +1,17 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 const ClassProtectiveLayer = () => {
   return (
     <>
-      <Box sx={{ padding: "0px 16px 16px 16px" }}>
-        <Typography component="div">
-          Минимальные значения толщины защитного слоя бетона
-        </Typography>
+      <Box sx={{ padding: '0px 16px 16px 16px' }}>
+        <Typography component="div">Минимальные значения толщины защитного слоя бетона</Typography>
       </Box>
       <TableContainer>
         <Table stickyHeader size="small">
@@ -29,29 +27,26 @@ const ClassProtectiveLayer = () => {
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell>
-                В закрытых помещениях при нормальной и пониженной влажности
-              </TableCell>
+              <TableCell>В закрытых помещениях при нормальной и пониженной влажности</TableCell>
               <TableCell>20,00</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>
-                В закрытых помещениях при повышенной влажности (при отсутствии
-                дополнительных защитных мероприятий)
+                В закрытых помещениях при повышенной влажности (при отсутствии дополнительных
+                защитных мероприятий)
               </TableCell>
               <TableCell>25,00</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>
-                На открытом воздухе (при отсутствии дополнительных защитных
-                мероприятий)
+                На открытом воздухе (при отсутствии дополнительных защитных мероприятий)
               </TableCell>
               <TableCell>30,00</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>
-                В грунте (при отсутствии дополнительных защитных мероприятий), в
-                фундаментах при наличии бетонной подготовки
+                В грунте (при отсутствии дополнительных защитных мероприятий), в фундаментах при
+                наличии бетонной подготовки
               </TableCell>
               <TableCell>40,00</TableCell>
             </TableRow>

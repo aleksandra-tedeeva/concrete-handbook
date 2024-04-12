@@ -1,16 +1,16 @@
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
-import TabPanel from "../../components/TabPanel";
-import { useState } from "react";
-import MarkSecondGroup from "../../components/MarkSecondGroup";
-import MarkToClass from "../../components/MarkToClass";
-import MarkFirstGroup from "../../components/MarkFirstGroup";
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import TabPanel from '../../components/TabPanel';
+import { useState } from 'react';
+import MarkSecondGroup from '../../components/MarkSecondGroup';
+import MarkToClass from '../../components/MarkToClass';
+import MarkFirstGroup from '../../components/MarkFirstGroup';
 
 const headings = [
-  "Предельные Состояния Второй Группы",
-  "Предельные Состояния Первой Группы",
-  "Соотношения между марками и классами бетона",
+  'Предельные Состояния Второй Группы',
+  'Предельные Состояния Первой Группы',
+  'Соотношения между марками и классами бетона'
 ];
 
 const ConcreteMark = () => {
@@ -19,8 +19,8 @@ const ConcreteMark = () => {
     setValue(newValue);
   };
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} variant="scrollable">
           {headings.map((heading, index) => (
             <Tab label={heading} value={index}></Tab>

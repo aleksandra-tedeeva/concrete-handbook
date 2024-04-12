@@ -1,17 +1,17 @@
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Menu from "@mui/material/Menu";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Stack } from "@mui/material";
-import Searchbar from "../Search/searchbar";
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import MuiAppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Menu from '@mui/material/Menu';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Stack } from '@mui/material';
+import Searchbar from '../Search/searchbar';
 const AppBar = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const navigate = useNavigate();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -28,8 +28,8 @@ const AppBar = () => {
         <Box
           sx={{
             flexGrow: 1,
-            display: { xs: "flex", md: "none" },
-            padding: "0px 16px",
+            display: { xs: 'flex', md: 'none' },
+            padding: '0px 16px'
           }}
         >
           <IconButton
@@ -46,54 +46,48 @@ const AppBar = () => {
             id="menu-appbar"
             anchorEl={anchorElNav}
             anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
+              vertical: 'bottom',
+              horizontal: 'left'
             }}
             keepMounted
             transformOrigin={{
-              vertical: "top",
-              horizontal: "left",
+              vertical: 'top',
+              horizontal: 'left'
             }}
             open={Boolean(anchorElNav)}
             onClose={handleCloseNavMenu}
             sx={{
-              display: { xs: "block", md: "none" },
+              display: { xs: 'block', md: 'none' }
             }}
           >
             <Searchbar value={value} setValue={setValue} />
           </Menu>
         </Box>
 
-        <Box sx={{ padding: "0px 16px" }}>
+        <Box sx={{ padding: '0px 16px' }}>
           <Typography
-            onClick={() => navigate("/")}
+            onClick={() => navigate('/')}
             sx={{
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center'
             }}
           >
             <Stack justifyContent="center">
               <Typography variant="h5">СЖБК</Typography>
-              <Typography variant="caption">
-                Справочник Железобетонных Конструкций
-              </Typography>
+              <Typography variant="caption">Справочник Железобетонных Конструкций</Typography>
             </Stack>
           </Typography>
         </Box>
         <Box
           sx={{
             flexGrow: 1,
-            display: { xs: "none", md: "flex" },
-            justifyContent: "flex-end",
-            padding: "0px 16px",
+            display: { xs: 'none', md: 'flex' },
+            justifyContent: 'flex-end',
+            padding: '0px 16px'
           }}
         >
-          <Searchbar
-            value={value}
-            setValue={setValue}
-            sx={{ maxWidth: "300px", color: "white" }}
-          />
+          <Searchbar value={value} setValue={setValue} sx={{ maxWidth: '300px', color: 'white' }} />
         </Box>
       </Toolbar>
     </MuiAppBar>

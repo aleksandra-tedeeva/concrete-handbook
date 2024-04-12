@@ -1,13 +1,6 @@
-import {
-  FormControl,
-  InputLabel,
-  Input,
-  InputAdornment,
-  IconButton,
-  SxProps,
-} from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import CloseIcon from "@mui/icons-material/Close";
+import { FormControl, InputLabel, Input, InputAdornment, IconButton, SxProps } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import CloseIcon from '@mui/icons-material/Close';
 
 export interface SearchbarProps {
   value: string;
@@ -17,7 +10,7 @@ export interface SearchbarProps {
 
 export default function Searchbar({ value, setValue, sx }: SearchbarProps) {
   const handleClearTextfield = () => {
-    setValue("");
+    setValue('');
   };
 
   return (
@@ -33,7 +26,7 @@ export default function Searchbar({ value, setValue, sx }: SearchbarProps) {
         endAdornment={
           <InputAdornment position="end" sx={sx}>
             <IconButton onClick={handleClearTextfield} edge="end">
-              {value ? <CloseIcon /> : ""}
+              {value ? <CloseIcon /> : ''}
             </IconButton>
           </InputAdornment>
         }

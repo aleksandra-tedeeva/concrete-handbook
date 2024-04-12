@@ -1,14 +1,14 @@
-import { configureStore } from "@reduxjs/toolkit";
-import concreteClassReducer from "./concreteClassSlice";
-import concreteMarkReducer from "./concreteMarkSlice";
-import reinforcementReducer from "./reinforcementSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import concreteClassReducer from './concreteClassSlice';
+import concreteMarkReducer from './concreteMarkSlice';
+import reinforcementReducer from './reinforcementSlice';
 
 const store = configureStore({
   reducer: {
     class: concreteClassReducer,
     mark: concreteMarkReducer,
-    reinforcement: reinforcementReducer,
-  },
+    reinforcement: reinforcementReducer
+  }
 });
 
 export default store;
