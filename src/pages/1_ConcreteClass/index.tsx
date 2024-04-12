@@ -1,18 +1,18 @@
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
-import TabPanel from "../../components/TabPanel";
-import ClassSecondGroup from "../../components/ClassSecondGroup";
-import { useState } from "react";
-import ClassFirstGroup from "../../components/ClassFirstGroup";
-import ClassResilience from "../../components/ClassResilience";
-import ClassProtectiveLayer from "../../components/ClassProtectiveLayer";
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import TabPanel from '../../components/TabPanel';
+import ClassSecondGroup from '../../components/ClassSecondGroup';
+import { useState } from 'react';
+import ClassFirstGroup from '../../components/ClassFirstGroup';
+import ClassResilience from '../../components/ClassResilience';
+import ClassProtectiveLayer from '../../components/ClassProtectiveLayer';
 
 const headings = [
-  "Предельные Состояния Второй Группы",
-  "Предельные Состояния Первой Группы",
-  "Модуль Упругости",
-  "Защитный Слой",
+  'Предельные Состояния Второй Группы',
+  'Предельные Состояния Первой Группы',
+  'Модуль Упругости',
+  'Защитный Слой'
 ];
 
 const ConcreteClass = () => {
@@ -21,8 +21,8 @@ const ConcreteClass = () => {
     setValue(newValue);
   };
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} variant="scrollable">
           {headings.map((heading, index) => (
             <Tab label={heading} value={index}></Tab>

@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import raw_data from "../data/concrete_class.json";
-import { ConcreteClass } from "../types/data/concrete_class";
+import { createSlice } from '@reduxjs/toolkit';
+import raw_data from '../data/concrete_class.json';
+import { ConcreteClass } from '../types/data/concrete_class';
 const data = raw_data as ConcreteClass[];
 
 // Классы бетона
@@ -13,7 +13,7 @@ const second_group: ConcreteClassGroupState = {
   compression_cellular: [],
   expansion_heavy: [],
   expansion_light: [],
-  expansion_cellular: [],
+  expansion_cellular: []
 };
 
 // Значения для предельных состояний первой группы
@@ -23,7 +23,7 @@ const first_group: ConcreteClassGroupState = {
   compression_cellular: [],
   expansion_heavy: [],
   expansion_light: [],
-  expansion_cellular: [],
+  expansion_cellular: []
 };
 
 // Модуль упругости
@@ -45,7 +45,7 @@ const resilience: ResilienceState = {
   cellular_900: [],
   cellular_1000: [],
   cellular_1100: [],
-  cellular_1200: [],
+  cellular_1200: []
 };
 
 // Соотношение класса бетона к марке бетона
@@ -55,86 +55,38 @@ const classToMarkMap = new Map<string, string>();
 data.forEach((concreteClass) => {
   headers.push(concreteClass.name);
 
-  second_group.compression_heavy.push(
-    concreteClass.second_group.compression.heavy
-  );
-  second_group.compression_light.push(
-    concreteClass.second_group.compression.light
-  );
-  second_group.compression_cellular.push(
-    concreteClass.second_group.compression.cellular
-  );
+  second_group.compression_heavy.push(concreteClass.second_group.compression.heavy);
+  second_group.compression_light.push(concreteClass.second_group.compression.light);
+  second_group.compression_cellular.push(concreteClass.second_group.compression.cellular);
   second_group.expansion_heavy.push(concreteClass.second_group.expansion.heavy);
   second_group.expansion_light.push(concreteClass.second_group.expansion.light);
-  second_group.expansion_cellular.push(
-    concreteClass.second_group.expansion.cellular
-  );
+  second_group.expansion_cellular.push(concreteClass.second_group.expansion.cellular);
 
-  first_group.compression_heavy.push(
-    concreteClass.first_group.compression.heavy
-  );
-  first_group.compression_light.push(
-    concreteClass.first_group.compression.light
-  );
-  first_group.compression_cellular.push(
-    concreteClass.first_group.compression.cellular
-  );
+  first_group.compression_heavy.push(concreteClass.first_group.compression.heavy);
+  first_group.compression_light.push(concreteClass.first_group.compression.light);
+  first_group.compression_cellular.push(concreteClass.first_group.compression.cellular);
   first_group.expansion_heavy.push(concreteClass.first_group.expansion.heavy);
   first_group.expansion_light.push(concreteClass.first_group.expansion.light);
-  first_group.expansion_cellular.push(
-    concreteClass.first_group.expansion.cellular
-  );
+  first_group.expansion_cellular.push(concreteClass.first_group.expansion.cellular);
 
   resilience.heavy.push(concreteClass.resilience.heavy);
   resilience.grain_natural.push(concreteClass.resilience.light_grain.natural);
-  resilience.grain_autoclave.push(
-    concreteClass.resilience.light_grain.autoclave
-  );
-  resilience.light_800.push(
-    concreteClass.resilience.light_aerated_by_density.d_800
-  );
-  resilience.light_1000.push(
-    concreteClass.resilience.light_aerated_by_density.d_1000
-  );
-  resilience.light_1200.push(
-    concreteClass.resilience.light_aerated_by_density.d_1200
-  );
-  resilience.light_1400.push(
-    concreteClass.resilience.light_aerated_by_density.d_1400
-  );
-  resilience.light_1600.push(
-    concreteClass.resilience.light_aerated_by_density.d_1600
-  );
-  resilience.light_1800.push(
-    concreteClass.resilience.light_aerated_by_density.d_1800
-  );
-  resilience.light_2000.push(
-    concreteClass.resilience.light_aerated_by_density.d_2000
-  );
-  resilience.cellular_500.push(
-    concreteClass.resilience.cellular_autoclave_by_density.d_500
-  );
-  resilience.cellular_600.push(
-    concreteClass.resilience.cellular_autoclave_by_density.d_600
-  );
-  resilience.cellular_700.push(
-    concreteClass.resilience.cellular_autoclave_by_density.d_700
-  );
-  resilience.cellular_800.push(
-    concreteClass.resilience.cellular_autoclave_by_density.d_800
-  );
-  resilience.cellular_900.push(
-    concreteClass.resilience.cellular_autoclave_by_density.d_900
-  );
-  resilience.cellular_1000.push(
-    concreteClass.resilience.cellular_autoclave_by_density.d_1000
-  );
-  resilience.cellular_1100.push(
-    concreteClass.resilience.cellular_autoclave_by_density.d_1100
-  );
-  resilience.cellular_1200.push(
-    concreteClass.resilience.cellular_autoclave_by_density.d_1200
-  );
+  resilience.grain_autoclave.push(concreteClass.resilience.light_grain.autoclave);
+  resilience.light_800.push(concreteClass.resilience.light_aerated_by_density.d_800);
+  resilience.light_1000.push(concreteClass.resilience.light_aerated_by_density.d_1000);
+  resilience.light_1200.push(concreteClass.resilience.light_aerated_by_density.d_1200);
+  resilience.light_1400.push(concreteClass.resilience.light_aerated_by_density.d_1400);
+  resilience.light_1600.push(concreteClass.resilience.light_aerated_by_density.d_1600);
+  resilience.light_1800.push(concreteClass.resilience.light_aerated_by_density.d_1800);
+  resilience.light_2000.push(concreteClass.resilience.light_aerated_by_density.d_2000);
+  resilience.cellular_500.push(concreteClass.resilience.cellular_autoclave_by_density.d_500);
+  resilience.cellular_600.push(concreteClass.resilience.cellular_autoclave_by_density.d_600);
+  resilience.cellular_700.push(concreteClass.resilience.cellular_autoclave_by_density.d_700);
+  resilience.cellular_800.push(concreteClass.resilience.cellular_autoclave_by_density.d_800);
+  resilience.cellular_900.push(concreteClass.resilience.cellular_autoclave_by_density.d_900);
+  resilience.cellular_1000.push(concreteClass.resilience.cellular_autoclave_by_density.d_1000);
+  resilience.cellular_1100.push(concreteClass.resilience.cellular_autoclave_by_density.d_1100);
+  resilience.cellular_1200.push(concreteClass.resilience.cellular_autoclave_by_density.d_1200);
 
   classToMarkMap.set(concreteClass.name, concreteClass.corresponding_mark);
 });
@@ -179,14 +131,14 @@ export interface ResilienceState {
 }
 
 export const concreteClassSlice = createSlice({
-  name: "concrete_class",
+  name: 'concrete_class',
   initialState: {
     data,
     headers,
     first_group,
     second_group,
     resilience,
-    classToMarkMap,
+    classToMarkMap
   },
   reducers: {
     // increment: (state) => {
@@ -202,7 +154,7 @@ export const concreteClassSlice = createSlice({
     // incrementByAmount: (state, action) => {
     //   state.value += action.payload
     // },
-  },
+  }
 });
 
 // Action creators are generated for each case reducer function

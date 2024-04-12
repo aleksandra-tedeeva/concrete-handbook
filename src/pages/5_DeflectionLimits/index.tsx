@@ -1,16 +1,16 @@
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
-import TabPanel from "../../components/TabPanel";
-import { useState } from "react";
-import DeflectionLimitsVertical from "../../components/DeflectionLimitsVertical";
-import DeflectionLimitsHorizontal from "../../components/DeflectionLimitsHorizontal";
-import DeflectionLimitsHorizontalWind from "../../components/DeflectionLimitsHorizontalWind";
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import TabPanel from '../../components/TabPanel';
+import { useState } from 'react';
+import DeflectionLimitsVertical from '../../components/DeflectionLimitsVertical';
+import DeflectionLimitsHorizontal from '../../components/DeflectionLimitsHorizontal';
+import DeflectionLimitsHorizontalWind from '../../components/DeflectionLimitsHorizontalWind';
 
 const headings = [
-  "Вертикальные прогибы",
-  "Горизонтальные прогибы",
-  "Горизонтальные прогибы от ветра",
+  'Вертикальные прогибы',
+  'Горизонтальные прогибы',
+  'Горизонтальные прогибы от ветра'
 ];
 
 const DeflectionLimits = () => {
@@ -19,8 +19,8 @@ const DeflectionLimits = () => {
     setValue(newValue);
   };
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} variant="scrollable">
           {headings.map((heading, index) => (
             <Tab label={heading} value={index}></Tab>

@@ -1,6 +1,6 @@
-import { Info } from "@mui/icons-material";
-import { Card, CardContent, Stack, Typography, styled } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Info } from '@mui/icons-material';
+import { Card, CardContent, Stack, Typography, styled } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export interface CardLinkProps {
   name: string;
@@ -8,8 +8,8 @@ export interface CardLinkProps {
 }
 
 const StyledLink = styled(Link)({
-  textDecoration: "none",
-  color: "inherit",
+  textDecoration: 'none',
+  color: 'inherit'
 });
 
 export default function CardLink({ name, link }: CardLinkProps) {
@@ -22,9 +22,9 @@ export default function CardLink({ name, link }: CardLinkProps) {
           justifyContent="center"
           textAlign="center"
           sx={(theme) => ({
-            textDecoration: "none",
+            textDecoration: 'none',
             color: theme.palette.secondary.main,
-            height: "100px",
+            height: '100px'
           })}
         >
           <StyledLink to={link}>

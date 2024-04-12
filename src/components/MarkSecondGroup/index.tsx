@@ -1,23 +1,22 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import { useAppSelector } from "../../store/hooks";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import { useAppSelector } from '../../store/hooks';
 
 const MarkSecondGroup = () => {
   const { headers, second_group } = useAppSelector((state) => state.mark);
   return (
     <>
-      <Box sx={{ padding: "0px 16px 16px 16px" }}>
+      <Box sx={{ padding: '0px 16px 16px 16px' }}>
         <Typography component="div">
-          Нормативные сопротивления бетона R<sub>np</sub>*R<sub>p</sub> и
-          расчетные сопротивления бетона для предельных состояний второй группы
-          R<sub>npll</sub> и R<sub>pll</sub> (кгс/см<sup>2</sup>) при проектной
-          марке бетона по прочности на сжатие
+          Нормативные сопротивления бетона R<sub>np</sub>*R<sub>p</sub> и расчетные сопротивления
+          бетона для предельных состояний второй группы R<sub>npll</sub> и R<sub>pll</sub> (кгс/см
+          <sup>2</sup>) при проектной марке бетона по прочности на сжатие
         </Typography>
       </Box>
       <TableContainer>
@@ -49,9 +48,7 @@ const MarkSecondGroup = () => {
             </TableRow>
             <TableRow>
               <TableCell className="sticky-cell"></TableCell>
-              <TableCell className="sticky-cell">
-                На пористых заполнителях
-              </TableCell>
+              <TableCell className="sticky-cell">На пористых заполнителях</TableCell>
               {second_group.compression_aerated.map((val, idx) => (
                 <TableCell key={idx}>{val}</TableCell>
               ))}
@@ -71,9 +68,7 @@ const MarkSecondGroup = () => {
               ))}
             </TableRow>
             <TableRow>
-              <TableCell className="sticky-cell">
-                Растяжение осевое Rp и Rpll
-              </TableCell>
+              <TableCell className="sticky-cell">Растяжение осевое Rp и Rpll</TableCell>
               <TableCell className="sticky-cell">Тяжелый</TableCell>
               {second_group.expansion_heavy.map((val, idx) => (
                 <TableCell key={idx}>{val}</TableCell>

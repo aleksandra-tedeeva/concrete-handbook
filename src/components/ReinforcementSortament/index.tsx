@@ -1,23 +1,23 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import { useAppSelector } from "../../store/hooks";
-import TextField from "@mui/material/TextField";
-import { useEffect, useState } from "react";
-import InputAdornment from "@mui/material/InputAdornment";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import { useAppSelector } from '../../store/hooks';
+import TextField from '@mui/material/TextField';
+import { useEffect, useState } from 'react';
+import InputAdornment from '@mui/material/InputAdornment';
 
 const ReinforcementSortament = () => {
-  const [value, setValue] = useState("");
-  const [epsilon, setEpsilon] = useState("5");
+  const [value, setValue] = useState('');
+  const [epsilon, setEpsilon] = useState('5');
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(0);
   const { data } = useAppSelector((state) => state.reinforcement);
-  const arr = ["", "", "", "", "", "", "", "", ""];
+  const arr = ['', '', '', '', '', '', '', '', ''];
 
   const findArea = () => {
     const v = Number.parseFloat(value);
@@ -32,9 +32,9 @@ const ReinforcementSortament = () => {
 
   const checkMinMax = (val: number) => {
     if (val >= min && val <= max) {
-      return "highlight-cell--blue";
+      return 'highlight-cell--blue';
     }
-    return "";
+    return '';
   };
 
   useEffect(() => {
@@ -44,12 +44,12 @@ const ReinforcementSortament = () => {
 
   return (
     <>
-      <Box sx={{ paddingTop: "8px" }}>
+      <Box sx={{ paddingTop: '8px' }}>
         <Typography component="div" variant="h6">
           Сортамент арматуры
         </Typography>
       </Box>
-      <Box sx={{ paddingTop: "8px" }}>
+      <Box sx={{ paddingTop: '8px' }}>
         <Typography component="div" variant="subtitle2">
           Поиск расчетной площади
         </Typography>
@@ -64,7 +64,7 @@ const ReinforcementSortament = () => {
               <InputAdornment position="start">
                 mm<sup>2</sup>
               </InputAdornment>
-            ),
+            )
           }}
         ></TextField>
         <TextField
@@ -74,7 +74,7 @@ const ReinforcementSortament = () => {
           variant="standard"
           type="number"
           InputProps={{
-            startAdornment: <InputAdornment position="start">%</InputAdornment>,
+            startAdornment: <InputAdornment position="start">%</InputAdornment>
           }}
         ></TextField>
       </Box>
@@ -86,8 +86,7 @@ const ReinforcementSortament = () => {
             </TableCell>
             {arr.map((el, idx) => (
               <TableCell className="highlight-cell--gray  highest-z-index">
-                Расчетная площадь поперечного стержня (мм<sup>2</sup>) при числе
-                стержней {idx + 1}
+                Расчетная площадь поперечного стержня (мм<sup>2</sup>) при числе стержней {idx + 1}
               </TableCell>
             ))}
             <TableCell className="highlight-cell--gray  highest-z-index">
@@ -149,13 +148,13 @@ const ReinforcementSortament = () => {
                   {el.cross_beam_area.beam_9}
                 </TableCell>
                 <TableCell>{el.theoretical_1m}</TableCell>
-                <TableCell>{el.armature_class.A240 ? "+" : ""}</TableCell>
-                <TableCell>{el.armature_class.A400 ? "+" : ""}</TableCell>
-                <TableCell>{el.armature_class.A500 ? "+" : ""}</TableCell>
-                <TableCell>{el.armature_class.A600 ? "+" : ""}</TableCell>
-                <TableCell>{el.armature_class.A600C ? "+" : ""}</TableCell>
-                <TableCell>{el.armature_class.B500 ? "+" : ""}</TableCell>
-                <TableCell>{el.armature_class.Bp500 ? "+" : ""}</TableCell>
+                <TableCell>{el.armature_class.A240 ? '+' : ''}</TableCell>
+                <TableCell>{el.armature_class.A400 ? '+' : ''}</TableCell>
+                <TableCell>{el.armature_class.A500 ? '+' : ''}</TableCell>
+                <TableCell>{el.armature_class.A600 ? '+' : ''}</TableCell>
+                <TableCell>{el.armature_class.A600C ? '+' : ''}</TableCell>
+                <TableCell>{el.armature_class.B500 ? '+' : ''}</TableCell>
+                <TableCell>{el.armature_class.Bp500 ? '+' : ''}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -163,28 +162,18 @@ const ReinforcementSortament = () => {
       </TableContainer>
       <Box>
         <Typography component="div">Стандарты: </Typography>
+        <Typography component="div">при классе арматуры А240 - СТО АСЧМ 8-93 </Typography>
+        <Typography component="div">при классе арматуры А400 - СТО АСЧМ 7-93 </Typography>
         <Typography component="div">
-          при классе арматуры А240 - СТО АСЧМ 8-93{" "}
+          при классе арматуры A500 - ГОСТ Р 52544-2006, СТО АСЧМ 7-93{' '}
+        </Typography>
+        <Typography component="div">при классе арматуры A600 - СТО АСЧМ 7-93 </Typography>
+        <Typography component="div">при классе арматуры A600C - ТУ 14-1-5596-2010 </Typography>
+        <Typography component="div">
+          при классе арматуры B500 - ГОСТ Р 52544-2006, ГОСТ 6727-80, СТО АСЧМ 7-93{' '}
         </Typography>
         <Typography component="div">
-          при классе арматуры А400 - СТО АСЧМ 7-93{" "}
-        </Typography>
-        <Typography component="div">
-          при классе арматуры A500 - ГОСТ Р 52544-2006, СТО АСЧМ 7-93{" "}
-        </Typography>
-        <Typography component="div">
-          при классе арматуры A600 - СТО АСЧМ 7-93{" "}
-        </Typography>
-        <Typography component="div">
-          при классе арматуры A600C - ТУ 14-1-5596-2010{" "}
-        </Typography>
-        <Typography component="div">
-          при классе арматуры B500 - ГОСТ Р 52544-2006, ГОСТ 6727-80, СТО АСЧМ
-          7-93{" "}
-        </Typography>
-        <Typography component="div">
-          при классе арматуры Bp500 - ГОСТ Р 52544-2006, ГОСТ 6727-80, СТО АСЧМ
-          7-93{" "}
+          при классе арматуры Bp500 - ГОСТ Р 52544-2006, ГОСТ 6727-80, СТО АСЧМ 7-93{' '}
         </Typography>
       </Box>
     </>

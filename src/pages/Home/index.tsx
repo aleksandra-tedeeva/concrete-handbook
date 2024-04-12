@@ -1,6 +1,6 @@
-import { Grid, Stack, Typography } from "@mui/material";
-import menuItems from "../../constants/menu-items";
-import CardLink from "../../components/CardLink";
+import { Grid, Stack, Typography } from '@mui/material';
+import menuItems from '../../constants/menu-items';
+import CardLink from '../../components/CardLink';
 
 const Home = () => {
   return (

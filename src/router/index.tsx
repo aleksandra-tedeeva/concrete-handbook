@@ -1,13 +1,13 @@
-import { Routes, Route, Outlet } from "react-router-dom";
-import ConcreteClass from "../pages/1_ConcreteClass";
-import ConcreteMark from "../pages/2_ConcreteMark";
-import Reinforcement from "../pages/3_Reinforcement";
-import ServiceFactor from "../pages/4_ServiceFactor";
-import DeflectionLimits from "../pages/5_DeflectionLimits";
-import Home from "../pages/Home";
-import Error from "../pages/Error";
-import AppBar from "../components/AppBar";
-import Container from "@mui/material/Container/Container";
+import { Routes, Route, Outlet } from 'react-router-dom';
+import ConcreteClass from '../pages/1_ConcreteClass';
+import ConcreteMark from '../pages/2_ConcreteMark';
+import Reinforcement from '../pages/3_Reinforcement';
+import ServiceFactor from '../pages/4_ServiceFactor';
+import DeflectionLimits from '../pages/5_DeflectionLimits';
+import Home from '../pages/Home';
+import Error from '../pages/Error';
+import AppBar from '../components/AppBar';
+import Container from '@mui/material/Container/Container';
 
 const Router = () => {
   return (

@@ -1,23 +1,21 @@
-import List from "@mui/material/List";
-import CircularProgress from "@mui/material/CircularProgress";
-import { useEffect, useState } from "react";
-import { useAppSelector } from "../../store/hooks";
-import { ConcreteClass } from "../../types/data/concrete_class";
-import { ConcreteMark } from "../../types/data/concrete_mark";
-import SearchResult from "../SearchResult";
-import DetailedClass from "../DetailedClass";
-import DetailedMark from "../DetailedMark";
-import Searchbar from "./searchbar";
+import List from '@mui/material/List';
+import CircularProgress from '@mui/material/CircularProgress';
+import { useEffect, useState } from 'react';
+import { useAppSelector } from '../../store/hooks';
+import { ConcreteClass } from '../../types/data/concrete_class';
+import { ConcreteMark } from '../../types/data/concrete_mark';
+import SearchResult from '../SearchResult';
+import DetailedClass from '../DetailedClass';
+import DetailedMark from '../DetailedMark';
+import Searchbar from './searchbar';
 
 const Search = () => {
   const classData = useAppSelector((state) => state.class.data);
   const markData = useAppSelector((state) => state.mark.data);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const [classFound, setClassFound] = useState<ConcreteClass[]>([]);
   const [markFound, setMarkFound] = useState<ConcreteMark[]>([]);
-  const [detailedResult, setDetailedResult] = useState<null | JSX.Element>(
-    null
-  );
+  const [detailedResult, setDetailedResult] = useState<null | JSX.Element>(null);
 
   useEffect(() => {
     if (value.length > 1) {
@@ -38,14 +36,13 @@ const Search = () => {
     setDetailedResult(null);
   };
 
-  const showFullResult = (type: "class" | "mark", name: string) => {
+  const showFullResult = (type: 'class' | 'mark', name: string) => {
     setDetailedResult(<CircularProgress />);
     const corrClass =
-      classData.find((el) => el.name === name) ||
-      markData.find((el) => el.name === name);
-    console.log("debug", name, corrClass);
+      classData.find((el) => el.name === name) || markData.find((el) => el.name === name);
+    console.log('debug', name, corrClass);
     setDetailedResult(
-      type === "class" ? (
+      type === 'class' ? (
         <DetailedClass
           data={corrClass as ConcreteClass | undefined}
           returnToSearch={returnToSearch}
