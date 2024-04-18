@@ -9,6 +9,9 @@ export const theme = createTheme({
     secondary: {
       main: '#42428e'
     }
+    // background: {
+    //   default: '#ddd'#ddd#861F41#2B3F63
+    // }
   },
   typography: {
     fontFamily: 'Nunito',
