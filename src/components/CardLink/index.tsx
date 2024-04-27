@@ -26,31 +26,41 @@ export default function CardLink({ name, link, Icon }: CardLinkProps) {
   });
 
   return (
-    <Card variant="elevation" sx={{ maxWidth: '200px', minWidth: '150px', p: 1 }}>
-      <Stack
-        spacing={2}
-        alignItems="center"
-        justifyContent="center"
-        textAlign="center"
-        sx={(theme) => ({
-          textDecoration: 'none',
-          color: theme.palette.secondary.main,
-          height: '120px'
-        })}
+    <StyledLink to={link}>
+      <Card
+        variant="elevation"
+        sx={{
+          p: 2,
+          '&:hover': {
+            background: 'rgba(60, 83, 164,0.1)',
+            transition: 'ease-in-out 0.3s'
+          }
+        }}
       >
-        <StyledLink to={link}>
+        <Stack
+          direction="row"
+          spacing={2}
+          alignItems="center"
+          justifyContent="center"
+          textAlign="left"
+          sx={(theme) => ({
+            textDecoration: 'none',
+            color: theme.palette.secondary.main,
+            height: '60px'
+          })}
+        >
           {Icon && (
             <Icon
               sx={{
-                width: '40px',
-                height: '40px',
+                width: '30px',
+                height: '30px',
                 color: iconColor
               }}
             />
           )}
           <Typography variant="h6">{name}</Typography>
-        </StyledLink>
-      </Stack>
-    </Card>
+        </Stack>
+      </Card>
+    </StyledLink>
   );
 }

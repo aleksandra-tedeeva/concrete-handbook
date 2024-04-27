@@ -22,5 +22,55 @@ export const menuItems: MenuItem[] = [
 ];
 
 export const calculationMenuItems: MenuItem[] = [
-  { name: 'Проверка прочности изгибаемого жбэ', link: '/calc1', Icon: IconConcretePlaceholder }
+  {
+    name: 'Проверка прочности изгибаемого элемента',
+    link: '/concrete_bend_strength',
+    Icon: IconConcretePlaceholder
+  },
+  {
+    name: 'Подбор арматуры изгибаемого элемента',
+    link: '/concrete_bend_rebar_assortment',
+    Icon: IconConcretePlaceholder
+  },
+  {
+    name: 'Проверка прочности внецентренно сжатого элемента',
+    link: '/eccentrically_compressed_element',
+    Icon: IconConcretePlaceholder
+  },
+  {
+    name: 'Проверка прочности внецентренно растянутого элемента',
+    link: '/eccentrically_stretched_element',
+    Icon: IconConcretePlaceholder
+  },
+  {
+    name: 'Продавливание - колонна посередине плиты',
+    link: '/pushing_column_center',
+    Icon: IconConcretePlaceholder
+  },
+  {
+    name: 'Продавливание - колонна на краю',
+    link: '/pushing_column_edge',
+    Icon: IconConcretePlaceholder
+  },
+  {
+    name: 'Продавливание - колонна на углу',
+    link: '/pushing_column_corner',
+    Icon: IconConcretePlaceholder
+  },
+  {
+    name: 'Расчет на действие поперечной силы',
+    link: '/shear_force',
+    Icon: IconConcretePlaceholder
+  },
+  { name: 'Расчет на местное сжатие', link: '/local_compression', Icon: IconConcretePlaceholder },
+  {
+    name: 'Проверка на образование трещин и ширины их раскрытия',
+    link: '/cracking_width',
+    Icon: IconConcretePlaceholder
+  },
+  {
+    name: 'Определение прогиба железобетонного элемента',
+    link: '/deflection',
+    Icon: IconConcretePlaceholder
+  }
 ];
