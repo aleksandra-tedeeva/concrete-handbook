@@ -1,5 +1,5 @@
 import { Grid, Stack, Typography } from '@mui/material';
-import menuItems from '../../constants/menu-items';
+import { calculationMenuItems, menuItems } from '../../constants/menu-items';
 import CardLink from '../../components/CardLink';
 
 const Home = () => {
@@ -18,6 +18,13 @@ const Home = () => {
       <Typography variant="h5" align="left" mt={1}>
         Расчеты
       </Typography>
+      <Grid container spacing={2} sx={{ flexGrow: 1 }}>
+        {calculationMenuItems.map((item) => (
+          <Grid item xs={3} key={item.link}>
+            <CardLink {...item} />
+          </Grid>
+        ))}
+      </Grid>
     </Stack>
   );
 };
