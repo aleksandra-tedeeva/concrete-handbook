@@ -1,38 +1,66 @@
-import { Info } from '@mui/icons-material';
-import { Card, CardContent, Stack, Typography, styled } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  Stack,
+  SvgIconProps,
+  Theme,
+  Typography,
+  styled,
+  useTheme
+} from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export interface CardLinkProps {
   name: string;
   link: string;
+  Icon?: (props: SvgIconProps) => JSX.Element;
 }
 
-const StyledLink = styled(Link)({
-  textDecoration: 'none',
-  color: 'inherit'
-});
+export default function CardLink({ name, link, Icon }: CardLinkProps) {
+  const { palette } = useTheme();
+  const iconColor = palette.secondary.main;
 
-export default function CardLink({ name, link }: CardLinkProps) {
+  const StyledLink = styled(Link)({
+    textDecoration: 'none',
+    color: palette.secondary.main
+  });
+
   return (
-    <Card variant="outlined">
-      <CardContent>
+    <StyledLink to={link}>
+      <Card
+        variant="elevation"
+        sx={{
+          p: 2,
+          '&:hover': {
+            background: 'rgba(60, 83, 164,0.1)',
+            transition: 'ease-in-out 0.3s'
+          }
+        }}
+      >
         <Stack
+          direction="row"
           spacing={2}
           alignItems="center"
           justifyContent="center"
-          textAlign="center"
+          textAlign="left"
           sx={(theme) => ({
             textDecoration: 'none',
             color: theme.palette.secondary.main,
-            height: '100px'
+            height: '60px'
           })}
         >
-          <StyledLink to={link}>
-            <Info sx={{ width: 40, height: 40 }} />
-            <Typography variant="h6">{name}</Typography>
-          </StyledLink>
+          {Icon && (
+            <Icon
+              sx={{
+                width: '30px',
+                height: '30px',
+                color: iconColor
+              }}
+            />
+          )}
+          <Typography variant="h6">{name}</Typography>
         </Stack>
-      </CardContent>
-    </Card>
+      </Card>
+    </StyledLink>
   );
 }
