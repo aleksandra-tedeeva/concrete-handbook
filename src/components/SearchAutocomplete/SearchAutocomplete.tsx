@@ -2,11 +2,15 @@ import { Autocomplete, InputAdornment, TextField } from '@mui/material';
 import { useAppSelector } from '../../store/hooks';
 import SearchListItem from './SearchListItem';
 import { Search } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
 
 export default function SearchAutocomplete() {
   // const { headers: reinforcementHeaders } = useAppSelector((state) => state.reinforcement);
   const { headers: concreteMarkHeaders } = useAppSelector((state) => state.mark);
   const { headers: concreteClassHeaders } = useAppSelector((state) => state.class);
+  const navigate = useNavigate();
+  const autocompleteRef = useRef<HTMLInputElement>();
 
   // const rHeaders = reinforcementHeaders.map((header) => ({ label: header, type: 'reinforcement' }));
   const mHeaders = concreteMarkHeaders.map((header) => ({ label: header, type: 'mark' }));
@@ -14,12 +18,22 @@ export default function SearchAutocomplete() {
 
   const allHeaders = [...mHeaders, ...cHeaders];
 
-  const handleSelect = (event: any) => {
-    console.log(event.target.value);
+  const handleSelect = (option: { label: string; type: string }) => {
+    const { label, type } = option;
+    if (label && type) {
+      navigate(`${type}_list/${label}`);
+      autocompleteRef.current?.blur();
+    }
+  };
+
+  const handleChange = () => {
+    console.log('handle change');
   };
 
   return (
     <Autocomplete
+      blurOnSelect
+      clearOnBlur
       freeSolo
       id="combo-box-demo"
       options={allHeaders}
@@ -51,8 +65,10 @@ export default function SearchAutocomplete() {
           }}
         />
       )}
-      renderOption={(props, option) => <SearchListItem props={props} option={option} />}
-      onSelect={handleSelect}
+      renderOption={(props, option) => (
+        <SearchListItem option={option} onClick={() => handleSelect(option)} />
+      )}
+      onChange={handleChange}
     />
   );
 }

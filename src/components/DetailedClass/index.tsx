@@ -3,24 +3,32 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
-import { ConcreteClass } from '../../types/data/concrete_class';
 import { Button, Typography } from '@mui/material';
 import { useAppSelector } from '../../store/hooks';
 import ReturnButton from '../ReturnButton';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export interface IDetailedClassProps {
-  data: ConcreteClass | undefined;
-  returnToSearch: () => void;
-  showFullResult: (type: 'class' | 'mark', name: string) => void;
-}
+const DetailedClass = () => {
+  const { id } = useParams();
+  const { data: allClasses } = useAppSelector((state) => state.class);
+  const data = allClasses.find((el) => el.name === id);
 
-const DetailedClass = ({ data, returnToSearch, showFullResult }: IDetailedClassProps) => {
+  const navigate = useNavigate();
+
+  const returnToSearch = () => {
+    navigate('/class_list');
+  };
+
+  const showFullResult = (name: string) => {
+    navigate(`/class_list/${name}`);
+  };
+
   const { headers: availableMarks } = useAppSelector((state) => state.mark);
 
   if (!data) {
     return (
       <>
-        <ReturnButton label="Вернуться к поиску" returnFunction={returnToSearch} />
+        <ReturnButton label="Вернуться к списку классов бетона" returnFunction={returnToSearch} />
         <Typography>Нет данных по классу бетона.</Typography>
       </>
     );
@@ -28,7 +36,7 @@ const DetailedClass = ({ data, returnToSearch, showFullResult }: IDetailedClassP
 
   return (
     <>
-      <ReturnButton label="Вернуться к поиску" returnFunction={returnToSearch} />
+      <ReturnButton label="Вернуться к списку классов бетона" returnFunction={returnToSearch} />
       <TableContainer>
         <Table size="small">
           <TableBody>
@@ -50,7 +58,7 @@ const DetailedClass = ({ data, returnToSearch, showFullResult }: IDetailedClassP
                   <Button
                     disabled={!availableMarks.includes(data.corresponding_mark)}
                     sx={{ marginLeft: '-16px' }}
-                    onClick={() => showFullResult('mark', data.corresponding_mark)}
+                    onClick={() => showFullResult(data.corresponding_mark)}
                   >
                     {data.corresponding_mark}
                   </Button>

@@ -20,6 +20,10 @@ import LocalCompression from '../pages/Calculations/9_LocalCompression';
 import CrackingWidth from '../pages/Calculations/10_CrackingWidth';
 import Deflection from '../pages/Calculations/11_Deflection';
 import { CssBaseline } from '@mui/material';
+import ConcreteClasses from '../pages/ConcreteClasses/ConcreteClasses';
+import ConcreteMarks from '../pages/ConcreteMarks/ConcreteMarks';
+import DetailedMark from '../components/DetailedMark';
+import DetailedClass from '../components/DetailedClass';
 
 const Router = () => {
   return (
@@ -37,10 +41,22 @@ const Router = () => {
         }
       >
         <Route index element={<Home />} />
+
+        {/* Класс Бетона */}
         <Route path="class" element={<ConcreteClass />} />
+        <Route path="class_list" element={<ConcreteClasses />} />
+        <Route path="class_list/:id" element={<DetailedClass />} />
+
+        {/* Марка Бетона */}
         <Route path="mark" element={<ConcreteMark />} />
+        <Route path="mark_list" element={<ConcreteMarks />} />
+        <Route path="mark_list/:id" element={<DetailedMark />} />
+
+        {/* Подбор арматуры */}
         <Route path="reinforcement" element={<Reinforcement />} />
+        {/* Коэф Условий Работы */}
         <Route path="service_factor" element={<ServiceFactor />} />
+        {/* Предельные Прогибы */}
         <Route path="deflection_limits" element={<DeflectionLimits />} />
 
         {/* Ссылки на Расчеты */}
