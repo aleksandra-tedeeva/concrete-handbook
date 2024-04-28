@@ -19,6 +19,7 @@ import ShearForce from '../pages/Calculations/8_ShearForce';
 import LocalCompression from '../pages/Calculations/9_LocalCompression';
 import CrackingWidth from '../pages/Calculations/10_CrackingWidth';
 import Deflection from '../pages/Calculations/11_Deflection';
+import { CssBaseline } from '@mui/material';
 
 const Router = () => {
   return (
@@ -27,6 +28,7 @@ const Router = () => {
         path="/"
         element={
           <>
+            <CssBaseline />
             <AppBar />
             <Container maxWidth={false}>
               <Outlet />

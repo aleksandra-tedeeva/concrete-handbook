@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Stack } from '@mui/material';
 import Searchbar from '../Search/searchbar';
+import SearchAutocomplete from '../SearchAutocomplete/SearchAutocomplete';
 const AppBar = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [value, setValue] = useState('');
@@ -87,7 +88,8 @@ const AppBar = () => {
             padding: '0px 16px'
           }}
         >
-          <Searchbar value={value} setValue={setValue} sx={{ maxWidth: '300px', color: 'white' }} />
+          <SearchAutocomplete />
+          {/* <Searchbar value={value} setValue={setValue} sx={{ maxWidth: '300px', color: 'white' }} /> */}
         </Box>
       </Toolbar>
     </MuiAppBar>
