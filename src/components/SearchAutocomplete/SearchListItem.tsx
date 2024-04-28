@@ -3,13 +3,13 @@ import IconC from '../../icons/icon-c';
 import IconG from '../../icons/icon-g';
 
 export interface SearchListItemProps {
-  props: React.HTMLAttributes<HTMLLIElement>;
   option: { label: string; type: string };
+  onClick?: () => void;
 }
 
-export default function SearchListItem({ props, option }: SearchListItemProps) {
+export default function SearchListItem({ option, onClick = () => {} }: SearchListItemProps) {
   return (
-    <MenuItem>
+    <MenuItem onClick={onClick}>
       <ListItemIcon>
         {option.type === 'mark' ? (
           <IconG sx={{ width: '16px', height: '16px' }} />

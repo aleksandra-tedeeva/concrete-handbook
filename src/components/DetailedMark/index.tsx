@@ -5,29 +5,36 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import { Button, Typography } from '@mui/material';
 import { useAppSelector } from '../../store/hooks';
-import { ConcreteMark } from '../../types/data/concrete_mark';
 import ReturnButton from '../ReturnButton';
+import { useParams, useNavigate } from 'react-router-dom';
 
-export interface IDetailedClassProps {
-  data: ConcreteMark | undefined;
-  returnToSearch: () => void;
-  showFullResult: (type: 'class' | 'mark', name: string) => void;
-}
-
-const DetailedMark = ({ data, returnToSearch, showFullResult }: IDetailedClassProps) => {
+const DetailedMark = () => {
   const { headers: availableClasses } = useAppSelector((state) => state.class);
+  const { id } = useParams();
+  const { data: allClasses } = useAppSelector((state) => state.mark);
+  const data = allClasses.find((el) => el.name === id);
+
+  const navigate = useNavigate();
+
+  const returnToSearch = () => {
+    navigate('/mark_list/');
+  };
+
+  const showFullResult = (name: string) => {
+    navigate(`/mark_list/${name}`);
+  };
 
   if (!data) {
     return (
       <>
-        <ReturnButton label="Вернуться к поиску" returnFunction={returnToSearch} />
+        <ReturnButton label="Вернуться к списку марок бетона" returnFunction={returnToSearch} />
         <Typography>Нет данных по марке бетона.</Typography>
       </>
     );
   }
   return (
     <>
-      <ReturnButton label="Вернуться к поиску" returnFunction={returnToSearch} />
+      <ReturnButton label="Вернуться к списку марок бетона" returnFunction={returnToSearch} />
       <TableContainer>
         <Table size="small">
           <TableBody>
@@ -49,7 +56,7 @@ const DetailedMark = ({ data, returnToSearch, showFullResult }: IDetailedClassPr
                   <Button
                     disabled={!availableClasses.includes(data.corresponding_class)}
                     sx={{ marginLeft: '-16px' }}
-                    onClick={() => showFullResult('class', data.corresponding_class)}
+                    onClick={() => showFullResult(data.corresponding_class)}
                   >
                     {data.corresponding_class}
                   </Button>

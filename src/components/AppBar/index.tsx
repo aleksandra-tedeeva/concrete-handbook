@@ -61,7 +61,7 @@ const AppBar = () => {
               display: { xs: 'block', md: 'none' }
             }}
           >
-            <Searchbar value={value} setValue={setValue} />
+            {/* <Searchbar value={value} setValue={setValue} /> */}
           </Menu>
         </Box>
 

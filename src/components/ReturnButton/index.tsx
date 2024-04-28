@@ -1,14 +1,14 @@
-import Button from '@mui/material/Button';
+import Button, { ButtonProps } from '@mui/material/Button';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
-interface IReturnButtonProps {
+interface IReturnButtonProps extends ButtonProps {
   returnFunction: () => void;
   label: string;
 }
 
-const ReturnButton = ({ returnFunction, label }: IReturnButtonProps) => {
+const ReturnButton = ({ returnFunction, label, ...other }: IReturnButtonProps) => {
   return (
-    <Button onClick={returnFunction} sx={{ marginBottom: '16px' }}>
+    <Button {...other} onClick={returnFunction}>
       <ChevronLeftIcon sx={{ marginRight: '8px' }}></ChevronLeftIcon>
       {label}
     </Button>
