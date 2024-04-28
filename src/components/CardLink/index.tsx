@@ -1,11 +1,11 @@
 import {
   Card,
-  CardContent,
   Stack,
   SvgIconProps,
   Theme,
   Typography,
   styled,
+  useMediaQuery,
   useTheme
 } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -17,6 +17,7 @@ export interface CardLinkProps {
 }
 
 export default function CardLink({ name, link, Icon }: CardLinkProps) {
+  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const { palette } = useTheme();
   const iconColor = palette.secondary.main;
 
@@ -41,12 +42,12 @@ export default function CardLink({ name, link, Icon }: CardLinkProps) {
           direction="row"
           spacing={2}
           alignItems="center"
-          justifyContent="center"
+          justifyContent="flex-start"
           textAlign="left"
           sx={(theme) => ({
             textDecoration: 'none',
             color: theme.palette.secondary.main,
-            height: '60px'
+            height: isMobile ? '30px' : '60px'
           })}
         >
           {Icon && (
@@ -58,7 +59,7 @@ export default function CardLink({ name, link, Icon }: CardLinkProps) {
               }}
             />
           )}
-          <Typography variant="h6">{name}</Typography>
+          <Typography variant={isMobile ? 'body1' : 'h6'}>{name}</Typography>
         </Stack>
       </Card>
     </StyledLink>
