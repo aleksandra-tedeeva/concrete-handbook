@@ -6,6 +6,9 @@ import { useState } from 'react';
 import MarkSecondGroup from '../../components/MarkSecondGroup';
 import MarkToClass from '../../components/MarkToClass';
 import MarkFirstGroup from '../../components/MarkFirstGroup';
+import { Stack } from '@mui/material';
+import ReturnButton from '../../components/ReturnButton';
+import { useNavigate } from 'react-router-dom';
 
 const headings = [
   'Предельные Состояния Второй Группы',
@@ -15,28 +18,38 @@ const headings = [
 
 const ConcreteMark = () => {
   const [value, setValue] = useState<number>(0);
+  const navigate = useNavigate();
+
+  const returnToHome = () => {
+    navigate('/');
+  };
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} variant="scrollable">
-          {headings.map((heading, index) => (
-            <Tab label={heading} value={index}></Tab>
-          ))}
-        </Tabs>
+    <Stack spacing={1} pt={1} alignItems="flex-start">
+      <ReturnButton label="Вернуться" returnFunction={returnToHome} />
+      <Box sx={{ width: '100%' }}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <Tabs value={value} onChange={handleChange} variant="scrollable">
+            {headings.map((heading, index) => (
+              <Tab label={heading} value={index}></Tab>
+            ))}
+          </Tabs>
+        </Box>
+        <TabPanel value={value} index={0}>
+          <MarkSecondGroup />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <MarkFirstGroup />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <MarkToClass />
+        </TabPanel>
       </Box>
-      <TabPanel value={value} index={0}>
-        <MarkSecondGroup />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <MarkFirstGroup />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <MarkToClass />
-      </TabPanel>
-    </Box>
+    </Stack>
   );
 };
 

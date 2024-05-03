@@ -1,16 +1,29 @@
-import { Autocomplete, InputAdornment, TextField } from '@mui/material';
+import {
+  Autocomplete,
+  InputAdornment,
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
+  TextField,
+  Typography
+} from '@mui/material';
 import { useAppSelector } from '../../store/hooks';
-import SearchListItem from './SearchListItem';
 import { Search } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import { useRef } from 'react';
+import { useState } from 'react';
+import IconC from '../../icons/icon-c';
+import IconG from '../../icons/icon-g';
+
+type ValueType = { label: string; type: string } | '';
 
 export default function SearchAutocomplete() {
+  const [value] = useState<ValueType | ''>('');
+
   // const { headers: reinforcementHeaders } = useAppSelector((state) => state.reinforcement);
   const { headers: concreteMarkHeaders } = useAppSelector((state) => state.mark);
   const { headers: concreteClassHeaders } = useAppSelector((state) => state.class);
   const navigate = useNavigate();
-  const autocompleteRef = useRef<HTMLInputElement>();
+  // const autocompleteRef = useRef<HTMLInputElement>();
 
   // const rHeaders = reinforcementHeaders.map((header) => ({ label: header, type: 'reinforcement' }));
   const mHeaders = concreteMarkHeaders.map((header) => ({ label: header, type: 'mark' }));
@@ -18,25 +31,29 @@ export default function SearchAutocomplete() {
 
   const allHeaders = [...mHeaders, ...cHeaders];
 
-  const handleSelect = (option: { label: string; type: string }) => {
-    const { label, type } = option;
-    if (label && type) {
-      navigate(`${type}_list/${label}`);
-      autocompleteRef.current?.blur();
+  const handleChange = (e: any, value: string | ValueType | null) => {
+    if (value === null) return;
+    if (typeof value === 'string') {
+      return;
     }
-  };
-
-  const handleChange = () => {
-    console.log('handle change');
+    const { label, type } = value;
+    navigate(`${type}_list/${label}`);
   };
 
   return (
     <Autocomplete
+      key="search-autocomplete"
+      value={value}
+      onChange={(e, val) => handleChange(e, val)}
+      isOptionEqualToValue={(option, value) =>
+        option && value ? option.label === value.label : false
+      }
       blurOnSelect
       clearOnBlur
-      freeSolo
+      noOptionsText="Нет доступных вариантов"
+      getOptionLabel={(option) => option && option.label}
       id="combo-box-demo"
-      options={allHeaders}
+      options={allHeaders as ValueType[]}
       sx={{
         width: 400,
         '.MuiAutocomplete-endAdornment': {
@@ -45,9 +62,10 @@ export default function SearchAutocomplete() {
       }}
       renderInput={(params) => (
         <TextField
+          ref={params.InputProps.ref}
           variant="standard"
-          {...params}
           placeholder="Поиск по марке или классу бетона"
+          {...params}
           InputProps={{
             ...params.InputProps,
             sx: {
@@ -55,6 +73,9 @@ export default function SearchAutocomplete() {
               ':before': { borderBottomColor: 'rgba(255,255,255,.4)' },
               ':after': {
                 borderBottomColor: 'white'
+              },
+              'MuiAutocomplete-endAdornment': {
+                color: 'white'
               }
             },
             startAdornment: (
@@ -65,10 +86,24 @@ export default function SearchAutocomplete() {
           }}
         />
       )}
-      renderOption={(props, option) => (
-        <SearchListItem option={option} onClick={() => handleSelect(option)} />
-      )}
-      onChange={handleChange}
+      renderOption={(props, option) => {
+        if (!option) return;
+        return (
+          <MenuItem {...props}>
+            <ListItemIcon>
+              {option.type === 'mark' ? (
+                <IconG sx={{ width: '16px', height: '16px' }} />
+              ) : (
+                <IconC sx={{ width: '16px', height: '16px' }} />
+              )}
+            </ListItemIcon>
+            <ListItemText>{option.label}</ListItemText>
+            <Typography variant="body2" color="text.secondary">
+              {option.type === 'mark' ? 'Марка бетона' : 'Класс бетона'}
+            </Typography>
+          </MenuItem>
+        );
+      }}
     />
   );
 }
