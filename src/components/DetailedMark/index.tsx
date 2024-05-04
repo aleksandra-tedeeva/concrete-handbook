@@ -3,7 +3,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
-import { Button, Typography } from '@mui/material';
+import { Button, Stack, Typography } from '@mui/material';
 import { useAppSelector } from '../../store/hooks';
 import ReturnButton from '../ReturnButton';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -21,19 +21,19 @@ const DetailedMark = () => {
   };
 
   const showFullResult = (name: string) => {
-    navigate(`/mark_list/${name}`);
+    navigate(`/class_list/${name}`);
   };
 
   if (!data) {
     return (
-      <>
+      <Stack spacing={1} pt={1} alignItems="flex-start">
         <ReturnButton label="Вернуться к списку марок бетона" returnFunction={returnToSearch} />
         <Typography>Нет данных по марке бетона.</Typography>
-      </>
+      </Stack>
     );
   }
   return (
-    <>
+    <Stack spacing={1} pt={1} alignItems="flex-start">
       <ReturnButton label="Вернуться к списку марок бетона" returnFunction={returnToSearch} />
       <TableContainer>
         <Table size="small">
@@ -175,7 +175,7 @@ const DetailedMark = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
+    </Stack>
   );
 };
 

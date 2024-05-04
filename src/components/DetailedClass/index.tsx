@@ -3,7 +3,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
-import { Button, Typography } from '@mui/material';
+import { Button, Stack, Typography } from '@mui/material';
 import { useAppSelector } from '../../store/hooks';
 import ReturnButton from '../ReturnButton';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -20,22 +20,22 @@ const DetailedClass = () => {
   };
 
   const showFullResult = (name: string) => {
-    navigate(`/class_list/${name}`);
+    navigate(`/mark_list/${name}`);
   };
 
   const { headers: availableMarks } = useAppSelector((state) => state.mark);
 
   if (!data) {
     return (
-      <>
+      <Stack spacing={1} pt={1} alignItems="flex-start">
         <ReturnButton label="Вернуться к списку классов бетона" returnFunction={returnToSearch} />
         <Typography>Нет данных по классу бетона.</Typography>
-      </>
+      </Stack>
     );
   }
 
   return (
-    <>
+    <Stack spacing={1} pt={1} alignItems="flex-start">
       <ReturnButton label="Вернуться к списку классов бетона" returnFunction={returnToSearch} />
       <TableContainer>
         <Table size="small">
@@ -242,7 +242,7 @@ const DetailedClass = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
+    </Stack>
   );
 };
 
