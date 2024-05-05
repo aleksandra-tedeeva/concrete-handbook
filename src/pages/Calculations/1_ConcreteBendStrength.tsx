@@ -11,10 +11,14 @@ import {
   Button,
   FormControlLabel,
   Checkbox
+  // useMediaQuery,
+  // Theme
 } from '@mui/material';
 // import { wrap } from 'module';
 
 export default function ConcreteBendStrength() {
+  // const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+
   return (
     <Box m={2}>
       <Stack px="24px" spacing={1}>
@@ -44,7 +48,13 @@ export default function ConcreteBendStrength() {
           <Typography variant="h6">Нагрузка</Typography>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
           <Stack width={500}>
             <Typography>Изгибающий момент действующий в сечении:</Typography>
           </Stack>
