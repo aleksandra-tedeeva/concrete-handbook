@@ -17,7 +17,7 @@ import {
 export default function ConcreteBendStrength() {
   return (
     <Box m={2}>
-      <Stack px="24px" spacing={2}>
+      <Stack px="24px" spacing={1}>
         <Typography variant="h5">Проверка прочности изгибаемого ж.б. элемента</Typography>
         <Typography variant="h6">Допущения и предпосылки</Typography>
       </Stack>
@@ -39,7 +39,7 @@ export default function ConcreteBendStrength() {
         </Typography>
       </Stack>
 
-      <Stack my="16px" spacing={2}>
+      <Stack my="16px" spacing={1}>
         <Stack px="24px">
           <Typography variant="h6">Нагрузка</Typography>
         </Stack>
@@ -51,8 +51,8 @@ export default function ConcreteBendStrength() {
           <Stack spacing={1} direction="row" alignItems="center">
             <Typography sx={{ minWidth: '24px' }}>M</Typography>
             <TextField size="small"></TextField>
-            <Tooltip title="1 тс · м = 105 кг · см" enterDelay={500} leaveDelay={200}>
-              <Button aria-label="1 тс · м = 105 кг · см" variant="outlined" size="small">
+            <Tooltip title="1 тс · м = 10^5 кг · см" enterDelay={500} leaveDelay={200}>
+              <Button aria-label="1 тс · м = 10^5 кг · см" variant="outlined" size="small">
                 кг · см
               </Button>
             </Tooltip>
@@ -83,7 +83,7 @@ export default function ConcreteBendStrength() {
         </Stack>
       </Stack>
 
-      <Stack my="16px" spacing={2}>
+      <Stack my="16px" spacing={1}>
         <Stack px="24px">
           <Typography variant="h6">Геометрические характеристики сечения</Typography>
         </Stack>
@@ -194,7 +194,7 @@ export default function ConcreteBendStrength() {
             <Typography sx={{ minWidth: '24px' }}>As</Typography>
             <TextField size="small"></TextField>
             <Button variant="outlined" size="small">
-              см
+              см²
             </Button>
           </Stack>
         </Stack>
@@ -207,13 +207,13 @@ export default function ConcreteBendStrength() {
             <Typography sx={{ minWidth: '24px' }}>A's</Typography>
             <TextField size="small"></TextField>
             <Button variant="outlined" size="small">
-              см
+              см²
             </Button>
           </Stack>
         </Stack>
       </Stack>
 
-      <Stack my="16px" spacing={2}>
+      <Stack my="16px" spacing={1}>
         <Stack px="24px">
           <Typography variant="h6">Характеристики арматуры и бетона</Typography>
         </Stack>
@@ -283,15 +283,13 @@ export default function ConcreteBendStrength() {
             </FormControl>
           </Stack>
         </Stack>
+      </Stack>
 
-        <Stack spacing={2} direction="row" alignItems="center">
-          <Button variant="outlined" sx={{ minWidth: '214px' }}>
-            Рассчитать
-          </Button>
-          <FormControlLabel control={<Checkbox />} label="показать результат в новом окне" />
-        </Stack>
-
-        {/* пвпкпв */}
+      <Stack spacing={2} direction="row" alignItems="center">
+        <Button variant="outlined" sx={{ minWidth: '214px' }}>
+          Рассчитать
+        </Button>
+        <FormControlLabel control={<Checkbox />} label="показать результат в новом окне" />
       </Stack>
     </Box>
   );
