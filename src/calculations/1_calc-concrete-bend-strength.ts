@@ -1,5 +1,37 @@
+import { MPaToKgCm2 } from './util';
+
 export type DurationType = 'short' | 'long';
 export type ShapeType = 'rectangle' | 't-beam';
+export type ReinforcementName = 'A240' | 'A400' | 'A500' | 'B500';
+
+export interface Reinforcement {
+  name: ReinforcementName;
+  Rs: number;
+  Rsc: number;
+}
+
+const reinforcements: Reinforcement[] = [
+  {
+    name: 'A240',
+    Rs: 210,
+    Rsc: 210
+  },
+  {
+    name: 'A400',
+    Rs: 350,
+    Rsc: 350
+  },
+  {
+    name: 'A500',
+    Rs: 435,
+    Rsc: 400
+  },
+  {
+    name: 'B500',
+    Rs: 435,
+    Rsc: 380
+  }
+];
 
 export const calculateConcreteBendStrength = () => {
   /** Нагрузка */
@@ -38,13 +70,23 @@ export const calculateConcreteBendStrength = () => {
   // Класс арматуры
   const reinforcementClass = 'A500';
 
+  const reinforcement = reinforcements.find((el) => el.name === reinforcementClass);
+  if (!reinforcement) {
+    return;
+  }
+  const { Rs: RsMpa, Rsc: RscMpa } = reinforcement;
+
+  const Rs = MPaToKgCm2(RsMpa);
+  const Rsc = MPaToKgCm2(RscMpa);
+  console.log(Rs, Rsc);
+
   /** Расчет */
   // Площадь сечения бетона
   const h0 = h - a;
   // Сопротивление арматуры растяжению
-  const Rs = 4434;
+  //const Rs = 4434;
   // Сопротивление арматуры сжатию
-  const Rsc = 4077;
+  //const Rsc = 4077;
   // Сопротивление бетона растяжению
   const Rb = 117.2;
   // Модуль упругости бетона
