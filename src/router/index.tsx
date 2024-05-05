@@ -24,6 +24,7 @@ import ConcreteClasses from '../pages/ConcreteClasses/ConcreteClasses';
 import ConcreteMarks from '../pages/ConcreteMarks/ConcreteMarks';
 import DetailedMark from '../components/DetailedMark';
 import DetailedClass from '../components/DetailedClass';
+import AlexCalcDebug from '../pages/alex-calc-debug';
 
 const Router = () => {
   return (
@@ -74,6 +75,9 @@ const Router = () => {
         <Route path="local_compression" element={<LocalCompression />} />
         <Route path="cracking_width" element={<CrackingWidth />} />
         <Route path="deflection" element={<Deflection />} />
+
+        {/* Alex calculation debug page */}
+        <Route path="debug" element={<AlexCalcDebug />} />
 
         <Route path="*" element={<Error />} />
       </Route>
