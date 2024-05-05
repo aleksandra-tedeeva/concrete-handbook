@@ -35,8 +35,8 @@ const reinforcements: Reinforcement[] = [
 
 export const calculateConcreteBendStrength = () => {
   /** Нагрузка */
-  // Изгибающий момент действующий в сечении
-  const M = 1400000;
+  // Изгибающий момент действующий в сечении кН*м
+  const M = 137.29;
   // Продолжительность действия нагрузки
   const duration: DurationType = 'short';
 
@@ -44,23 +44,23 @@ export const calculateConcreteBendStrength = () => {
   // Форма поперечного сечения
   const shape: ShapeType = 'rectangle';
   // -- если прямоугольное сечение, то
-  // Ширина сечения в см
-  const b = 30;
-  // Высота сечения в см
-  const h = 40;
+  // Ширина сечения в мм
+  const b = 300;
+  // Высота сечения в мм
+  const h = 400;
   // -- если тавр, то
-  // Ширина полки тавра в см
-  const bf = 90;
-  // Высота полки тавра в см
-  const hf = 10;
-  // Расст. от грани бетона до ц.т. растянутой арматуры в см
-  const a = 5;
-  // Расстояние от грани бетона до ц.т. сжатой арматуры в см
-  const ac = 5;
-  // Площадь растянутой арматуры в см2
-  const As = 12;
-  // Площадь сжатой арматуры в см2
-  const Asc = 3;
+  // Ширина полки тавра в мм
+  const bf = 900;
+  // Высота полки тавра в мм
+  const hf = 100;
+  // Расст. от грани бетона до ц.т. растянутой арматуры в мм
+  const a = 50;
+  // Расстояние от грани бетона до ц.т. сжатой арматуры в мм
+  const ac = 50;
+  // Площадь растянутой арматуры в мм2
+  const As = 120;
+  // Площадь сжатой арматуры в мм2
+  const Asc = 30;
 
   /** Характеристики арматуры и бетона */
   // Класс бетона на сжатие
@@ -74,11 +74,7 @@ export const calculateConcreteBendStrength = () => {
   if (!reinforcement) {
     return;
   }
-  const { Rs: RsMpa, Rsc: RscMpa } = reinforcement;
-
-  const Rs = MPaToKgCm2(RsMpa);
-  const Rsc = MPaToKgCm2(RscMpa);
-  console.log(Rs, Rsc);
+  const { Rs, Rsc } = reinforcement;
 
   /** Расчет */
   // Площадь сечения бетона
