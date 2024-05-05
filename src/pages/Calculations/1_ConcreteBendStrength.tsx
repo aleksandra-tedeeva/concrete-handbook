@@ -61,10 +61,15 @@ export default function ConcreteBendStrength() {
           <Stack spacing={1} direction="row" alignItems="center">
             <Typography sx={{ minWidth: '24px' }}>M</Typography>
             <TextField size="small"></TextField>
-            <Tooltip title="1 тс · м = 10^5 кг · см" enterDelay={500} leaveDelay={200}>
-              <Button aria-label="1 тс · м = 10^5 кг · см" variant="outlined" size="small">
+            <Tooltip
+              title="1 тс · м = 10^5 кг · см"
+              enterDelay={500}
+              leaveDelay={200}
+              placement="bottom"
+            >
+              <Typography sx={{ cursor: 'help' }} color="text.secondary">
                 кг · см
-              </Button>
+              </Typography>
             </Tooltip>
           </Stack>
         </Stack>
