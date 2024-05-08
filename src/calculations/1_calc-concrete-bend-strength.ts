@@ -1,5 +1,3 @@
-import { MPaToKgCm2 } from './util';
-
 export type DurationType = 'short' | 'long';
 export type ShapeType = 'rectangle' | 't-beam';
 export type ReinforcementName = 'A240' | 'A400' | 'A500' | 'B500';
