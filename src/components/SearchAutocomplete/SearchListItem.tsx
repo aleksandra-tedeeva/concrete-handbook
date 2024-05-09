@@ -6,8 +6,7 @@ import {
   MenuItemProps,
   Typography
 } from '@mui/material';
-import IconC from '../../icons/icon-c';
-import IconG from '../../icons/icon-g';
+import { getIcon, getType } from './util';
 
 export interface SearchListItemProps extends MenuItemProps {
   option: { label: string; type: string };
@@ -22,16 +21,10 @@ export default function SearchListItem({
   return (
     <Box>
       <MenuItem onClick={onClick} {...other}>
-        <ListItemIcon>
-          {option.type === 'mark' ? (
-            <IconG sx={{ width: '16px', height: '16px' }} />
-          ) : (
-            <IconC sx={{ width: '16px', height: '16px' }} />
-          )}
-        </ListItemIcon>
+        <ListItemIcon>{getIcon(option.type)}</ListItemIcon>
         <ListItemText>{option.label}</ListItemText>
         <Typography variant="body2" color="text.secondary">
-          {option.type === 'mark' ? 'Марка бетона' : 'Класс бетона'}
+          {getType(option.type)}
         </Typography>
       </MenuItem>
     </Box>

@@ -11,25 +11,24 @@ import { useAppSelector } from '../../store/hooks';
 import { Search } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import IconC from '../../icons/icon-c';
-import IconG from '../../icons/icon-g';
+import { getIcon, getType } from './util';
 
 type ValueType = { label: string; type: string } | '';
 
 export default function SearchAutocomplete() {
   const [value] = useState<ValueType | ''>('');
 
-  // const { headers: reinforcementHeaders } = useAppSelector((state) => state.reinforcement);
+  const { headers: reinforcementHeaders } = useAppSelector((state) => state.reinforcement);
   const { headers: concreteMarkHeaders } = useAppSelector((state) => state.mark);
   const { headers: concreteClassHeaders } = useAppSelector((state) => state.class);
   const navigate = useNavigate();
   // const autocompleteRef = useRef<HTMLInputElement>();
 
-  // const rHeaders = reinforcementHeaders.map((header) => ({ label: header, type: 'reinforcement' }));
+  const rHeaders = reinforcementHeaders.map((header) => ({ label: header, type: 'reinforcement' }));
   const mHeaders = concreteMarkHeaders.map((header) => ({ label: header, type: 'mark' }));
   const cHeaders = concreteClassHeaders.map((header) => ({ label: header, type: 'class' }));
 
-  const allHeaders = [...mHeaders, ...cHeaders];
+  const allHeaders = [...mHeaders, ...cHeaders, ...rHeaders];
 
   const handleChange = (e: any, value: string | ValueType | null) => {
     if (value === null) return;
@@ -90,16 +89,10 @@ export default function SearchAutocomplete() {
         if (!option) return;
         return (
           <MenuItem {...props}>
-            <ListItemIcon>
-              {option.type === 'mark' ? (
-                <IconG sx={{ width: '16px', height: '16px' }} />
-              ) : (
-                <IconC sx={{ width: '16px', height: '16px' }} />
-              )}
-            </ListItemIcon>
+            <ListItemIcon>{getIcon(option.type)}</ListItemIcon>
             <ListItemText>{option.label}</ListItemText>
             <Typography variant="body2" color="text.secondary">
-              {option.type === 'mark' ? 'Марка бетона' : 'Класс бетона'}
+              {getType(option.type)}
             </Typography>
           </MenuItem>
         );

@@ -25,6 +25,8 @@ import ConcreteMarks from '../pages/ConcreteMarks/ConcreteMarks';
 import DetailedMark from '../components/DetailedMark';
 import DetailedClass from '../components/DetailedClass';
 import AlexCalcDebug from '../pages/alex-calc-debug';
+import Reinforcements from '../pages/Reinforcements/Reinforcements';
+import DetailedReinforcement from '../components/DetailedReinforcement/DetailedRainforcement';
 
 const Router = () => {
   return (
@@ -53,8 +55,13 @@ const Router = () => {
         <Route path="mark_list" element={<ConcreteMarks />} />
         <Route path="mark_list/:id" element={<DetailedMark />} />
 
-        {/* Подбор арматуры */}
+        {/* Арматура */}
         <Route path="reinforcement" element={<Reinforcement />} />
+        <Route path="reinforcement_list" element={<Reinforcements />} />
+        <Route path="reinforcement_list/:id" element={<DetailedReinforcement />} />
+
+        {/* Подбор арматуры
+        <Route path="reinforcement" element={<Reinforcement />} /> */}
         {/* Коэф Условий Работы */}
         <Route path="service_factor" element={<ServiceFactor />} />
         {/* Предельные Прогибы */}
