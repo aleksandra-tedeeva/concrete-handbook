@@ -26,9 +26,9 @@ export default function PushingColumnCenter() {
       <Stack my="16px" spacing={1}>
         <Typography>
           Расчет производится согласно СП 63.13330.2012 п.8.1.46 - 8.1.52. Зона передачи усилия F
-          прямоугольная с размерами ac×bc и находится внутри плоского элемента. Рассматривается
-          случай когда поперечная арматура распложена равномерно вдоль расчетного контура
-          продавливания.
+          прямоугольная с размерами a<sub>c</sub> · b<sub>c</sub> и находится внутри плоского
+          элемента. Рассматривается случай когда поперечная арматура распложена равномерно вдоль
+          расчетного контура продавливания.
         </Typography>
         <Typography>
           Характеристики арматуры классов А500СП, Ау500СП и А600СП приняты согласно СТО
@@ -36,63 +36,126 @@ export default function PushingColumnCenter() {
         </Typography>
       </Stack>
 
-      <Stack my="16px" spacing={1}>
+      <Stack my="16px">
         <Stack px="24px">
           <Typography variant="h6">Внешние усилия</Typography>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
           <Stack width={500}>
             <Typography>Сосредоточенная сила от внешней нагрузки:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center">
-            <Typography sx={{ minWidth: '24px' }}>F</Typography>
+          <Stack spacing={1} direction="row" alignItems="center" py="8px">
+            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+              F
+            </Typography>
             <TextField size="small"></TextField>
-            <Tooltip title="1 тс = 10^3 кгc" enterDelay={500} leaveDelay={200}>
-              <Button aria-label="1 тс = 10^3 кгc" variant="outlined" size="small">
+            <Tooltip
+              title={
+                <Typography sx={{ fontStyle: 'italic', fontSize: '12px' }}>
+                  1 тс = 10 <sup>3</sup> кг
+                </Typography>
+              }
+              enterDelay={500}
+              leaveDelay={200}
+              placement="bottom"
+            >
+              <Typography sx={{ cursor: 'help' }} color="text.secondary">
                 кг
-              </Button>
+              </Typography>
             </Tooltip>
           </Stack>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
-          <Stack width={500}>
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
+          <Stack width={500} sx={{ fontStyle: 'italic' }}>
             <FormControlLabel control={<Checkbox />} label="Учесть изгибающие моменты:" />
           </Stack>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
           <Stack width={500} pl={4}>
             <Typography>Изгибающий момент вдоль оси x:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center">
-            <Typography sx={{ minWidth: '24px' }}>Mx</Typography>
+          <Stack spacing={1} direction="row" alignItems="center" py="8px">
+            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+              M<sub>x</sub>
+            </Typography>
             <TextField size="small"></TextField>
-            <Tooltip title="1 тс · м = 10^5 кг · см" enterDelay={500} leaveDelay={200}>
-              <Button aria-label="1 тс · м = 10^5 кг · см" variant="outlined" size="small">
+            <Tooltip
+              title={
+                <Typography sx={{ fontStyle: 'italic', fontSize: '12px' }}>
+                  1 тс · м = 10<sup>5</sup> кг · см
+                </Typography>
+              }
+              enterDelay={500}
+              leaveDelay={200}
+              placement="bottom"
+            >
+              <Typography sx={{ cursor: 'help' }} color="text.secondary">
                 кг · см
-              </Button>
+              </Typography>
             </Tooltip>
           </Stack>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
           <Stack width={500} pl={4}>
             <Typography>Изгибающий момент вдоль оси y:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center">
-            <Typography sx={{ minWidth: '24px' }}>My</Typography>
+          <Stack spacing={1} direction="row" alignItems="center" py="8px">
+            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+              M<sub>y</sub>
+            </Typography>
             <TextField size="small"></TextField>
-            <Tooltip title="1 тс · м = 10^5 кг · см" enterDelay={500} leaveDelay={200}>
-              <Button aria-label="1 тс · м = 10^5 кг · см" variant="outlined" size="small">
+            <Tooltip
+              title={
+                <Typography sx={{ fontStyle: 'italic', fontSize: '12px' }}>
+                  1 тс · м = 10<sup>5</sup> кг · см
+                </Typography>
+              }
+              enterDelay={500}
+              leaveDelay={200}
+              placement="bottom"
+            >
+              <Typography sx={{ cursor: 'help' }} color="text.secondary">
                 кг · см
-              </Button>
+              </Typography>
             </Tooltip>
           </Stack>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
           <Stack width={500} pl={4}>
             <FormControlLabel
               control={<Checkbox />}
@@ -101,98 +164,151 @@ export default function PushingColumnCenter() {
           </Stack>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
-          <Stack width={500}>
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
+          <Stack width={500} sx={{ fontStyle: 'italic' }}>
             <FormControlLabel control={<Checkbox />} label="Учесть отпор грунта под плитой:" />
           </Stack>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
           <Stack width={500} pl={4}>
             <Typography>Отпор грунта под плитой:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center">
-            <Typography sx={{ minWidth: '24px' }}>p</Typography>
+          <Stack spacing={1} direction="row" alignItems="center" py="8px">
+            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+              p
+            </Typography>
             <TextField size="small"></TextField>
-            <Tooltip title="1 тс/м² = 0.1 кгс/см²" enterDelay={500} leaveDelay={200}>
-              <Button aria-label="1 тс/м² = 0.1 кгс/см²" variant="outlined" size="small">
-                кгс/см²
-              </Button>
+            <Tooltip
+              title={
+                <Typography sx={{ fontStyle: 'italic', fontSize: '12px' }}>
+                  1 тс/м<sup>2</sup> = 0.1 кгс/см<sup>2</sup>
+                </Typography>
+              }
+              enterDelay={500}
+              leaveDelay={200}
+              placement="bottom"
+            >
+              <Typography sx={{ cursor: 'help' }} color="text.secondary">
+                кгс/см<sup>2</sup>
+              </Typography>
             </Tooltip>
           </Stack>
         </Stack>
       </Stack>
 
-      <Stack my="16px" spacing={1}>
+      <Stack my="16px">
         <Stack px="24px">
           <Typography variant="h6">
             Геометрические характеристики плиты и зоны приложения нагрузки
           </Typography>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
           <Stack width={500}>
             <Typography>Ширина зоны приложения нагрзуки:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center">
-            <Typography sx={{ minWidth: '24px' }}>ac(y) </Typography>
+          <Stack spacing={1} direction="row" alignItems="center" py="8px">
+            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+              a<sub>c(y)</sub>
+            </Typography>
             <TextField size="small"></TextField>
-            <Button variant="outlined" size="small">
-              см
-            </Button>
+            <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
           <Stack width={500}>
             <Typography>Высота зоны приложения нагрзуки:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center">
-            <Typography sx={{ minWidth: '24px' }}>bc(x) </Typography>
+          <Stack spacing={1} direction="row" alignItems="center" py="8px">
+            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+              b<sub>c(x)</sub>
+            </Typography>
             <TextField size="small"></TextField>
-            <Button variant="outlined" size="small">
-              см
-            </Button>
+            <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
           <Stack width={500}>
             <Typography>Высота сечения:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center">
-            <Typography sx={{ minWidth: '24px' }}>h</Typography>
+          <Stack spacing={1} direction="row" alignItems="center" py="8px">
+            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+              h
+            </Typography>
             <TextField size="small"></TextField>
-            <Button variant="outlined" size="small">
-              см
-            </Button>
+            <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
           <Stack width={500}>
             <Typography>Защитный слой бетона растянутой зоны:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center">
-            <Typography sx={{ minWidth: '24px' }}>a</Typography>
+          <Stack spacing={1} direction="row" alignItems="center" py="8px">
+            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+              a
+            </Typography>
             <TextField size="small"></TextField>
-            <Button variant="outlined" size="small">
-              см
-            </Button>
+            <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
       </Stack>
 
-      <Stack my="16px" spacing={1}>
+      <Stack my="16px">
         <Stack px="24px">
           <Typography variant="h6">Характеристики бетона и арматуры</Typography>
         </Stack>
 
-        <Stack spacing={3.8} direction="row" alignItems="center" justifyContent="start">
+        <Stack
+          spacing={3.8}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
           <Stack width={500}>
             <Typography>Класс бетона на сжатие:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" pl={1.2}>
+          <Stack spacing={1} direction="row" alignItems="center" pl={2.7} py="8px">
             <FormControl sx={{ minWidth: '214px' }} size="small">
               <InputLabel id="demo-simple-small-label">Класс бетона</InputLabel>
               <Select labelId="demo-simple-small-label" id="demo-simple-small" label="Класс бетона">
@@ -216,27 +332,49 @@ export default function PushingColumnCenter() {
           </Stack>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
           <Stack width={500}>
-            <Typography>Коэффициент условий работы бетона (γb1×γb3×γb4):</Typography>
+            <Typography>
+              Коэффициент условий работы бетона (γ<sub>b1</sub> · γ<sub>b3</sub> · γ<sub>b4</sub>):
+            </Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center">
-            <Typography sx={{ minWidth: '24px' }}>γbi</Typography>
-            <TextField size="small"></TextField>
+          <Stack spacing={1} direction="row" alignItems="center" py="8px">
+            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+              γ<sub>bi</sub>
+            </Typography>
+            <TextField size="small" disabled></TextField>
           </Stack>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
-          <Stack width={500}>
-            <FormControlLabel control={<Checkbox />} label="Учесть изгибающие моменты:" />
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
+          <Stack width={500} sx={{ fontStyle: 'italic' }}>
+            <FormControlLabel control={<Checkbox />} label="Учесть поперечную арматуру:" />
           </Stack>
         </Stack>
 
-        <Stack spacing={3.8} direction="row" alignItems="center" justifyContent="start">
+        <Stack
+          spacing={3.8}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
           <Stack width={500} pl={4}>
             <Typography>Класс арматуры:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" pl={1.2}>
+          <Stack spacing={1} direction="row" alignItems="center" pl={2.7} py="8px">
             <FormControl sx={{ minWidth: '214px' }} size="small">
               <InputLabel id="demo-simple-small-label">Класс арматуры</InputLabel>
               <Select
@@ -256,38 +394,59 @@ export default function PushingColumnCenter() {
           </Stack>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
-          <Stack width={500}>
-            <Typography>Площадь поперечной арматуры с шагом sw:</Typography>
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
+          <Stack width={500} pl={4}>
+            <Typography>
+              Площадь поперечной арматуры с шагом s<sub>w</sub>:
+            </Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center">
-            <Typography sx={{ minWidth: '24px' }}>Asw</Typography>
+          <Stack spacing={1} direction="row" alignItems="center" py="8px">
+            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+              A<sub>sw</sub>
+            </Typography>
             <TextField size="small"></TextField>
-            <Button variant="outlined" size="small">
-              см²
-            </Button>
+            <Typography color="text.secondary">
+              см<sup>2</sup>
+            </Typography>
           </Stack>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="start">
-          <Stack width={500}>
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
+          <Stack width={500} pl={4}>
             <Typography>Шаг поперечной арматуры:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center">
-            <Typography sx={{ minWidth: '24px' }}>sw</Typography>
+          <Stack spacing={1} direction="row" alignItems="center" py="8px">
+            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+              s<sub>w</sub>
+            </Typography>
             <TextField size="small"></TextField>
-            <Button variant="outlined" size="small">
-              см
-            </Button>
+            <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
       </Stack>
 
-      <Stack spacing={2} direction="row" alignItems="center">
+      <Stack spacing={2} direction="row" alignItems="center" flexWrap="wrap">
         <Button variant="outlined" sx={{ minWidth: '214px' }}>
           Рассчитать
         </Button>
-        <FormControlLabel control={<Checkbox />} label="показать результат в новом окне" />
+        <FormControlLabel
+          control={<Checkbox />}
+          label={
+            <Typography sx={{ fontStyle: 'italic' }}>показать результат в новом окне</Typography>
+          }
+        />
       </Stack>
     </Box>
   );
