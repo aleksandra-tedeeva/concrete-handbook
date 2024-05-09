@@ -67,7 +67,9 @@ export default function PushingColumnCorner() {
               height: '430px',
               width: '430px'
             }}
-          ></Box>
+          >
+            <img alt="calc_pushing_col_corner" src="/assets/calc_pushing_col_corner.png" />
+          </Box>
         </Stack>
 
         <Stack width={500}>
