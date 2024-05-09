@@ -16,7 +16,7 @@ const Home = () => {
       </Typography>
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
         {concreteListsMenuItems.map((item) => (
-          <Grid item xs={isMobile ? 12 : 6} key={item.link}>
+          <Grid item xs={isMobile ? 12 : 4} key={item.link}>
             <CardLink {...item} />
           </Grid>
         ))}

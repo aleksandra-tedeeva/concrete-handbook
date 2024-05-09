@@ -15,13 +15,14 @@ export interface MenuItem {
 
 export const concreteListsMenuItems: MenuItem[] = [
   { name: 'Список Классов Бетона', link: '/class_list', Icon: IconConcretePlaceholder },
-  { name: 'Список Марок Бетона', link: '/mark_list', Icon: IconConcretePlaceholder }
+  { name: 'Список Марок Бетона', link: '/mark_list', Icon: IconConcretePlaceholder },
+  { name: 'Список Классов Арматуры', link: '/reinforcement_list', Icon: IconConcretePlaceholder }
 ];
 
 export const menuItems: MenuItem[] = [
   { name: 'Класс Бетона', link: '/class', Icon: IconC },
   { name: 'Марка Бетона', link: '/mark', Icon: IconG },
-  { name: 'Арматура', link: '/reinforcement', Icon: IconA },
+  { name: 'Подбор Арматуры', link: '/reinforcement', Icon: IconA },
   { name: 'Коэф Условий Работы', link: '/service_factor', Icon: IconK },
   { name: 'Предельные Прогибы', link: '/deflection_limits', Icon: IconD }
 ];
