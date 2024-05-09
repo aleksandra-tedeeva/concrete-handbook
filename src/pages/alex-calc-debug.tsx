@@ -5,7 +5,7 @@ import { InlineMath, BlockMath } from 'react-katex';
 import { xiR } from './formulas';
 
 export default function AlexCalcDebug() {
-  calculateConcreteBendStrength();
+  //calculateConcreteBendStrength();
 
   return (
     <>
