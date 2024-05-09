@@ -64,7 +64,7 @@ export default function PushingColumnCorner() {
         <Stack>
           <Box
             sx={{
-              height: '430px',
+              height: '380px',
               width: '430px'
             }}
           >
@@ -72,26 +72,42 @@ export default function PushingColumnCorner() {
           </Box>
         </Stack>
 
-        <Stack width={500}>
-          <Typography>Расстояние от центра колонны до края плиты по оси x:</Typography>
-        </Stack>
-        <Stack spacing={1} direction="row" alignItems="center" py="8px">
-          <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
-            x<sub>a</sub>
-          </Typography>
-          <TextField size="small"></TextField>
-          <Typography color="text.secondary">см</Typography>
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
+          <Stack width={500}>
+            <Typography>Расстояние от центра колонны до края плиты по оси x:</Typography>
+          </Stack>
+          <Stack spacing={1} direction="row" alignItems="center" py="8px">
+            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+              x<sub>a</sub>
+            </Typography>
+            <TextField size="small"></TextField>
+            <Typography color="text.secondary">см</Typography>
+          </Stack>
         </Stack>
 
-        <Stack width={500}>
-          <Typography>Расстояние от центра колонны до края плиты по оси y:</Typography>
-        </Stack>
-        <Stack spacing={1} direction="row" alignItems="center" py="8px">
-          <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
-            y<sub>a</sub>
-          </Typography>
-          <TextField size="small"></TextField>
-          <Typography color="text.secondary">см</Typography>
+        <Stack
+          spacing={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="start"
+          flexWrap="wrap"
+        >
+          <Stack width={500}>
+            <Typography>Расстояние от центра колонны до края плиты по оси y:</Typography>
+          </Stack>
+          <Stack spacing={1} direction="row" alignItems="center" py="8px">
+            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+              y<sub>a</sub>
+            </Typography>
+            <TextField size="small"></TextField>
+            <Typography color="text.secondary">см</Typography>
+          </Stack>
         </Stack>
       </Stack>
 
@@ -144,12 +160,8 @@ export default function PushingColumnCorner() {
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" pl={2.7} py="8px">
             <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Класс арматуры</InputLabel>
-              <Select
-                labelId="demo-simple-small-label"
-                id="demo-simple-small"
-                label="Класс арматуры"
-              >
+              <InputLabel id="demo-simple-small-label">Направление</InputLabel>
+              <Select labelId="demo-simple-small-label" id="demo-simple-small" label="Направление">
                 <MenuItem value={10}>↑ Снизу вверх</MenuItem>
                 <MenuItem value={20}>↓ Сверзу вниз</MenuItem>
               </Select>
