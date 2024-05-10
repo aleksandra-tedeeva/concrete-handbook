@@ -22,6 +22,7 @@ export interface ApplicationArea {
 export interface Resistance {
   Rs: number;
   Rsc: number;
+  Rsc_short: number;
   Rsw: number;
   Rs_ser: number;
 }

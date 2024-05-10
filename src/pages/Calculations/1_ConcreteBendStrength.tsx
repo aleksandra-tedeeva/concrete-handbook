@@ -18,8 +18,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ChangeEvent, useState } from 'react';
 import { useAppSelector } from '../../store/hooks';
 import { useForm } from 'react-hook-form';
-import { calculateConcreteBendStrength } from '../../calculations/1_calc-concrete-bend-strength';
+import {
+  CalculateConcreteBendStrengthResult,
+  calculateConcreteBendStrength
+} from '../../calculations/1_calc-concrete-bend-strength';
 import { Duration, Shape } from '../../calculations/types';
+import { MPaToKgCm2 } from '../../calculations/util';
 
 export type ConcreteBendStrengthKeys = 'M' | 'b' | 'h' | 'a' | 'a_c' | 'As' | 'As_c';
 export type ConcreteClassTypeKeys = 'heavy' | 'light' | 'cellular';
@@ -50,13 +54,13 @@ export interface ConcreteClassType {
 }
 
 const initialData: ConcreteBendStrengthFields = {
-  M: '137',
-  b: '300',
-  h: '400',
-  a: '50',
-  a_c: '50',
-  As: '120',
-  As_c: '30'
+  M: '1400000', //kg*cm;'137' Mpa,
+  b: '30', //cm;'300' mm,
+  h: '40', //cm;'400' mm,
+  a: '5', //cm;'50' mm,
+  a_c: '5', //cm;'50' mm,
+  As: '12', //cm;'120' mm,
+  As_c: '3' //cm;'30' mm
 };
 
 const concreteClassTypes: ConcreteClassType[] = [
@@ -85,14 +89,16 @@ export default function ConcreteBendStrength() {
   const [gamma, setGamma] = useState(1);
   const [freeGamma, setFreeGamma] = useState(false);
 
+  const [calculationResult, setCalculationResult] = useState<
+    CalculateConcreteBendStrengthResult | undefined
+  >(undefined);
+
   const { headers: concreteClasses, data: concreteClassesData } = useAppSelector(
     (state) => state.class
   );
   const { headers: reinforcementClasses, classes: reinforcementClassesData } = useAppSelector(
     (state) => state.reinforcement
   );
-
-  // const [data, setData] = useState<ConcreteBendStrengthFields>(initialData);
 
   const FormSchema = Yup.object().shape({
     M: Yup.string()
@@ -142,8 +148,6 @@ export default function ConcreteBendStrength() {
     };
   };
 
-  const [calculationResult, setCalculationResult] = useState<boolean | undefined>(undefined);
-
   const handleSubmit = methods.handleSubmit((data) => {
     try {
       // Перевод в числа
@@ -163,7 +167,7 @@ export default function ConcreteBendStrength() {
         alert('Арматура не найдена');
         throw new Error('Арматура не найдена');
       }
-      const { Rs, Rsc } = rf.resistance;
+      const { Rs, Rsc, Rsc_short } = rf.resistance;
       const { Es } = rf.elasticity;
 
       // Поиск данных класса бетона
@@ -179,20 +183,35 @@ export default function ConcreteBendStrength() {
       }
       const Rb = Number.parseFloat(Rb_string);
 
+      const Rbt_string = cc.first_group.expansion[concreteClassType];
+      if (!Rbt_string) {
+        alert('Значение сопротивления Rbt для класса бетона не найдено');
+        throw new Error('Значение сопротивления Rbt для класса бетона не найдено');
+      }
+      const Rbt = Number.parseFloat(Rb_string);
+
+      // перевод Мпа в кг*см2
+      const Rs_kgcm2 = MPaToKgCm2(Rs);
+      const Rsc_kgcm2 = MPaToKgCm2(duration === 'short' ? Rsc_short : Rsc);
+      const Rb_kgcm2 = MPaToKgCm2(Rb);
+      const Rbt_kgcm2 = MPaToKgCm2(Rbt);
+      const Es_kgcm2 = MPaToKgCm2(Es);
+
       // Вычисления
       const calcResult = calculateConcreteBendStrength({
         ...dataValuesToNumber,
         duration,
         shape,
         gamma,
-        Rs,
-        Rsc,
-        Es,
-        Rb
+        Rs: Rs_kgcm2,
+        Rsc: Rsc_kgcm2,
+        Es: Es_kgcm2,
+        Rb: Rb_kgcm2,
+        Rbt: Rbt_kgcm2
       });
 
       // Вывод результата
-      setCalculationResult(calcResult.result);
+      setCalculationResult(calcResult);
     } catch (e) {
       console.error(e);
     }
@@ -264,7 +283,7 @@ export default function ConcreteBendStrength() {
             b
           </Typography>
           <TextField size="small" {...fieldControl('b')}></TextField>
-          <Typography color="text.secondary">мм</Typography>
+          <Typography color="text.secondary">см</Typography>
         </Stack>
       </Stack>
       <Stack spacing={1} direction="row" alignItems="center" justifyContent="start" flexWrap="wrap">
@@ -276,7 +295,7 @@ export default function ConcreteBendStrength() {
             h
           </Typography>
           <TextField size="small" {...fieldControl('h')}></TextField>
-          <Typography color="text.secondary">мм</Typography>
+          <Typography color="text.secondary">см</Typography>
         </Stack>
       </Stack>
     </>
@@ -299,7 +318,7 @@ export default function ConcreteBendStrength() {
             b<sub>f</sub>
           </Typography>
           <TextField size="small" {...fieldControl('b')}></TextField>
-          <Typography color="text.secondary">мм</Typography>
+          <Typography color="text.secondary">см</Typography>
         </Stack>
       </Stack>
       <Stack spacing={1} direction="row" alignItems="center" justifyContent="start" flexWrap="wrap">
@@ -311,7 +330,7 @@ export default function ConcreteBendStrength() {
             h<sub>f</sub>
           </Typography>
           <TextField size="small" {...fieldControl('h')}></TextField>
-          <Typography color="text.secondary">мм</Typography>
+          <Typography color="text.secondary">см</Typography>
         </Stack>
       </Stack>
     </>
@@ -437,7 +456,7 @@ export default function ConcreteBendStrength() {
                 a
               </Typography>
               <TextField size="small" {...fieldControl('a')}></TextField>
-              <Typography color="text.secondary">мм</Typography>
+              <Typography color="text.secondary">см</Typography>
             </Stack>
           </Stack>
 
@@ -456,7 +475,7 @@ export default function ConcreteBendStrength() {
                 a'
               </Typography>
               <TextField size="small" {...fieldControl('a_c')}></TextField>
-              <Typography color="text.secondary">мм</Typography>
+              <Typography color="text.secondary">см</Typography>
             </Stack>
           </Stack>
 
@@ -476,7 +495,7 @@ export default function ConcreteBendStrength() {
               </Typography>
               <TextField size="small" {...fieldControl('As')}></TextField>
               <Typography color="text.secondary">
-                мм<sup>2</sup>
+                см<sup>2</sup>
               </Typography>
             </Stack>
           </Stack>
@@ -497,7 +516,7 @@ export default function ConcreteBendStrength() {
               </Typography>
               <TextField size="small" {...fieldControl('As_c')}></TextField>
               <Typography color="text.secondary">
-                мм<sup>2</sup>
+                см<sup>2</sup>
               </Typography>
             </Stack>
           </Stack>
@@ -627,11 +646,13 @@ export default function ConcreteBendStrength() {
           </Stack>
         </Stack>
 
-        {calculationResult !== undefined && (
-          <Alert color={calculationResult ? 'success' : 'error'} sx={{ mb: 2 }}>
-            {calculationResult
-              ? 'Прочность бетона достаточна для выдерживания изгибающего момента'
-              : 'Прочность бетона не достаточна для выдерживания изгибающего момента'}
+        {calculationResult && (
+          <Alert color={calculationResult?.calc_result ? 'success' : 'error'} sx={{ mb: 2 }}>
+            <Typography>M = {calculationResult.M}</Typography>
+            <Typography>
+              M<sub>ult</sub> = {calculationResult.Mult}
+            </Typography>
+            <Typography>{calculationResult.calc_result_text}</Typography>
           </Alert>
         )}
 

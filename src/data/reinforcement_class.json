@@ -21,6 +21,7 @@
     "resistance": {
       "Rs": 210,
       "Rsc": 210,
+      "Rsc_short": 210,
       "Rsw": 170,
       "Rs_ser": 240
     },
@@ -54,6 +55,7 @@
     "resistance": {
       "Rs": 350,
       "Rsc": 350,
+      "Rsc_short": 350,
       "Rsw": 280,
       "Rs_ser": 400
     },
@@ -86,6 +88,7 @@
     "resistance": {
       "Rs": 435,
       "Rsc": 435,
+      "Rsc_short": 400,
       "Rsw": 300,
       "Rs_ser": 500
     },
@@ -117,6 +120,7 @@
     "resistance": {
       "Rs": 520,
       "Rsc": 470,
+      "Rsc_short": 400,
       "Rsw": 300,
       "Rs_ser": 600
     },
@@ -148,6 +152,7 @@
     "resistance": {
       "Rs": 520,
       "Rsc": 500,
+      "Rsc_short": 500,
       "Rsw": 300,
       "Rs_ser": 600
     },
@@ -173,6 +178,7 @@
     "resistance": {
       "Rs": 435,
       "Rsc": 415,
+      "Rsc_short": 380,
       "Rsw": 300,
       "Rs_ser": 500
     },
@@ -198,6 +204,7 @@
     "resistance": {
       "Rs": 415,
       "Rsc": 390,
+      "Rsc_short": 360,
       "Rsw": 300,
       "Rs_ser": 500
     },

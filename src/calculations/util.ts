@@ -5,3 +5,5 @@ export const MPaToKgCm2 = (Mpa: number): number => {
   // kgf/cm² value = MPa value x 10.1972
   return Mpa * 10.1972;
 };
+
+export const roundNumber = (num: number) => Math.round((num + Number.EPSILON) * 100) / 100;
