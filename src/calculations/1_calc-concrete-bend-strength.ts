@@ -108,7 +108,7 @@ export const calculateConcreteBendStrength = ({
   // Модуль упругости арматуры
   //const Es = 2038736;
 
-  const Rb = Rb_raw / gamma;
+  const Rb = Rb_raw * gamma;
 
   // Площадь сечения бетона
   const h0 = h - a;

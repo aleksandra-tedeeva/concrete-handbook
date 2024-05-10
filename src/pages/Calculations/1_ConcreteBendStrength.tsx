@@ -104,7 +104,7 @@ export default function ConcreteBendStrength() {
     M: Yup.string()
       .required('M должен быть задан')
       .matches(regOnlyNumbers, 'M должен быть числом')
-      .max(10),
+      .max(20),
     b: Yup.string()
       .required('b должен быть задан')
       .matches(regOnlyNumbers, 'b должен быть числом')
