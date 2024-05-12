@@ -117,7 +117,7 @@ export const calculateConcreteBendStrength = ({
   return {
     calc_result: isSufficient,
     calc_result_text: isSufficient ? TEXT_SUFFICIENT : TEXT_INSUFFICIENT,
-    M,
+    M: roundNumber(M),
     Mult: roundNumber(Mult)
   };
 };

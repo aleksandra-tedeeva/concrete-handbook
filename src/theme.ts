@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material';
+import { red } from '@mui/material/colors';
 
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
@@ -55,7 +56,7 @@ export const theme = createTheme({
           props: { variant: 'formula' },
           style: {
             // кастом стиль для формул сюда, например:
-            color: 'red',
+            color: red[400],
             minWidth: '48px',
             fontSize: '24px',
             fontFamily: 'Times New Roman',

@@ -10,20 +10,26 @@ import {
   Button,
   FormControlLabel,
   Checkbox,
-  SelectChangeEvent,
-  Alert
+  SelectChangeEvent
 } from '@mui/material';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ChangeEvent, useState } from 'react';
 import { useAppSelector } from '../../store/hooks';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import {
   CalculateConcreteBendStrengthResult,
   calculateConcreteBendStrength
 } from '../../calculations/1_calc-concrete-bend-strength';
 import { Duration, Shape } from '../../calculations/types';
 import { MPaToKgCm2 } from '../../calculations/util';
+import ConcreteBendStrengthResultLayout from '../../calculations/result-layouts/1_concrete-bend-strength-result-layout';
+import ConcreteClassTypeSelect, {
+  ConcreteClassTypeKeys
+} from '../../components/CustomSelects/concrete-class-type-select';
+import ConcreteClassSelect from '../../components/CustomSelects/concrete-class-select';
+import ReinforcementClassSelect from '../../components/CustomSelects/reinforcement-class-select';
+import { regOnlyNumbers } from '../../util/regOnlyNumbers';
 
 export type ConcreteBendStrengthKeys =
   | 'M'
@@ -36,8 +42,6 @@ export type ConcreteBendStrengthKeys =
   | 'As'
   | 'As_c'
   | 'gamma';
-
-export type ConcreteClassTypeKeys = 'heavy' | 'light' | 'cellular';
 
 export interface ConcreteBendStrengthFields {
   M: string;
@@ -65,11 +69,6 @@ export interface ConcreteBendStrengthNumbers {
   gamma: number;
 }
 
-export interface ConcreteClassType {
-  key: ConcreteClassTypeKeys;
-  name: string;
-}
-
 const initialData: ConcreteBendStrengthFields = {
   M: '1400000',
   b: '30',
@@ -83,23 +82,6 @@ const initialData: ConcreteBendStrengthFields = {
   gamma: '1'
 };
 
-const concreteClassTypes: ConcreteClassType[] = [
-  {
-    key: 'heavy',
-    name: 'Тяжелый и мелкозернистый и напрягающий'
-  },
-  {
-    key: 'light',
-    name: 'Легкий'
-  },
-  {
-    key: 'cellular',
-    name: 'Ячеистый'
-  }
-];
-
-const regOnlyNumbers = new RegExp('^[0-9-]+$');
-
 export default function ConcreteBendStrength() {
   const [duration, setDuration] = useState<Duration>('short');
   const [shape, setShape] = useState<Shape>('rectangle');
@@ -112,12 +94,8 @@ export default function ConcreteBendStrength() {
     CalculateConcreteBendStrengthResult | undefined
   >(undefined);
 
-  const { headers: concreteClasses, data: concreteClassesData } = useAppSelector(
-    (state) => state.class
-  );
-  const { headers: reinforcementClasses, classes: reinforcementClassesData } = useAppSelector(
-    (state) => state.reinforcement
-  );
+  const { data: concreteClassesData } = useAppSelector((state) => state.class);
+  const { classes: reinforcementClassesData } = useAppSelector((state) => state.reinforcement);
 
   const FormSchema = Yup.object().shape({
     M: Yup.string()
@@ -252,10 +230,10 @@ export default function ConcreteBendStrength() {
         Rbt: Rbt_kgcm2
       });
 
-      if (calcResult.error) {
-        alert(calcResult.error);
-        return;
-      }
+      // if (calcResult.error) {
+      //   alert(calcResult.error);
+      //   return;
+      // }
 
       // Вывод результата
       setCalculationResult(calcResult);
@@ -280,7 +258,7 @@ export default function ConcreteBendStrength() {
     }
   };
 
-  const handleConcreteClassChange = (e: SelectChangeEvent) => {
+  const handleConcreteClassChange = (e: SelectChangeEvent<unknown>) => {
     const target = e.target as HTMLSelectElement;
     if (target.value) {
       const value = target.value;
@@ -288,7 +266,7 @@ export default function ConcreteBendStrength() {
     }
   };
 
-  const handleConcreteClassTypeChange = (e: SelectChangeEvent) => {
+  const handleConcreteClassTypeChange = (e: SelectChangeEvent<unknown>) => {
     const target = e.target as HTMLSelectElement;
     if (target.value) {
       const value = target.value;
@@ -302,7 +280,7 @@ export default function ConcreteBendStrength() {
     }
   };
 
-  const handleReinforcementChange = (e: SelectChangeEvent) => {
+  const handleReinforcementChange = (e: SelectChangeEvent<unknown>) => {
     const target = e.target as HTMLSelectElement;
     if (target.value) {
       const value = target.value;
@@ -367,251 +345,188 @@ export default function ConcreteBendStrength() {
 
   return (
     <Box m={2}>
-      <form onSubmit={handleSubmit}>
-        <Stack px="24px" spacing={1}>
-          <Typography variant="h5">Проверка прочности изгибаемого ж.б. элемента</Typography>
-          <Typography variant="h6">Допущения и предпосылки</Typography>
-        </Stack>
-
-        <Stack my="16px" spacing={1}>
-          <Typography>
-            Методика расчета принята согласно СП 63.13330.2018 пп.8.1.8-8.1.13. Сечение
-            прямоугольное либо тавровое с полкой в сжатой зоне. Элемент изгибаемый. Арматура
-            ненапрягаемая.
-          </Typography>
-          <Typography>
-            Характеристики арматуры классов А500СП, Ау500СП и А600СП приняты согласно СТО
-            36554501-065-2020*.
-          </Typography>
-          <Typography>
-            Алгоритм учитывает ограничения на ширину полки тавра в предположении, что свесы полки
-            консольные. В случае неконсольных свесов (плита с ребрами) ширину полки вводимую расчет
-            следует определить самостоятельно согласно п. 8.1.11 и указать в исходных данных как для
-            консольного свеса.
-          </Typography>
-        </Stack>
-
-        <Stack my="16px">
-          <Stack px="24px">
-            <Typography variant="h6">Нагрузка</Typography>
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit}>
+          <Stack px="24px" spacing={1}>
+            <Typography variant="h5">Проверка прочности изгибаемого ж.б. элемента</Typography>
+            <Typography variant="h6">Допущения и предпосылки</Typography>
           </Stack>
 
-          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
-            <Stack width={500}>
-              <Typography>Изгибающий момент действующий в сечении:</Typography>
-            </Stack>
-            <Stack spacing={1} direction="row" alignItems="center" py="8px">
-              <Typography variant="formula">M</Typography>
-              <TextField size="small" {...fieldControl('M')} />
-              <Typography color="text.secondary">кН · м</Typography>
-            </Stack>
-          </Stack>
-
-          <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
-            <Stack width={500}>
-              <Typography>Продолжительность действия нагрузки:</Typography>
-              <Typography variant="body2">
-                (при кратковременной нагрузке Rsc имеет пониженное значение)
-              </Typography>
-            </Stack>
-
-            <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
-              <FormControl sx={{ minWidth: '214px' }} size="small">
-                <InputLabel>Продолжительность</InputLabel>
-                <Select label="Продолжительность" value={duration} onChange={handleDurationChange}>
-                  <MenuItem value={'short'}>Кратковременная</MenuItem>
-                  <MenuItem value={'long'}>Длительная</MenuItem>
-                </Select>
-              </FormControl>
-            </Stack>
-          </Stack>
-        </Stack>
-
-        <Stack my="16px">
-          <Stack px="24px">
-            <Typography variant="h6">Геометрические характеристики сечения</Typography>
-          </Stack>
-
-          <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
-            <Stack width={500}>
-              <Typography>Форма поперечного сечения:</Typography>
-            </Stack>
-
-            <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
-              <FormControl sx={{ minWidth: '214px' }} size="small">
-                <InputLabel>Форма сечения</InputLabel>
-                <Select label="Форма сечения" value={shape} onChange={handleShapeChange} disabled>
-                  <MenuItem value={'rectangle'}>Прямоугольное</MenuItem>
-                </Select>
-              </FormControl>
-            </Stack>
-          </Stack>
-
-          {renderRectangleShapeBHFields}
-          {shape === 't-beam' && renderTBeamShapeBHFields}
-
-          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
-            <Stack width={500}>
-              <Typography>Расст. от грани бетона до ц.т. растянутой арматуры:</Typography>
-            </Stack>
-            <Stack spacing={1} direction="row" alignItems="center" py="8px">
-              <Typography variant="formula">a</Typography>
-              <TextField size="small" {...fieldControl('a')}></TextField>
-              <Typography color="text.secondary">см</Typography>
-            </Stack>
-          </Stack>
-
-          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
-            <Stack width={500}>
-              <Typography>Расстояние от грани бетона до ц.т. сжатой арматуры:</Typography>
-            </Stack>
-            <Stack spacing={1} direction="row" alignItems="center" py="8px">
-              <Typography variant="formula">a'</Typography>
-              <TextField size="small" {...fieldControl('a_c')}></TextField>
-              <Typography color="text.secondary">см</Typography>
-            </Stack>
-          </Stack>
-
-          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
-            <Stack width={500}>
-              <Typography>Площадь растянутой арматуры:</Typography>
-            </Stack>
-            <Stack spacing={1} direction="row" alignItems="center" py="8px">
-              <Typography variant="formula">
-                A<sub>s</sub>
-              </Typography>
-              <TextField size="small" {...fieldControl('As')}></TextField>
-              <Typography color="text.secondary">
-                см<sup>2</sup>
-              </Typography>
-            </Stack>
-          </Stack>
-
-          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
-            <Stack width={500}>
-              <Typography>Площадь сжатой арматуры:</Typography>
-            </Stack>
-            <Stack spacing={1} direction="row" alignItems="center" py="8px">
-              <Typography variant="formula">
-                A'<sub>s</sub>
-              </Typography>
-              <TextField size="small" {...fieldControl('As_c')}></TextField>
-              <Typography color="text.secondary">
-                см<sup>2</sup>
-              </Typography>
-            </Stack>
-          </Stack>
-        </Stack>
-
-        <Stack my="16px">
-          <Stack px="24px">
-            <Typography variant="h6">Характеристики арматуры и бетона</Typography>
-          </Stack>
-
-          <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
-            <Stack width={500}>
-              <Typography>Класс бетона на сжатие:</Typography>
-            </Stack>
-
-            <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
-              <FormControl sx={{ minWidth: '214px' }} size="small">
-                <InputLabel>Класс бетона</InputLabel>
-                <Select
-                  label="Класс бетона"
-                  value={concreteClass}
-                  onChange={handleConcreteClassChange}
-                >
-                  {concreteClasses.map((cl) => (
-                    <MenuItem key={cl} value={cl}>
-                      {cl}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Stack>
-          </Stack>
-
-          <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
-            <Stack width={500}>
-              <Typography>Тип бетона на сжатие:</Typography>
-            </Stack>
-
-            <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
-              <FormControl sx={{ minWidth: '214px' }} size="small">
-                <InputLabel>Тип бетона</InputLabel>
-                <Select
-                  label="Тип бетона"
-                  value={concreteClassType}
-                  onChange={handleConcreteClassTypeChange}
-                  sx={{ maxWidth: '216px' }}
-                >
-                  {concreteClassTypes.map(({ key, name }) => (
-                    <MenuItem key={key} value={key}>
-                      {name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Stack>
-          </Stack>
-
-          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
-            <Stack width={500}>
-              <FormControlLabel
-                control={<Checkbox checked={freeGamma} onChange={handleFreeGammaChange} />}
-                label={
-                  <Typography sx={{ fontStyle: 'italic' }}>
-                    Произвольный коэффициент условий работы бетона: <br />
-                    (γ<sub>b1</sub> · γ<sub>b3</sub> · γ<sub>b4</sub>)
-                  </Typography>
-                }
-              />
-            </Stack>
-            <Stack spacing={1} direction="row" alignItems="center" py="8px">
-              <Typography variant="formula">
-                γ<sub>bi</sub>
-              </Typography>
-              <TextField size="small" disabled={!freeGamma} {...fieldControl('gamma')}></TextField>
-            </Stack>
-          </Stack>
-
-          <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
-            <Stack width={500}>
-              <Typography>Класс арматуры:</Typography>
-            </Stack>
-            <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
-              <FormControl sx={{ minWidth: '214px' }} size="small">
-                <InputLabel>Класс арматуры</InputLabel>
-                <Select
-                  label="Класс арматуры"
-                  value={reinforcement}
-                  onChange={handleReinforcementChange}
-                >
-                  {reinforcementClasses.map((cl) => (
-                    <MenuItem key={cl} value={cl}>
-                      {cl}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Stack>
-          </Stack>
-        </Stack>
-
-        {calculationResult && (
-          <Alert color={calculationResult?.calc_result ? 'success' : 'error'} sx={{ mb: 2 }}>
-            <Typography>M = {calculationResult.M}</Typography>
+          <Stack my="16px" spacing={1}>
             <Typography>
-              M<sub>ult</sub> = {calculationResult.Mult}
+              Методика расчета принята согласно СП 63.13330.2018 пп.8.1.8-8.1.13. Сечение
+              прямоугольное. Элемент изгибаемый. Арматура ненапрягаемая.
             </Typography>
-            <Typography>{calculationResult.calc_result_text}</Typography>
-          </Alert>
-        )}
+            <Typography>
+              Характеристики арматуры классов А500СП, Ау500СП и А600СП приняты согласно СТО
+              36554501-065-2020*.
+            </Typography>
+          </Stack>
 
-        <Button variant="outlined" sx={{ minWidth: '214px' }} type="submit">
-          Рассчитать
-        </Button>
-      </form>
+          <Stack my="16px">
+            <Stack px="24px">
+              <Typography variant="h6">Нагрузка</Typography>
+            </Stack>
+
+            <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
+              <Stack width={500}>
+                <Typography>Изгибающий момент действующий в сечении:</Typography>
+              </Stack>
+              <Stack spacing={1} direction="row" alignItems="center" py="8px">
+                <Typography variant="formula">M</Typography>
+                <TextField size="small" {...fieldControl('M')} />
+                <Typography color="text.secondary">кН · м</Typography>
+              </Stack>
+            </Stack>
+
+            <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
+              <Stack width={500}>
+                <Typography>Продолжительность действия нагрузки:</Typography>
+                <Typography variant="body2">
+                  (при кратковременной нагрузке Rsc имеет пониженное значение)
+                </Typography>
+              </Stack>
+
+              <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
+                <FormControl sx={{ minWidth: '214px' }} size="small">
+                  <InputLabel>Продолжительность</InputLabel>
+                  <Select
+                    label="Продолжительность"
+                    value={duration}
+                    onChange={handleDurationChange}
+                  >
+                    <MenuItem value={'short'}>Кратковременная</MenuItem>
+                    <MenuItem value={'long'}>Длительная</MenuItem>
+                  </Select>
+                </FormControl>
+              </Stack>
+            </Stack>
+          </Stack>
+
+          <Stack my="16px">
+            <Stack px="24px">
+              <Typography variant="h6">Геометрические характеристики сечения</Typography>
+            </Stack>
+
+            <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
+              <Stack width={500}>
+                <Typography>Форма поперечного сечения:</Typography>
+              </Stack>
+
+              <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
+                <FormControl sx={{ minWidth: '214px' }} size="small">
+                  <InputLabel>Форма сечения</InputLabel>
+                  <Select label="Форма сечения" value={shape} onChange={handleShapeChange} disabled>
+                    <MenuItem value={'rectangle'}>Прямоугольное</MenuItem>
+                  </Select>
+                </FormControl>
+              </Stack>
+            </Stack>
+
+            {renderRectangleShapeBHFields}
+            {shape === 't-beam' && renderTBeamShapeBHFields}
+
+            <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
+              <Stack width={500}>
+                <Typography>Расст. от грани бетона до ц.т. растянутой арматуры:</Typography>
+              </Stack>
+              <Stack spacing={1} direction="row" alignItems="center" py="8px">
+                <Typography variant="formula">a</Typography>
+                <TextField size="small" {...fieldControl('a')}></TextField>
+                <Typography color="text.secondary">см</Typography>
+              </Stack>
+            </Stack>
+
+            <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
+              <Stack width={500}>
+                <Typography>Расстояние от грани бетона до ц.т. сжатой арматуры:</Typography>
+              </Stack>
+              <Stack spacing={1} direction="row" alignItems="center" py="8px">
+                <Typography variant="formula">a'</Typography>
+                <TextField size="small" {...fieldControl('a_c')}></TextField>
+                <Typography color="text.secondary">см</Typography>
+              </Stack>
+            </Stack>
+
+            <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
+              <Stack width={500}>
+                <Typography>Площадь растянутой арматуры:</Typography>
+              </Stack>
+              <Stack spacing={1} direction="row" alignItems="center" py="8px">
+                <Typography variant="formula">
+                  A<sub>s</sub>
+                </Typography>
+                <TextField size="small" {...fieldControl('As')}></TextField>
+                <Typography color="text.secondary">
+                  см<sup>2</sup>
+                </Typography>
+              </Stack>
+            </Stack>
+
+            <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
+              <Stack width={500}>
+                <Typography>Площадь сжатой арматуры:</Typography>
+              </Stack>
+              <Stack spacing={1} direction="row" alignItems="center" py="8px">
+                <Typography variant="formula">
+                  A'<sub>s</sub>
+                </Typography>
+                <TextField size="small" {...fieldControl('As_c')}></TextField>
+                <Typography color="text.secondary">
+                  см<sup>2</sup>
+                </Typography>
+              </Stack>
+            </Stack>
+          </Stack>
+
+          <Stack my="16px">
+            <Stack px="24px">
+              <Typography variant="h6">Характеристики арматуры и бетона</Typography>
+            </Stack>
+
+            <ConcreteClassSelect value={concreteClass} onChange={handleConcreteClassChange} />
+
+            <ConcreteClassTypeSelect
+              value={concreteClassType}
+              onChange={handleConcreteClassTypeChange}
+            />
+
+            <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
+              <Stack width={500}>
+                <FormControlLabel
+                  control={<Checkbox checked={freeGamma} onChange={handleFreeGammaChange} />}
+                  label={
+                    <Typography sx={{ fontStyle: 'italic' }}>
+                      Произвольный коэффициент условий работы бетона: <br />
+                      (γ<sub>b1</sub> · γ<sub>b3</sub> · γ<sub>b4</sub>)
+                    </Typography>
+                  }
+                />
+              </Stack>
+              <Stack spacing={1} direction="row" alignItems="center" py="8px">
+                <Typography variant="formula">
+                  γ<sub>bi</sub>
+                </Typography>
+                <TextField
+                  size="small"
+                  disabled={!freeGamma}
+                  {...fieldControl('gamma')}
+                ></TextField>
+              </Stack>
+            </Stack>
+
+            <ReinforcementClassSelect value={reinforcement} onChange={handleReinforcementChange} />
+          </Stack>
+
+          {calculationResult && (
+            <ConcreteBendStrengthResultLayout {...calculationResult} sx={{ mb: 2 }} />
+          )}
+
+          <Button variant="outlined" sx={{ minWidth: '214px' }} type="submit">
+            Рассчитать
+          </Button>
+        </form>
+      </FormProvider>
     </Box>
   );
 }

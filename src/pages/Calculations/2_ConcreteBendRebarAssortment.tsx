@@ -12,262 +12,384 @@ import {
   FormControlLabel,
   Checkbox
 } from '@mui/material';
-import { calculateConcreteBendRebarAssortment } from '../../calculations/2_calc-concrete-bend-rebar-assortment';
+import * as Yup from 'yup';
+import { regOnlyNumbers } from '../../util/regOnlyNumbers';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import ConcreteClassSelect from '../../components/CustomSelects/concrete-class-select';
+import ReinforcementClassSelect from '../../components/CustomSelects/reinforcement-class-select';
+import ConcreteClassTypeSelect, {
+  ConcreteClassTypeKeys
+} from '../../components/CustomSelects/concrete-class-type-select';
+import { useState } from 'react';
+import {
+  CalculateConcreteBendRebarAssortmentResult,
+  calculateConcreteBendRebarAssortment
+} from '../../calculations/2_calc-concrete-bend-rebar-assortment';
+import { useAppSelector } from '../../store/hooks';
+import { MPaToKgCm2 } from '../../calculations/util';
+import { Duration } from '../../calculations/types';
+import ConcreteBendRebarAssortmentResultLayout from '../../calculations/result-layouts/2_concrete-bend-rebar-assortment-result-layout';
+
+export type ConcreteBendRebarAssortmentKeys =
+  | 'M'
+  | 'duration'
+  | 'b'
+  | 'h'
+  | 'a'
+  | 'a_c'
+  | 'concrete_class'
+  | 'concrete_type'
+  | 'reinforcement_class'
+  | 'gamma';
+
+export interface ConcreteBendRebarAssortmentFields {
+  M: string;
+  duration: string;
+  b: string;
+  h: string;
+  a: string;
+  a_c: string;
+  concrete_class: string;
+  concrete_type: string;
+  reinforcement_class: string;
+  gamma: string;
+}
+
+const string_keys = ['duration', 'concrete_class', 'concrete_type', 'reinforcement_class'];
+
+export interface ConcreteBendRebarAssortmentData {
+  M: number;
+  duration: string;
+  b: number;
+  h: number;
+  a: number;
+  a_c: number;
+  concrete_class: string;
+  concrete_type: string;
+  reinforcement_class: string;
+  gamma: number;
+}
+
+const initialData = {
+  M: '1400000',
+  duration: 'short',
+  b: '30',
+  h: '40',
+  a: '5',
+  a_c: '5',
+  concrete_class: 'B20',
+  concrete_type: 'heavy',
+  reinforcement_class: 'A500',
+  gamma: '1'
+};
 
 export default function ConcreteBendRebarAssortment() {
-  calculateConcreteBendRebarAssortment();
+  const [freeGamma, setFreeGamma] = useState(false);
+
+  const [calculationResult, setCalculationResult] = useState<
+    CalculateConcreteBendRebarAssortmentResult | undefined
+  >(undefined);
+
+  const { data: concreteClassesData } = useAppSelector((state) => state.class);
+  const { classes: reinforcementClassesData } = useAppSelector((state) => state.reinforcement);
+
+  const FormSchema = Yup.object().shape({
+    M: Yup.string()
+      .required('M должен быть задан')
+      .matches(regOnlyNumbers, 'M должен быть числом')
+      .max(20),
+    duration: Yup.string().required(),
+    b: Yup.string()
+      .required('M должен быть задан')
+      .matches(regOnlyNumbers, 'M должен быть числом')
+      .max(10),
+    h: Yup.string()
+      .required('M должен быть задан')
+      .matches(regOnlyNumbers, 'M должен быть числом')
+      .max(10),
+    a: Yup.string()
+      .required('M должен быть задан')
+      .matches(regOnlyNumbers, 'M должен быть числом')
+      .max(10),
+    a_c: Yup.string()
+      .required('M должен быть задан')
+      .matches(regOnlyNumbers, 'M должен быть числом')
+      .max(10),
+    concrete_class: Yup.string().required(),
+    concrete_type: Yup.string().required(),
+    reinforcement_class: Yup.string().required(),
+    gamma: Yup.string()
+      .required('M должен быть задан')
+      .matches(regOnlyNumbers, 'M должен быть числом')
+      .max(10)
+  });
+
+  const methods = useForm<ConcreteBendRebarAssortmentFields>({
+    resolver: yupResolver(FormSchema),
+    defaultValues: initialData
+  });
+
+  const { formState, register } = methods;
+  const { errors } = formState;
+
+  const fieldControl = function <T>(fieldName: ConcreteBendRebarAssortmentKeys) {
+    return {
+      ...register(fieldName),
+      error: !!errors[fieldName],
+      helperText: errors[fieldName]?.message,
+      defaultValue: initialData[fieldName] as T
+    };
+  };
+
+  const handleSubmit = methods.handleSubmit((data) => {
+    try {
+      // Перевод в числа
+      const dataValuesToNumber = Object.entries(data).reduce((acc, [key, value]) => {
+        // не переводить строки
+        if (string_keys.includes(key)) {
+          // @ts-ignore
+          acc[key as ConcreteBendRebarAssortmentKeys] = value;
+          return acc;
+        }
+
+        const num = Number.parseFloat(value);
+        if (Number.isNaN(num)) {
+          alert('Ошибка в данных');
+          throw new Error('Ошибка в данных');
+        }
+        // @ts-ignore
+        acc[key as ConcreteBendRebarAssortmentKeys] = num;
+        return acc;
+      }, {} as ConcreteBendRebarAssortmentData);
+
+      // Поиск данных класса арматурины
+      const rf = reinforcementClassesData.find((r) => r.class === data.reinforcement_class);
+      if (!rf) {
+        alert('Арматура не найдена');
+        throw new Error('Арматура не найдена');
+      }
+      const { Rs, Rsc: Rsc_long, Rsc_short } = rf.resistance;
+      const { Es } = rf.elasticity;
+
+      const Rsc = data.duration === 'short' ? Rsc_short : Rsc_long;
+
+      // Поиск данных класса бетона
+      const cc = concreteClassesData.find((c) => c.name === data.concrete_class);
+      if (!cc) {
+        alert('Класс бетона не найден');
+        throw new Error('Класс бетона не найден');
+      }
+      const Rb_string = cc.first_group.compression[data.concrete_type as ConcreteClassTypeKeys];
+      if (!Rb_string) {
+        alert('Значение сопротивления Rb для класса бетона не найдено');
+        throw new Error('Значение сопротивления Rb для класса бетона не найдено');
+      }
+      const Rb = Number.parseFloat(Rb_string);
+
+      // перевод Мпа в кг*см2
+      const Rs_kgcm2 = MPaToKgCm2(Rs);
+      const Rsc_kgcm2 = MPaToKgCm2(Rsc);
+      const Rb_kgcm2 = MPaToKgCm2(Rb);
+      const Es_kgcm2 = MPaToKgCm2(Es);
+      // // Вычисления
+      const calcResult = calculateConcreteBendRebarAssortment({
+        ...dataValuesToNumber,
+        duration: dataValuesToNumber.duration as Duration,
+        shape: 'rectangle',
+        Rs: Rs_kgcm2,
+        Rsc: Rsc_kgcm2,
+        Es: Es_kgcm2,
+        Rb: Rb_kgcm2
+      });
+      // if (calcResult.error) {
+      //   alert(calcResult.error);
+      //   return;
+      // }
+      // Вывод результата
+      setCalculationResult(calcResult);
+    } catch (e) {
+      console.error(e);
+    }
+  });
 
   return (
     <Box m={2}>
-      <Stack px="24px" spacing={1}>
-        <Typography variant="h5">
-          Подбор арматуры изгибаемого железобетонного элемента (по прочности)
-        </Typography>
-        <Typography variant="h6">Допущения и предпосылки</Typography>
-      </Stack>
-
-      <Stack my="16px" spacing={1}>
-        <Typography>
-          Методика расчета принята согласно СП 63.13330.2018 пп.8.1.8-8.1.13, а так же отдельных
-          положений из «Пособия по проектированию к СП 52-101-2003». Сечение прямоугольное либо
-          тавровое с полкой в сжатой зоне. Элемент изгибаемый. Арматура ненапрягаемая.
-        </Typography>
-        <Typography>
-          Характеристики арматуры классов А500СП, Ау500СП и А600СП приняты согласно СТО
-          36554501-065-2020*.
-        </Typography>
-        <Typography>
-          Алгоритм учитывает ограничения на ширину полки тавра в предположении, что свесы полки
-          консольные. В случае неконсольных свесов (плита с ребрами) ширину полки вводимую расчет
-          следует определить самостоятельно согласно п. 8.1.11 и указать в исходных данных как для
-          консольного свеса.
-        </Typography>
-      </Stack>
-
-      <Stack my="16px">
-        <Stack px="24px">
-          <Typography variant="h6">Нагрузка</Typography>
+      <form onSubmit={handleSubmit}>
+        <Stack px="24px" spacing={1}>
+          <Typography variant="h5">
+            Подбор арматуры изгибаемого железобетонного элемента (по прочности)
+          </Typography>
+          <Typography variant="h6">Допущения и предпосылки</Typography>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
-          <Stack width={500}>
-            <Typography>Изгибающий момент действующий в сечении:</Typography>
+        <Stack my="16px" spacing={1}>
+          <Typography>
+            Методика расчета принята согласно СП 63.13330.2018 пп.8.1.8-8.1.13, а так же отдельных
+            положений из «Пособия по проектированию к СП 52-101-2003». Сечение прямоугольное.
+            Элемент изгибаемый. Арматура ненапрягаемая.
+          </Typography>
+          <Typography>
+            Характеристики арматуры классов А500СП, Ау500СП и А600СП приняты согласно СТО
+            36554501-065-2020*.
+          </Typography>
+        </Stack>
+
+        <Stack my="16px">
+          <Stack px="24px">
+            <Typography variant="h6">Нагрузка</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography variant="formula">M</Typography>
-            <TextField size="small"></TextField>
-            <Tooltip
-              title={
-                <Typography sx={{ fontStyle: 'italic', fontSize: '12px' }}>
-                  1 тс · м = 10<sup>5</sup> кг · см
+
+          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
+            <Stack width={500}>
+              <Typography>Изгибающий момент действующий в сечении:</Typography>
+            </Stack>
+            <Stack spacing={1} direction="row" alignItems="center" py="8px">
+              <Typography variant="formula">M</Typography>
+              <TextField size="small" {...fieldControl('M')}></TextField>
+              <Tooltip
+                title={
+                  <Typography sx={{ fontStyle: 'italic', fontSize: '12px' }}>
+                    1 тс · м = 10<sup>5</sup> кг · см
+                  </Typography>
+                }
+                enterDelay={500}
+                leaveDelay={200}
+                placement="bottom"
+              >
+                <Typography sx={{ cursor: 'help' }} color="text.secondary">
+                  кг · см
                 </Typography>
-              }
-              enterDelay={500}
-              leaveDelay={200}
-              placement="bottom"
-            >
-              <Typography sx={{ cursor: 'help' }} color="text.secondary">
-                кг · см
+              </Tooltip>
+            </Stack>
+          </Stack>
+
+          <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
+            <Stack width={500}>
+              <Typography>Продолжительность действия нагрузки:</Typography>
+            </Stack>
+
+            <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
+              <FormControl sx={{ minWidth: '214px' }} size="small">
+                <InputLabel>Продолжительность</InputLabel>
+                <Select label="Продолжительность" {...fieldControl('duration')}>
+                  <MenuItem value={'short'}>Кратковременная</MenuItem>
+                  <MenuItem value={'long'}>Длительная</MenuItem>
+                </Select>
+              </FormControl>
+            </Stack>
+          </Stack>
+        </Stack>
+
+        <Stack my="16px">
+          <Stack px="24px">
+            <Typography variant="h6">Геометрические характеристики сечения</Typography>
+          </Stack>
+
+          <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
+            <Stack width={500}>
+              <Typography>Форма поперечного сечения:</Typography>
+            </Stack>
+
+            <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
+              <FormControl sx={{ minWidth: '214px' }} size="small">
+                <InputLabel>Форма сечения</InputLabel>
+                <Select label="Форма сечения" disabled value="rectangle">
+                  <MenuItem value={'rectangle'}>Прямоугольное</MenuItem>
+                </Select>
+              </FormControl>
+            </Stack>
+          </Stack>
+
+          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
+            <Stack width={500}>
+              <Typography>Ширина сечения:</Typography>
+            </Stack>
+            <Stack spacing={1} direction="row" alignItems="center" py="8px">
+              <Typography variant="formula">b</Typography>
+              <TextField size="small" {...fieldControl('b')}></TextField>
+              <Typography color="text.secondary">см</Typography>
+            </Stack>
+          </Stack>
+
+          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
+            <Stack width={500}>
+              <Typography>Высота сечения:</Typography>
+            </Stack>
+            <Stack spacing={1} direction="row" alignItems="center" py="8px">
+              <Typography variant="formula">h</Typography>
+              <TextField size="small" {...fieldControl('h')}></TextField>
+              <Typography color="text.secondary">см</Typography>
+            </Stack>
+          </Stack>
+
+          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
+            <Stack width={500}>
+              <Typography>Расст. от грани бетона до ц.т. растянутой арматуры:</Typography>
+            </Stack>
+            <Stack spacing={1} direction="row" alignItems="center" py="8px">
+              <Typography variant="formula">a</Typography>
+              <TextField size="small" {...fieldControl('a')}></TextField>
+              <Typography color="text.secondary">см</Typography>
+            </Stack>
+          </Stack>
+
+          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
+            <Stack width={500}>
+              <Typography>Расстояние от грани бетона до ц.т. сжатой арматуры:</Typography>
+            </Stack>
+            <Stack spacing={1} direction="row" alignItems="center" py="8px">
+              <Typography variant="formula">a'</Typography>
+              <TextField size="small" {...fieldControl('a_c')}></TextField>
+              <Typography color="text.secondary">см</Typography>
+            </Stack>
+          </Stack>
+        </Stack>
+
+        <Stack my="16px">
+          <Stack px="24px">
+            <Typography variant="h6">Характеристики арматуры и бетона</Typography>
+          </Stack>
+
+          <ConcreteClassSelect {...fieldControl('concrete_class')} />
+
+          <ConcreteClassTypeSelect {...fieldControl('concrete_type')} />
+
+          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
+            <Stack width={500}>
+              <FormControlLabel
+                control={
+                  <Checkbox checked={freeGamma} onChange={() => setFreeGamma((prev) => !prev)} />
+                }
+                label={
+                  <Typography sx={{ fontStyle: 'italic' }}>
+                    Произвольный коэффициент условий работы бетона <br />
+                    (γ<sub>b1</sub> · γ<sub>b3</sub> · γ<sub>b4</sub>):
+                  </Typography>
+                }
+              />
+            </Stack>
+            <Stack spacing={1} direction="row" alignItems="center" py="8px">
+              <Typography variant="formula">
+                γ<sub>bi</sub>
               </Typography>
-            </Tooltip>
+              <TextField size="small" {...fieldControl('gamma')} disabled={!freeGamma}></TextField>
+            </Stack>
           </Stack>
+
+          <ReinforcementClassSelect {...fieldControl('reinforcement_class')} />
         </Stack>
 
-        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
-          <Stack width={500}>
-            <Typography>Продолжительность действия нагрузки:</Typography>
-          </Stack>
+        {calculationResult && (
+          <ConcreteBendRebarAssortmentResultLayout {...calculationResult} sx={{ mb: 2 }} />
+        )}
 
-          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
-            <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel>Продолжительность</InputLabel>
-              <Select label="Продолжительность">
-                <MenuItem value={10}>Кратковременная</MenuItem>
-                <MenuItem value={20}>Длительная</MenuItem>
-              </Select>
-            </FormControl>
-          </Stack>
+        <Stack spacing={2} direction="row" alignItems="center" flexWrap="wrap">
+          <Button variant="outlined" sx={{ minWidth: '214px' }} type="submit">
+            Рассчитать
+          </Button>
         </Stack>
-      </Stack>
-
-      <Stack my="16px">
-        <Stack px="24px">
-          <Typography variant="h6">Геометрические характеристики сечения</Typography>
-        </Stack>
-
-        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
-          <Stack width={500}>
-            <Typography>Форма поперечного сечения:</Typography>
-          </Stack>
-
-          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
-            <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel>Форма сечения</InputLabel>
-              <Select label="Форма сечения">
-                <MenuItem value={10}>Прямоугольное</MenuItem>
-                <MenuItem value={20}>Тавровое</MenuItem>
-              </Select>
-            </FormControl>
-          </Stack>
-        </Stack>
-
-        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
-          <Stack width={500}>
-            <Typography>Ширина сечения:</Typography>
-          </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography variant="formula">b</Typography>
-            <TextField size="small"></TextField>
-            <Typography color="text.secondary">см</Typography>
-          </Stack>
-        </Stack>
-
-        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
-          <Stack width={500}>
-            <Typography>Ширина полки тавра:</Typography>
-          </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography variant="formula">
-              b<sub>f</sub>
-            </Typography>
-            <TextField size="small"></TextField>
-            <Typography color="text.secondary">см</Typography>
-          </Stack>
-        </Stack>
-
-        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
-          <Stack width={500}>
-            <Typography>Высота сечения:</Typography>
-          </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography variant="formula">h</Typography>
-            <TextField size="small"></TextField>
-            <Typography color="text.secondary">см</Typography>
-          </Stack>
-        </Stack>
-
-        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
-          <Stack width={500}>
-            <Typography>Высота полки тавра:</Typography>
-          </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography variant="formula">
-              h<sub>f</sub>
-            </Typography>
-            <TextField size="small"></TextField>
-            <Typography color="text.secondary">см</Typography>
-          </Stack>
-        </Stack>
-
-        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
-          <Stack width={500}>
-            <Typography>Расст. от грани бетона до ц.т. растянутой арматуры:</Typography>
-          </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography variant="formula">a</Typography>
-            <TextField size="small"></TextField>
-            <Typography color="text.secondary">см</Typography>
-          </Stack>
-        </Stack>
-
-        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
-          <Stack width={500}>
-            <Typography>Расстояние от грани бетона до ц.т. сжатой арматуры:</Typography>
-          </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography variant="formula">a'</Typography>
-            <TextField size="small"></TextField>
-            <Typography color="text.secondary">см</Typography>
-          </Stack>
-        </Stack>
-      </Stack>
-
-      <Stack my="16px">
-        <Stack px="24px">
-          <Typography variant="h6">Характеристики арматуры и бетона</Typography>
-        </Stack>
-
-        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
-          <Stack width={500}>
-            <Typography>Класс бетона на сжатие:</Typography>
-          </Stack>
-
-          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
-            <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel>Класс бетона</InputLabel>
-              <Select label="Класс бетона">
-                <MenuItem value={10}>В10</MenuItem>
-                <MenuItem value={20}>В15</MenuItem>
-                <MenuItem value={30}>В20</MenuItem>
-                <MenuItem value={40}>В25</MenuItem>
-                <MenuItem value={50}>В30</MenuItem>
-                <MenuItem value={60}>В35</MenuItem>
-                <MenuItem value={70}>В40</MenuItem>
-                <MenuItem value={80}>В45</MenuItem>
-                <MenuItem value={90}>В50</MenuItem>
-                <MenuItem value={100}>В55</MenuItem>
-                <MenuItem value={110}>В60</MenuItem>
-                <MenuItem value={120}>В70</MenuItem>
-                <MenuItem value={130}>В80</MenuItem>
-                <MenuItem value={140}>В90</MenuItem>
-                <MenuItem value={150}>В100</MenuItem>
-              </Select>
-            </FormControl>
-          </Stack>
-        </Stack>
-
-        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
-          <Stack width={500}>
-            <FormControlLabel
-              control={<Checkbox />}
-              label={
-                <Typography sx={{ fontStyle: 'italic' }}>
-                  Коэффициент условий работы бетона (γ<sub>b1</sub> · γ<sub>b3</sub> · γ
-                  <sub>b4</sub>):
-                </Typography>
-              }
-            />
-          </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography variant="formula">
-              γ<sub>bi</sub>
-            </Typography>
-            <TextField size="small"></TextField>
-          </Stack>
-        </Stack>
-
-        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
-          <Stack width={500}>
-            <Typography>Класс арматуры:</Typography>
-          </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
-            <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel>Класс арматуры</InputLabel>
-              <Select label="Класс арматуры">
-                <MenuItem value={10}>А240</MenuItem>
-                <MenuItem value={20}>А400</MenuItem>
-                <MenuItem value={30}>А500</MenuItem>
-                <MenuItem value={40}>В500</MenuItem>
-                <MenuItem value={50}>А500СП (СТО 36554501-065-2020*)</MenuItem>
-                <MenuItem value={60}>Ау500СП (СТО 36554501-065-2020*)</MenuItem>
-                <MenuItem value={70}>А600СП (СТО 36554501-065-2020*)</MenuItem>
-              </Select>
-            </FormControl>
-          </Stack>
-        </Stack>
-      </Stack>
-
-      <Stack spacing={2} direction="row" alignItems="center" flexWrap="wrap">
-        <Button variant="outlined" sx={{ minWidth: '214px' }}>
-          Рассчитать
-        </Button>
-        <FormControlLabel
-          control={<Checkbox />}
-          label={
-            <Typography sx={{ fontStyle: 'italic' }}>показать результат в новом окне</Typography>
-          }
-        />
-      </Stack>
+      </form>
     </Box>
   );
 }
