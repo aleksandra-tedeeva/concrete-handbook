@@ -12,8 +12,11 @@ import {
   FormControlLabel,
   Checkbox
 } from '@mui/material';
+import { calculateConcreteBendRebarAssortment } from '../../calculations/2_calc-concrete-bend-rebar-assortment';
 
 export default function ConcreteBendRebarAssortment() {
+  calculateConcreteBendRebarAssortment();
+
   return (
     <Box m={2}>
       <Stack px="24px" spacing={1}>
