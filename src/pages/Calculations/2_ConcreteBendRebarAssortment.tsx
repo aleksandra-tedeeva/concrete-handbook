@@ -46,20 +46,12 @@ export default function ConcreteBendRebarAssortment() {
           <Typography variant="h6">Нагрузка</Typography>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Изгибающий момент действующий в сечении:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              M
-            </Typography>
+            <Typography variant="formula">M</Typography>
             <TextField size="small"></TextField>
             <Tooltip
               title={
@@ -78,25 +70,15 @@ export default function ConcreteBendRebarAssortment() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Продолжительность действия нагрузки:</Typography>
           </Stack>
 
-          <Stack spacing={1} direction="row" alignItems="center" pl={2} py="8px">
+          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Продолжительность</InputLabel>
-              <Select
-                labelId="demo-simple-small-label"
-                id="demo-simple-small"
-                label="Продолжительность"
-              >
+              <InputLabel>Продолжительность</InputLabel>
+              <Select label="Продолжительность">
                 <MenuItem value={10}>Кратковременная</MenuItem>
                 <MenuItem value={20}>Длительная</MenuItem>
               </Select>
@@ -110,25 +92,15 @@ export default function ConcreteBendRebarAssortment() {
           <Typography variant="h6">Геометрические характеристики сечения</Typography>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Форма поперечного сечения:</Typography>
           </Stack>
 
-          <Stack spacing={1} direction="row" alignItems="center" pl={2} py="8px">
+          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Форма сечения</InputLabel>
-              <Select
-                labelId="demo-select-small-label"
-                id="demo-simple-small"
-                label="Форма сечения"
-              >
+              <InputLabel>Форма сечения</InputLabel>
+              <Select label="Форма сечения">
                 <MenuItem value={10}>Прямоугольное</MenuItem>
                 <MenuItem value={20}>Тавровое</MenuItem>
               </Select>
@@ -136,37 +108,23 @@ export default function ConcreteBendRebarAssortment() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Ширина сечения:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              b
-            </Typography>
+            <Typography variant="formula">b</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Ширина полки тавра:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               b<sub>f</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -174,37 +132,23 @@ export default function ConcreteBendRebarAssortment() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Высота сечения:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              h
-            </Typography>
+            <Typography variant="formula">h</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Высота полки тавра:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               h<sub>f</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -212,39 +156,23 @@ export default function ConcreteBendRebarAssortment() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Расст. от грани бетона до ц.т. растянутой арматуры:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              a
-            </Typography>
+            <Typography variant="formula">a</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Расстояние от грани бетона до ц.т. сжатой арматуры:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              a'
-            </Typography>
+            <Typography variant="formula">a'</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
@@ -256,21 +184,15 @@ export default function ConcreteBendRebarAssortment() {
           <Typography variant="h6">Характеристики арматуры и бетона</Typography>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Класс бетона на сжатие:</Typography>
           </Stack>
 
-          <Stack spacing={1} direction="row" alignItems="center" pl={2} py="8px">
+          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Класс бетона</InputLabel>
-              <Select labelId="demo-simple-small-label" id="demo-simple-small" label="Класс бетона">
+              <InputLabel>Класс бетона</InputLabel>
+              <Select label="Класс бетона">
                 <MenuItem value={10}>В10</MenuItem>
                 <MenuItem value={20}>В15</MenuItem>
                 <MenuItem value={30}>В20</MenuItem>
@@ -291,13 +213,7 @@ export default function ConcreteBendRebarAssortment() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <FormControlLabel
               control={<Checkbox />}
@@ -310,31 +226,21 @@ export default function ConcreteBendRebarAssortment() {
             />
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               γ<sub>bi</sub>
             </Typography>
             <TextField size="small"></TextField>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Класс арматуры:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" pl={2} py="8px">
+          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Класс арматуры</InputLabel>
-              <Select
-                labelId="demo-simple-small-label"
-                id="demo-simple-small"
-                label="Класс арматуры"
-              >
+              <InputLabel>Класс арматуры</InputLabel>
+              <Select label="Класс арматуры">
                 <MenuItem value={10}>А240</MenuItem>
                 <MenuItem value={20}>А400</MenuItem>
                 <MenuItem value={30}>А500</MenuItem>

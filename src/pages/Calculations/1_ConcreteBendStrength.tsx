@@ -274,26 +274,22 @@ export default function ConcreteBendStrength() {
   /** RENDERERS */
   const renderRectangleShapeBHFields = (
     <>
-      <Stack spacing={1} direction="row" alignItems="center" justifyContent="start" flexWrap="wrap">
+      <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
         <Stack width={500}>
           <Typography>Ширина сечения:</Typography>
         </Stack>
         <Stack spacing={1} direction="row" alignItems="center" py="8px">
-          <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-            b
-          </Typography>
+          <Typography variant="formula">b</Typography>
           <TextField size="small" {...fieldControl('b')}></TextField>
           <Typography color="text.secondary">см</Typography>
         </Stack>
       </Stack>
-      <Stack spacing={1} direction="row" alignItems="center" justifyContent="start" flexWrap="wrap">
+      <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
         <Stack width={500}>
           <Typography>Высота сечения:</Typography>
         </Stack>
         <Stack spacing={1} direction="row" alignItems="center" py="8px">
-          <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-            h
-          </Typography>
+          <Typography variant="formula">h</Typography>
           <TextField size="small" {...fieldControl('h')}></TextField>
           <Typography color="text.secondary">см</Typography>
         </Stack>
@@ -303,30 +299,24 @@ export default function ConcreteBendStrength() {
 
   const renderTBeamShapeBHFields = (
     <>
-      <Stack spacing={1} direction="row" alignItems="center" justifyContent="start" flexWrap="wrap">
+      <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
         <Stack width={500}>
           <Typography>Ширина полки тавра:</Typography>
         </Stack>
         <Stack spacing={1} direction="row" alignItems="center" py="8px">
-          <Typography
-            sx={{
-              minWidth: '30px',
-              fontStyle: 'italic',
-              fontSize: '20px'
-            }}
-          >
+          <Typography variant="formula">
             b<sub>f</sub>
           </Typography>
           <TextField size="small" {...fieldControl('b')}></TextField>
           <Typography color="text.secondary">см</Typography>
         </Stack>
       </Stack>
-      <Stack spacing={1} direction="row" alignItems="center" justifyContent="start" flexWrap="wrap">
+      <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
         <Stack width={500}>
           <Typography>Высота полки тавра:</Typography>
         </Stack>
         <Stack spacing={1} direction="row" alignItems="center" py="8px">
-          <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
+          <Typography variant="formula">
             h<sub>f</sub>
           </Typography>
           <TextField size="small" {...fieldControl('h')}></TextField>
@@ -367,32 +357,18 @@ export default function ConcreteBendStrength() {
             <Typography variant="h6">Нагрузка</Typography>
           </Stack>
 
-          <Stack
-            spacing={1}
-            direction="row"
-            alignItems="center"
-            justifyContent="start"
-            flexWrap="wrap"
-          >
+          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
             <Stack width={500}>
               <Typography>Изгибающий момент действующий в сечении:</Typography>
             </Stack>
             <Stack spacing={1} direction="row" alignItems="center" py="8px">
-              <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-                M
-              </Typography>
+              <Typography variant="formula">M</Typography>
               <TextField size="small" {...fieldControl('M')} />
               <Typography color="text.secondary">кН · м</Typography>
             </Stack>
           </Stack>
 
-          <Stack
-            spacing={3.8}
-            direction="row"
-            alignItems="center"
-            justifyContent="start"
-            flexWrap="wrap"
-          >
+          <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
             <Stack width={500}>
               <Typography>Продолжительность действия нагрузки:</Typography>
               <Typography variant="body2">
@@ -400,7 +376,7 @@ export default function ConcreteBendStrength() {
               </Typography>
             </Stack>
 
-            <Stack spacing={1} direction="row" alignItems="center" pl={2} py="8px">
+            <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
               <FormControl sx={{ minWidth: '214px' }} size="small">
                 <InputLabel>Продолжительность</InputLabel>
                 <Select label="Продолжительность" value={duration} onChange={handleDurationChange}>
@@ -417,18 +393,12 @@ export default function ConcreteBendStrength() {
             <Typography variant="h6">Геометрические характеристики сечения</Typography>
           </Stack>
 
-          <Stack
-            spacing={3.8}
-            direction="row"
-            alignItems="center"
-            justifyContent="start"
-            flexWrap="wrap"
-          >
+          <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
             <Stack width={500}>
               <Typography>Форма поперечного сечения:</Typography>
             </Stack>
 
-            <Stack spacing={1} direction="row" alignItems="center" pl={2} py="8px">
+            <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
               <FormControl sx={{ minWidth: '214px' }} size="small">
                 <InputLabel>Форма сечения</InputLabel>
                 <Select label="Форма сечения" value={shape} onChange={handleShapeChange}>
@@ -441,56 +411,34 @@ export default function ConcreteBendStrength() {
 
           {shape === 'rectangle' ? renderRectangleShapeBHFields : renderTBeamShapeBHFields}
 
-          <Stack
-            spacing={1}
-            direction="row"
-            alignItems="center"
-            justifyContent="start"
-            flexWrap="wrap"
-          >
+          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
             <Stack width={500}>
               <Typography>Расст. от грани бетона до ц.т. растянутой арматуры:</Typography>
             </Stack>
             <Stack spacing={1} direction="row" alignItems="center" py="8px">
-              <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-                a
-              </Typography>
+              <Typography variant="formula">a</Typography>
               <TextField size="small" {...fieldControl('a')}></TextField>
               <Typography color="text.secondary">см</Typography>
             </Stack>
           </Stack>
 
-          <Stack
-            spacing={1}
-            direction="row"
-            alignItems="center"
-            justifyContent="start"
-            flexWrap="wrap"
-          >
+          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
             <Stack width={500}>
               <Typography>Расстояние от грани бетона до ц.т. сжатой арматуры:</Typography>
             </Stack>
             <Stack spacing={1} direction="row" alignItems="center" py="8px">
-              <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-                a'
-              </Typography>
+              <Typography variant="formula">a'</Typography>
               <TextField size="small" {...fieldControl('a_c')}></TextField>
               <Typography color="text.secondary">см</Typography>
             </Stack>
           </Stack>
 
-          <Stack
-            spacing={1}
-            direction="row"
-            alignItems="center"
-            justifyContent="start"
-            flexWrap="wrap"
-          >
+          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
             <Stack width={500}>
               <Typography>Площадь растянутой арматуры:</Typography>
             </Stack>
             <Stack spacing={1} direction="row" alignItems="center" py="8px">
-              <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
+              <Typography variant="formula">
                 A<sub>s</sub>
               </Typography>
               <TextField size="small" {...fieldControl('As')}></TextField>
@@ -500,18 +448,12 @@ export default function ConcreteBendStrength() {
             </Stack>
           </Stack>
 
-          <Stack
-            spacing={1}
-            direction="row"
-            alignItems="center"
-            justifyContent="start"
-            flexWrap="wrap"
-          >
+          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
             <Stack width={500}>
               <Typography>Площадь сжатой арматуры:</Typography>
             </Stack>
             <Stack spacing={1} direction="row" alignItems="center" py="8px">
-              <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
+              <Typography variant="formula">
                 A'<sub>s</sub>
               </Typography>
               <TextField size="small" {...fieldControl('As_c')}></TextField>
@@ -527,18 +469,12 @@ export default function ConcreteBendStrength() {
             <Typography variant="h6">Характеристики арматуры и бетона</Typography>
           </Stack>
 
-          <Stack
-            spacing={3.8}
-            direction="row"
-            alignItems="center"
-            justifyContent="start"
-            flexWrap="wrap"
-          >
+          <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
             <Stack width={500}>
               <Typography>Класс бетона на сжатие:</Typography>
             </Stack>
 
-            <Stack spacing={1} direction="row" alignItems="center" pl={2} py="8px">
+            <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
               <FormControl sx={{ minWidth: '214px' }} size="small">
                 <InputLabel>Класс бетона</InputLabel>
                 <Select
@@ -556,18 +492,12 @@ export default function ConcreteBendStrength() {
             </Stack>
           </Stack>
 
-          <Stack
-            spacing={3.8}
-            direction="row"
-            alignItems="center"
-            justifyContent="start"
-            flexWrap="wrap"
-          >
+          <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
             <Stack width={500}>
               <Typography>Тип бетона на сжатие:</Typography>
             </Stack>
 
-            <Stack spacing={1} direction="row" alignItems="center" pl={2} py="8px">
+            <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
               <FormControl sx={{ minWidth: '214px' }} size="small">
                 <InputLabel>Тип бетона</InputLabel>
                 <Select
@@ -586,13 +516,7 @@ export default function ConcreteBendStrength() {
             </Stack>
           </Stack>
 
-          <Stack
-            spacing={1}
-            direction="row"
-            alignItems="center"
-            justifyContent="start"
-            flexWrap="wrap"
-          >
+          <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
             <Stack width={500}>
               <FormControlLabel
                 control={<Checkbox checked={freeGamma} onChange={handleFreeGammaChange} />}
@@ -605,7 +529,7 @@ export default function ConcreteBendStrength() {
               />
             </Stack>
             <Stack spacing={1} direction="row" alignItems="center" py="8px">
-              <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
+              <Typography variant="formula">
                 γ<sub>bi</sub>
               </Typography>
               <TextField
@@ -617,17 +541,11 @@ export default function ConcreteBendStrength() {
             </Stack>
           </Stack>
 
-          <Stack
-            spacing={3.8}
-            direction="row"
-            alignItems="center"
-            justifyContent="start"
-            flexWrap="wrap"
-          >
+          <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
             <Stack width={500}>
               <Typography>Класс арматуры:</Typography>
             </Stack>
-            <Stack spacing={1} direction="row" alignItems="center" pl={2} py="8px">
+            <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
               <FormControl sx={{ minWidth: '214px' }} size="small">
                 <InputLabel>Класс арматуры</InputLabel>
                 <Select

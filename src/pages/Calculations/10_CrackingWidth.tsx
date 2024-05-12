@@ -37,20 +37,12 @@ export default function CrackingWidth() {
           <Typography variant="h6">Внешние усилия</Typography>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Момент от полной нагрузки:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              M
-            </Typography>
+            <Typography variant="formula">M</Typography>
             <TextField size="small"></TextField>
             <Tooltip
               title={
@@ -69,18 +61,12 @@ export default function CrackingWidth() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Момент от постоянной и длительной нагрузки:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               M<sub>l</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -101,25 +87,13 @@ export default function CrackingWidth() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500} sx={{ fontStyle: 'italic' }}>
             <FormControlLabel control={<Checkbox />} label="Учесть продольную силу:" />
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Tooltip
               title={
@@ -135,9 +109,7 @@ export default function CrackingWidth() {
             </Tooltip>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              N
-            </Typography>
+            <Typography variant="formula">N</Typography>
             <TextField size="small"></TextField>
             <Tooltip
               title={
@@ -156,18 +128,12 @@ export default function CrackingWidth() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Продольная сила от постоянной и длительной нагрузки:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               N<sub>l</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -194,94 +160,56 @@ export default function CrackingWidth() {
           <Typography variant="h6">Геометрические характеристики сечения</Typography>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Ширина сечения:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              b
-            </Typography>
+            <Typography variant="formula">b</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Высота сечения:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              h
-            </Typography>
+            <Typography variant="formula">h</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Защитный слой бетона растянутой зоны:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              a
-            </Typography>
+            <Typography variant="formula">a</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Защитный слой бетона сжатой зоны:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              a'
-            </Typography>
+            <Typography variant="formula">a'</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Площадь растянутой арматуры:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               A<sub>s</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -291,18 +219,12 @@ export default function CrackingWidth() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Площадь сжатой арматуры:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               A'<sub>s</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -312,18 +234,12 @@ export default function CrackingWidth() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Диаметр арматуры:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               d<sub>s</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -337,20 +253,14 @@ export default function CrackingWidth() {
           <Typography variant="h6">Характеристики бетона и арматуры</Typography>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Класс бетона на сжатие:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" pl={2} py="8px">
+          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Класс бетона</InputLabel>
-              <Select labelId="demo-simple-small-label" id="demo-simple-small" label="Класс бетона">
+              <InputLabel>Класс бетона</InputLabel>
+              <Select label="Класс бетона">
                 <MenuItem value={10}>В10</MenuItem>
                 <MenuItem value={20}>В15</MenuItem>
                 <MenuItem value={30}>В20</MenuItem>
@@ -367,24 +277,14 @@ export default function CrackingWidth() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Класс арматуры:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" pl={2} py="8px">
+          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px', maxWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Класс арматуры</InputLabel>
-              <Select
-                labelId="demo-simple-small-label"
-                id="demo-simple-small"
-                label="Класс арматуры"
-              >
+              <InputLabel>Класс арматуры</InputLabel>
+              <Select label="Класс арматуры">
                 <MenuItem value={10}>А240</MenuItem>
                 <MenuItem value={20}>А300</MenuItem>
                 <MenuItem value={20}>А400</MenuItem>
@@ -405,18 +305,12 @@ export default function CrackingWidth() {
           <Typography variant="h6">Ограничения</Typography>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Предельно допустимая ширина продолжительного раскрытия трещин:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '68px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula" sx={{ minWidth: '74px' }}>
               a<sub>crc,ult,l </sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -424,20 +318,14 @@ export default function CrackingWidth() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>
               Предельно допустимая ширина непродолжительного раскрытия трещин:
             </Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '68px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula" sx={{ minWidth: '74px' }}>
               a<sub>crc,ult </sub>
             </Typography>
             <TextField size="small"></TextField>
