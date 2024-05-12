@@ -1,5 +1,16 @@
 import { createTheme } from '@mui/material';
 
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    formula: true;
+  }
+}
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariant {
+    formula_now: true;
+  }
+}
+
 export const theme = createTheme({
   palette: {
     mode: 'light',
@@ -38,6 +49,22 @@ export const theme = createTheme({
     }
   },
   components: {
+    MuiTypography: {
+      variants: [
+        {
+          props: { variant: 'formula' },
+          style: {
+            // кастом стиль для формул сюда, например:
+            color: 'red',
+            minWidth: '48px',
+            fontSize: '24px',
+            fontFamily: 'Times New Roman',
+            fontStyle: 'italic'
+          }
+        }
+      ]
+    },
+
     MuiTable: {
       styleOverrides: {
         root: {

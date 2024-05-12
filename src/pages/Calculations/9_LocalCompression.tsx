@@ -10,10 +10,13 @@ import {
   MenuItem,
   Button,
   FormControlLabel,
-  Checkbox
+  Checkbox,
+  Theme,
+  useMediaQuery
 } from '@mui/material';
 
 export default function LocalCompression() {
+  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
   return (
     <Box m={2}>
       <Stack px="24px" spacing={2}>
@@ -30,20 +33,14 @@ export default function LocalCompression() {
           <Typography variant="h6">Схема приложения нагрузки</Typography>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Вид схемы приложения нагрузки:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" pl={2.7} py="8px">
+          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px', maxWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Вид схемы</InputLabel>
-              <Select labelId="demo-simple-small-label" id="demo-simple-small" label="Вид схемы">
+              <InputLabel>Вид схемы</InputLabel>
+              <Select label="Вид схемы">
                 <MenuItem value={10}>Схема А</MenuItem>
                 <MenuItem value={20}>Схема Б</MenuItem>
                 <MenuItem value={20}>Схема В</MenuItem>
@@ -57,7 +54,11 @@ export default function LocalCompression() {
           </Stack>
         </Stack>
         <Box>
-          <img alt="calc_shear_force" src="/assets/сalc_local_compression.png" width="350" />
+          <img
+            alt="сalc_local_compression"
+            src="/assets/сalc_local_compression.png"
+            width={isMobile ? '280px' : '400px'}
+          />
         </Box>
       </Stack>
 
@@ -66,20 +67,12 @@ export default function LocalCompression() {
           <Typography variant="h6">Внешние усилия</Typography>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Сосредоточенная сила от внешней нагрузки:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
-              N
-            </Typography>
+            <Typography variant="formula">N</Typography>
             <TextField size="small"></TextField>
             <Tooltip
               title={
@@ -98,24 +91,14 @@ export default function LocalCompression() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Распределение нагрузки по площадке опирания:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" pl={2.7} py="8px">
+          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Распределение</InputLabel>
-              <Select
-                labelId="demo-simple-small-label"
-                id="demo-simple-small"
-                label="Распределение"
-              >
+              <InputLabel>Распределение</InputLabel>
+              <Select label="Распределение">
                 <MenuItem value={10}>Равномерное</MenuItem>
                 <MenuItem value={20}>Неравномерное</MenuItem>
               </Select>
@@ -131,18 +114,12 @@ export default function LocalCompression() {
           </Typography>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Ширина зоны приложения нагрузки:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               a<sub>1</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -150,18 +127,12 @@ export default function LocalCompression() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Высота зоны приложения нагрузки:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               a<sub>2</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -169,13 +140,7 @@ export default function LocalCompression() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Tooltip
               title={
@@ -193,9 +158,7 @@ export default function LocalCompression() {
             </Tooltip>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
-              c
-            </Typography>
+            <Typography variant="formula">c</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
@@ -207,20 +170,14 @@ export default function LocalCompression() {
           <Typography variant="h6">Характеристики бетона и арматуры</Typography>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Класс бетона на сжатие:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" pl={2.7} py="8px">
+          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Класс бетона</InputLabel>
-              <Select labelId="demo-simple-small-label" id="demo-simple-small" label="Класс бетона">
+              <InputLabel>Класс бетона</InputLabel>
+              <Select label="Класс бетона">
                 <MenuItem value={10}>В10</MenuItem>
                 <MenuItem value={20}>В15</MenuItem>
                 <MenuItem value={30}>В20</MenuItem>
@@ -241,56 +198,34 @@ export default function LocalCompression() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>
               Коэффициент условий работы бетона (γ<sub>b1</sub> · γ<sub>b3</sub> · γ<sub>b4</sub>):
             </Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               γ<sub>bi</sub>
             </Typography>
             <TextField size="small"></TextField>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500} sx={{ fontStyle: 'italic' }}>
             <FormControlLabel control={<Checkbox />} label="Учесть косвенное армирование:" />
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Класс арматуры:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" pl={2.7} py="8px">
+          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px', maxWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Класс арматуры</InputLabel>
-              <Select
-                labelId="demo-simple-small-label"
-                id="demo-simple-small"
-                label="Класс арматуры"
-              >
+              <InputLabel>Класс арматуры</InputLabel>
+              <Select label="Класс арматуры">
                 <MenuItem value={10}>А240</MenuItem>
                 <MenuItem value={20}>А400</MenuItem>
                 <MenuItem value={30}>А500</MenuItem>
@@ -300,18 +235,12 @@ export default function LocalCompression() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Длина стержней в направлении x:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               l<sub>x</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -319,18 +248,12 @@ export default function LocalCompression() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Площадь одного стержня в направлении x:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               A<sub>sx</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -340,18 +263,12 @@ export default function LocalCompression() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Количество стержней в направлении x:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               n<sub>x</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -359,18 +276,12 @@ export default function LocalCompression() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Длина стержней в направлении y:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               l<sub>y</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -378,18 +289,12 @@ export default function LocalCompression() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Площадь одного стержня в направлении y:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               A<sub>sy</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -399,18 +304,12 @@ export default function LocalCompression() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Количество стержней в направлении y:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               n<sub>y</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -418,20 +317,12 @@ export default function LocalCompression() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Шаг сеток:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
-              s
-            </Typography>
+            <Typography variant="formula">s</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>

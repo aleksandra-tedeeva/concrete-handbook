@@ -11,10 +11,13 @@ import {
   MenuItem,
   Button,
   Radio,
-  RadioGroup
+  RadioGroup,
+  Theme,
+  useMediaQuery
 } from '@mui/material';
 
 export default function Deflection() {
+  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
   return (
     <Box m={2}>
       <Stack px="24px" spacing={2}>
@@ -39,20 +42,12 @@ export default function Deflection() {
           <Typography variant="h6">Нагрузки и ограничения</Typography>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Изгибающий момент от полной нагрузки:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              M
-            </Typography>
+            <Typography variant="formula">M</Typography>
             <TextField size="small"></TextField>
             <Tooltip
               title={
@@ -71,18 +66,12 @@ export default function Deflection() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Изгибающий момент от длительной части нагрузки:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               M<sub>l</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -103,18 +92,12 @@ export default function Deflection() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Предельный прогиб:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               f<sub>ult</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -122,13 +105,9 @@ export default function Deflection() {
           </Stack>
         </Stack>
 
-        <Stack spacing={1} direction="row">
+        <Stack spacing={1}>
           <FormControl>
-            <RadioGroup
-              row
-              aria-labelledby="demo-radio-buttons-group-label"
-              name="radio-buttons-group"
-            >
+            <RadioGroup row>
               <FormControlLabel value="Схема 1" control={<Radio />} label="Схема 1" />
               <FormControlLabel value="Схема 2" control={<Radio />} label="Схема 2" />
               <FormControlLabel value="Схема 3" control={<Radio />} label="Схема 3" />
@@ -137,7 +116,11 @@ export default function Deflection() {
           </FormControl>
         </Stack>
         <Box>
-          <img alt="calc_deflection" src="/assets/calc_deflection.png" width="350" />
+          <img
+            alt="calc_deflection"
+            src="/assets/calc_deflection.png"
+            width={isMobile ? '280px' : '400px'}
+          />
         </Box>
       </Stack>
 
@@ -146,94 +129,56 @@ export default function Deflection() {
           <Typography variant="h6">Геометрические характеристики сечения и элемента</Typography>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Расчетный пролет балки:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              l
-            </Typography>
+            <Typography variant="formula">l</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Ширина сечения:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              b
-            </Typography>
+            <Typography variant="formula">b</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Высота сечения:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              h
-            </Typography>
+            <Typography variant="formula">h</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Защитный слой бетона растянутой зоны:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
-              a
-            </Typography>
+            <Typography variant="formula">a</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Площадь растянутой арматуры:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               A'<sub>s</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -249,20 +194,14 @@ export default function Deflection() {
           <Typography variant="h6">Характеристики бетона и арматуры</Typography>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Класс бетона на сжатие:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" pl={2} py="8px">
+          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Класс бетона</InputLabel>
-              <Select labelId="demo-simple-small-label" id="demo-simple-small" label="Класс бетона">
+              <InputLabel>Класс бетона</InputLabel>
+              <Select label="Класс бетона">
                 <MenuItem value={10}>В10</MenuItem>
                 <MenuItem value={20}>В15</MenuItem>
                 <MenuItem value={30}>В20</MenuItem>
@@ -279,24 +218,14 @@ export default function Deflection() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Класс арматуры:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" pl={2} py="8px">
+          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px', maxWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Класс арматуры</InputLabel>
-              <Select
-                labelId="demo-simple-small-label"
-                id="demo-simple-small"
-                label="Класс арматуры"
-              >
+              <InputLabel>Класс арматуры</InputLabel>
+              <Select label="Класс арматуры">
                 <MenuItem value={10}>А240</MenuItem>
                 <MenuItem value={20}>А400</MenuItem>
                 <MenuItem value={30}>А500</MenuItem>

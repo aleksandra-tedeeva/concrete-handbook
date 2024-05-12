@@ -12,10 +12,13 @@ import {
   MenuItem,
   Button,
   Radio,
-  RadioGroup
+  RadioGroup,
+  Theme,
+  useMediaQuery
 } from '@mui/material';
 
 export default function PushingColumnEdge() {
+  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
   return (
     <Box m={2}>
       <Stack px="24px" spacing={2}>
@@ -48,11 +51,7 @@ export default function PushingColumnEdge() {
 
         <Stack spacing={1} direction="row">
           <FormControl>
-            <RadioGroup
-              row
-              aria-labelledby="demo-radio-buttons-group-label"
-              name="radio-buttons-group"
-            >
+            <RadioGroup row>
               <FormControlLabel value="Случай 1" control={<Radio />} label="Случай 1" />
               <FormControlLabel value="Случай 2" control={<Radio />} label="Случай 2" />
               <FormControlLabel value="Случай 3" control={<Radio />} label="Случай 3" />
@@ -62,28 +61,21 @@ export default function PushingColumnEdge() {
         </Stack>
 
         <Stack>
-          <Box
-            sx={{
-              height: '430px',
-              width: '430px'
-            }}
-          >
-            <img alt="calc_pushing_col_edge" src="/assets/calc_pushing_col_edge.png" />
+          <Box>
+            <img
+              alt="calc_pushing_col_edge"
+              src="/assets/calc_pushing_col_edge.png"
+              width={isMobile ? '280px' : '350px'}
+            />
           </Box>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Расстояние от центра колонны до края плиты:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               x<sub>a</sub>(y<sub>a</sub>)
             </Typography>
             <TextField size="small"></TextField>
@@ -97,20 +89,12 @@ export default function PushingColumnEdge() {
           <Typography variant="h6">Внешние усилия *</Typography>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Сосредоточенная сила от внешней нагрузки:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
-              F
-            </Typography>
+            <Typography variant="formula">F</Typography>
             <TextField size="small"></TextField>
             <Tooltip
               title={
@@ -129,20 +113,14 @@ export default function PushingColumnEdge() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Направление усилия F:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" pl={2.7} py="8px">
+          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Направление</InputLabel>
-              <Select labelId="demo-simple-small-label" id="demo-simple-small" label="Направление">
+              <InputLabel>Направление</InputLabel>
+              <Select label="Направление">
                 <MenuItem value={10}>↑ Снизу вверх</MenuItem>
                 <MenuItem value={20}>↓ Сверзу вниз</MenuItem>
               </Select>
@@ -150,18 +128,12 @@ export default function PushingColumnEdge() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Изгибающий момент вдоль оси x:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               M<sub>x</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -182,18 +154,12 @@ export default function PushingColumnEdge() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Изгибающий момент вдоль оси y:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               M<sub>y</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -214,13 +180,7 @@ export default function PushingColumnEdge() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <FormControlLabel
               control={<Checkbox />}
@@ -229,13 +189,7 @@ export default function PushingColumnEdge() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Tooltip
               title={
@@ -264,18 +218,12 @@ export default function PushingColumnEdge() {
           </Typography>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Высота зоны приложения нагрзуки:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               a<sub>c(y)</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -283,18 +231,12 @@ export default function PushingColumnEdge() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Ширина зоны приложения нагрзуки:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               b<sub>c(x)</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -302,39 +244,23 @@ export default function PushingColumnEdge() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Толщина плиты:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
-              h
-            </Typography>
+            <Typography variant="formula">h</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Защитный слой бетона растянутой зоны:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
-              a
-            </Typography>
+            <Typography variant="formula">a</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
@@ -346,20 +272,14 @@ export default function PushingColumnEdge() {
           <Typography variant="h6">Характеристики бетона и арматуры</Typography>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Класс бетона на сжатие:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" pl={2.7} py="8px">
+          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Класс бетона</InputLabel>
-              <Select labelId="demo-simple-small-label" id="demo-simple-small" label="Класс бетона">
+              <InputLabel>Класс бетона</InputLabel>
+              <Select label="Класс бетона">
                 <MenuItem value={10}>В10</MenuItem>
                 <MenuItem value={20}>В15</MenuItem>
                 <MenuItem value={30}>В20</MenuItem>
@@ -376,44 +296,28 @@ export default function PushingColumnEdge() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>
               Коэффициент условий работы бетона (γ<sub>b1</sub> · γ<sub>b3</sub> · γ<sub>b4</sub>):
             </Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               γ<sub>bi</sub>
             </Typography>
             <TextField size="small" disabled></TextField>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Класс арматуры:</Typography>
           </Stack>
-          <Stack spacing={1} direction="row" alignItems="center" pl={2.7} py="8px">
+          <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Класс арматуры</InputLabel>
-              <Select
-                labelId="demo-simple-small-label"
-                id="demo-simple-small"
-                label="Класс арматуры"
-              >
+              <InputLabel>Класс арматуры</InputLabel>
+              <Select label="Класс арматуры">
                 <MenuItem value={10}>А240</MenuItem>
                 <MenuItem value={20}>А400</MenuItem>
                 <MenuItem value={30}>А500</MenuItem>
@@ -426,20 +330,14 @@ export default function PushingColumnEdge() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>
               Площадь поперечной арматуры с шагом s<sub>w</sub>:
             </Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               A<sub>sw</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -449,18 +347,12 @@ export default function PushingColumnEdge() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Шаг поперечной арматуры:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '36px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               s<sub>w</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -474,13 +366,7 @@ export default function PushingColumnEdge() {
           <Typography variant="h6">Опции расчета</Typography>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Tooltip
               title={
@@ -519,13 +405,7 @@ export default function PushingColumnEdge() {
           <Typography variant="h6">* Примечания:</Typography>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack my="8px" spacing={1}>
             <Typography>
               На рисунке показаны положительные направления усилий M<sub>x</sub>, M<sub>y</sub>.
