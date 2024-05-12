@@ -10,10 +10,13 @@ import {
   Select,
   MenuItem,
   Checkbox,
-  Button
+  Button,
+  Theme,
+  useMediaQuery
 } from '@mui/material';
 
 export default function ShearForce() {
+  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
   return (
     <Box m={2}>
       <Stack px="24px" spacing={2}>
@@ -36,7 +39,11 @@ export default function ShearForce() {
 
       <Stack my="16px">
         <Box>
-          <img alt="calc_shear_force" src="/assets/calc_shear_force.png" width="300" />
+          <img
+            alt="calc_shear_force"
+            src="/assets/calc_shear_force.png"
+            width={isMobile ? '280px' : '350px'}
+          />
         </Box>
       </Stack>
 
@@ -45,20 +52,12 @@ export default function ShearForce() {
           <Typography variant="h6">Внешние усилия</Typography>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Изгибающий момент действующий в сечении:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '48px', fontStyle: 'italic', fontSize: '20px' }}>
-              M
-            </Typography>
+            <Typography variant="formula">M</Typography>
             <TextField size="small"></TextField>
             <Tooltip
               title={
@@ -77,18 +76,12 @@ export default function ShearForce() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Максимальная поперечная сила в начале наклонной трещины:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '48px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               Q<sub>max</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -109,13 +102,7 @@ export default function ShearForce() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Tooltip
               title={
@@ -132,9 +119,7 @@ export default function ShearForce() {
           </Stack>
 
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '48px', fontStyle: 'italic', fontSize: '20px' }}>
-              N
-            </Typography>
+            <Typography variant="formula">N</Typography>
             <TextField size="small"></TextField>
             <Tooltip
               title={
@@ -153,20 +138,12 @@ export default function ShearForce() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
-            <Typography>Равномерная нагрузка на верхней грани балки::</Typography>
+            <Typography>Равномерная нагрузка на верхней грани балки:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '48px', fontStyle: 'italic', fontSize: '20px' }}>
-              q
-            </Typography>
+            <Typography variant="formula">q</Typography>
             <TextField size="small"></TextField>
             <Typography sx={{ cursor: 'help' }} color="text.secondary">
               кг/см
@@ -180,94 +157,56 @@ export default function ShearForce() {
           <Typography variant="h6">Геометрические характеристики сечения и элемента</Typography>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Высота сечения:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '48px', fontStyle: 'italic', fontSize: '20px' }}>
-              h
-            </Typography>
+            <Typography variant="formula">h</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Ширина сечения:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '48px', fontStyle: 'italic', fontSize: '20px' }}>
-              b
-            </Typography>
+            <Typography variant="formula">b</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Защитный слой бетона растянутой зоны:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '48px', fontStyle: 'italic', fontSize: '20px' }}>
-              a
-            </Typography>
+            <Typography variant="formula">a</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Защитный слой бетона сжатой зоны:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '48px', fontStyle: 'italic', fontSize: '20px' }}>
-              a'
-            </Typography>
+            <Typography variant="formula">a'</Typography>
             <TextField size="small"></TextField>
             <Typography color="text.secondary">см</Typography>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Площадь растянутой арматуры:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '48px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               A<sub>s</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -277,18 +216,12 @@ export default function ShearForce() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Площадь сжатой арматуры:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '48px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               A'<sub>s</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -298,18 +231,12 @@ export default function ShearForce() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Площадь поперечной арматуры:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '48px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               A<sub>sw</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -319,18 +246,12 @@ export default function ShearForce() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Шаг поперечной армаруры:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '48px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               s<sub>w</sub>
             </Typography>
             <TextField size="small"></TextField>
@@ -344,20 +265,14 @@ export default function ShearForce() {
           <Typography variant="h6">Характеристики бетона и арматуры</Typography>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Класс бетона на сжатие:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Класс бетона</InputLabel>
-              <Select labelId="demo-simple-small-label" id="demo-simple-small" label="Класс бетона">
+              <InputLabel>Класс бетона</InputLabel>
+              <Select label="Класс бетона">
                 <MenuItem value={10}>В10</MenuItem>
                 <MenuItem value={20}>В15</MenuItem>
                 <MenuItem value={30}>В20</MenuItem>
@@ -374,44 +289,28 @@ export default function ShearForce() {
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={1} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>
               Коэффициент условий работы бетона (γ<sub>b1</sub> · γ<sub>b3</sub> · γ<sub>b4</sub>):
             </Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" py="8px">
-            <Typography sx={{ minWidth: '48px', fontStyle: 'italic', fontSize: '20px' }}>
+            <Typography variant="formula">
               γ<sub>bi</sub>
             </Typography>
             <TextField size="small" disabled></TextField>
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Класс продольной арматуры:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px', maxWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Класс арматуры</InputLabel>
-              <Select
-                labelId="demo-simple-small-label"
-                id="demo-simple-small"
-                label="Класс арматуры"
-              >
+              <InputLabel>Класс арматуры</InputLabel>
+              <Select label="Класс арматуры">
                 <MenuItem value={10}>А240</MenuItem>
                 <MenuItem value={20}>А400</MenuItem>
                 <MenuItem value={30}>А500</MenuItem>
@@ -423,24 +322,14 @@ export default function ShearForce() {
             </FormControl>
           </Stack>
         </Stack>
-        <Stack
-          spacing={3.8}
-          direction="row"
-          alignItems="center"
-          justifyContent="start"
-          flexWrap="wrap"
-        >
+        <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
           <Stack width={500}>
             <Typography>Класс поперечной арматуры:</Typography>
           </Stack>
           <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
             <FormControl sx={{ minWidth: '214px', maxWidth: '214px' }} size="small">
-              <InputLabel id="demo-simple-small-label">Класс арматуры</InputLabel>
-              <Select
-                labelId="demo-simple-small-label"
-                id="demo-simple-small"
-                label="Класс арматуры"
-              >
+              <InputLabel>Класс арматуры</InputLabel>
+              <Select label="Класс арматуры">
                 <MenuItem value={10}>А240</MenuItem>
                 <MenuItem value={20}>А300</MenuItem>
                 <MenuItem value={20}>А400</MenuItem>
