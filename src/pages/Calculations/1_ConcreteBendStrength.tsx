@@ -25,27 +25,44 @@ import {
 import { Duration, Shape } from '../../calculations/types';
 import { MPaToKgCm2 } from '../../calculations/util';
 
-export type ConcreteBendStrengthKeys = 'M' | 'b' | 'h' | 'a' | 'a_c' | 'As' | 'As_c';
+export type ConcreteBendStrengthKeys =
+  | 'M'
+  | 'b'
+  | 'bf'
+  | 'h'
+  | 'hf'
+  | 'a'
+  | 'a_c'
+  | 'As'
+  | 'As_c'
+  | 'gamma';
+
 export type ConcreteClassTypeKeys = 'heavy' | 'light' | 'cellular';
 
 export interface ConcreteBendStrengthFields {
   M: string;
   b: string;
+  bf?: string;
   h: string;
+  hf?: string;
   a: string;
   a_c: string;
   As: string;
   As_c: string;
+  gamma: string;
 }
 
 export interface ConcreteBendStrengthNumbers {
   M: number;
   b: number;
+  bf?: number;
   h: number;
+  hf?: number;
   a: number;
   a_c: number;
   As: number;
   As_c: number;
+  gamma: number;
 }
 
 export interface ConcreteClassType {
@@ -54,13 +71,16 @@ export interface ConcreteClassType {
 }
 
 const initialData: ConcreteBendStrengthFields = {
-  M: '1400000', //kg*cm;'137' Mpa,
-  b: '30', //cm;'300' mm,
-  h: '40', //cm;'400' mm,
-  a: '5', //cm;'50' mm,
-  a_c: '5', //cm;'50' mm,
-  As: '12', //cm;'120' mm,
-  As_c: '3' //cm;'30' mm
+  M: '1400000',
+  b: '30',
+  bf: '90',
+  h: '40',
+  hf: '10',
+  a: '5',
+  a_c: '5',
+  As: '12',
+  As_c: '3',
+  gamma: '1'
 };
 
 const concreteClassTypes: ConcreteClassType[] = [
@@ -86,7 +106,6 @@ export default function ConcreteBendStrength() {
   const [concreteClass, setConcreteClass] = useState('B20');
   const [concreteClassType, setConcreteClassType] = useState<ConcreteClassTypeKeys>('heavy');
   const [reinforcement, setReinforcement] = useState('A500');
-  const [gamma, setGamma] = useState(1);
   const [freeGamma, setFreeGamma] = useState(false);
 
   const [calculationResult, setCalculationResult] = useState<
@@ -109,10 +128,24 @@ export default function ConcreteBendStrength() {
       .required('b должен быть задан')
       .matches(regOnlyNumbers, 'b должен быть числом')
       .max(10),
+    bf:
+      shape === 't-beam'
+        ? Yup.string()
+            .required('bf должен быть задан')
+            .matches(regOnlyNumbers, 'bf должен быть числом')
+            .max(10)
+        : Yup.string(),
     h: Yup.string()
       .required('h должен быть задан')
       .matches(regOnlyNumbers, 'h должен быть числом')
       .max(10),
+    hf:
+      shape === 't-beam'
+        ? Yup.string()
+            .required('hf должен быть задан')
+            .matches(regOnlyNumbers, 'hf должен быть числом')
+            .max(10)
+        : Yup.string(),
     a: Yup.string()
       .required('a должен быть задан')
       .matches(regOnlyNumbers, 'a должен быть числом')
@@ -128,6 +161,10 @@ export default function ConcreteBendStrength() {
     As_c: Yup.string()
       .required('A`s должен быть задан')
       .matches(regOnlyNumbers, 'A`s должен быть числом')
+      .max(10),
+    gamma: Yup.string()
+      .required('Gamma должен быть задан')
+      .matches(regOnlyNumbers, 'Gamma должен быть числом')
       .max(10)
   });
 
@@ -150,6 +187,12 @@ export default function ConcreteBendStrength() {
 
   const handleSubmit = methods.handleSubmit((data) => {
     try {
+      // Игнорировать bf и hf для прямоугольного сечения
+      if (shape === 'rectangle') {
+        data.bf = '1';
+        data.hf = '1';
+      }
+
       // Перевод в числа
       const dataValuesToNumber = Object.entries(data).reduce((acc, [key, value]) => {
         const num = Number.parseFloat(value);
@@ -202,13 +245,17 @@ export default function ConcreteBendStrength() {
         ...dataValuesToNumber,
         duration,
         shape,
-        gamma,
         Rs: Rs_kgcm2,
         Rsc: Rsc_kgcm2,
         Es: Es_kgcm2,
         Rb: Rb_kgcm2,
         Rbt: Rbt_kgcm2
       });
+
+      if (calcResult.error) {
+        alert(calcResult.error);
+        return;
+      }
 
       // Вывод результата
       setCalculationResult(calcResult);
@@ -252,14 +299,6 @@ export default function ConcreteBendStrength() {
   const handleFreeGammaChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target) {
       setFreeGamma(e.target.checked);
-    }
-  };
-
-  const handleGammaChange = (e: ChangeEvent) => {
-    const target = e.target as HTMLInputElement;
-    if (target.value) {
-      const value = Number.parseFloat(target.value);
-      setGamma(value);
     }
   };
 
@@ -317,7 +356,7 @@ export default function ConcreteBendStrength() {
           >
             b<sub>f</sub>
           </Typography>
-          <TextField size="small" {...fieldControl('b')}></TextField>
+          <TextField size="small" {...fieldControl('bf')}></TextField>
           <Typography color="text.secondary">см</Typography>
         </Stack>
       </Stack>
@@ -329,7 +368,7 @@ export default function ConcreteBendStrength() {
           <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
             h<sub>f</sub>
           </Typography>
-          <TextField size="small" {...fieldControl('h')}></TextField>
+          <TextField size="small" {...fieldControl('hf')}></TextField>
           <Typography color="text.secondary">см</Typography>
         </Stack>
       </Stack>
@@ -431,15 +470,15 @@ export default function ConcreteBendStrength() {
             <Stack spacing={1} direction="row" alignItems="center" pl={2} py="8px">
               <FormControl sx={{ minWidth: '214px' }} size="small">
                 <InputLabel>Форма сечения</InputLabel>
-                <Select label="Форма сечения" value={shape} onChange={handleShapeChange}>
+                <Select label="Форма сечения" value={shape} onChange={handleShapeChange} disabled>
                   <MenuItem value={'rectangle'}>Прямоугольное</MenuItem>
-                  <MenuItem value={'t-beam'}>Тавровое</MenuItem>
                 </Select>
               </FormControl>
             </Stack>
           </Stack>
 
-          {shape === 'rectangle' ? renderRectangleShapeBHFields : renderTBeamShapeBHFields}
+          {renderRectangleShapeBHFields}
+          {shape === 't-beam' && renderTBeamShapeBHFields}
 
           <Stack
             spacing={1}
@@ -608,12 +647,7 @@ export default function ConcreteBendStrength() {
               <Typography sx={{ minWidth: '30px', fontStyle: 'italic', fontSize: '20px' }}>
                 γ<sub>bi</sub>
               </Typography>
-              <TextField
-                size="small"
-                disabled={!freeGamma}
-                value={gamma}
-                onChange={handleGammaChange}
-              ></TextField>
+              <TextField size="small" disabled={!freeGamma} {...fieldControl('gamma')}></TextField>
             </Stack>
           </Stack>
 
