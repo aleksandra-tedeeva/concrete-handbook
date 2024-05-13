@@ -48,21 +48,21 @@ export const calculationMenuItems: MenuItem[] = [
     link: '/eccentrically_stretched_element',
     Icon: IconConcretePlaceholder
   },
-  {
-    name: 'Продавливание - колонна посередине плиты',
-    link: '/pushing_column_center',
-    Icon: IconConcretePlaceholder
-  },
-  {
-    name: 'Продавливание - колонна на краю',
-    link: '/pushing_column_edge',
-    Icon: IconConcretePlaceholder
-  },
-  {
-    name: 'Продавливание - колонна на углу',
-    link: '/pushing_column_corner',
-    Icon: IconConcretePlaceholder
-  },
+  // {
+  //   name: 'Продавливание - колонна посередине плиты',
+  //   link: '/pushing_column_center',
+  //   Icon: IconConcretePlaceholder
+  // },
+  // {
+  //   name: 'Продавливание - колонна на краю',
+  //   link: '/pushing_column_edge',
+  //   Icon: IconConcretePlaceholder
+  // },
+  // {
+  //   name: 'Продавливание - колонна на углу',
+  //   link: '/pushing_column_corner',
+  //   Icon: IconConcretePlaceholder
+  // },
   {
     name: 'Расчет на действие поперечной силы',
     link: '/shear_force',

@@ -16,6 +16,7 @@ export interface CalculateConcreteBendRebarAssortmentParams {
   Rsc: number;
   Es: number;
   Rb: number;
+  gamma: number;
 }
 
 export interface CalculateConcreteBendRebarAssortmentResult {
@@ -38,8 +39,10 @@ export const calculateConcreteBendRebarAssortment = ({
   Rs,
   Rsc,
   Es,
-  Rb
+  Rb: Rb_raw,
+  gamma
 }: CalculateConcreteBendRebarAssortmentParams): CalculateConcreteBendRebarAssortmentResult => {
+  const Rb = Rb_raw * gamma;
   //const M = 1400000;
   //const duration: Duration = 'short';
   //const shape: Shape = 'rectangle';

@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useAppSelector } from '../../store/hooks';
 import { FormProvider, useForm } from 'react-hook-form';
 import {
@@ -151,8 +151,14 @@ export default function ConcreteBendStrength() {
     defaultValues: initialData
   });
 
-  const { formState, register } = methods;
+  const { formState, register, resetField } = methods;
   const { errors } = formState;
+
+  useEffect(() => {
+    if (!freeGamma) {
+      resetField('gamma');
+    }
+  }, [freeGamma, resetField]);
 
   const fieldControl = function <T>(fieldName: ConcreteBendStrengthKeys) {
     return {

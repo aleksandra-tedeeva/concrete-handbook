@@ -21,7 +21,7 @@ import ReinforcementClassSelect from '../../components/CustomSelects/reinforceme
 import ConcreteClassTypeSelect, {
   ConcreteClassTypeKeys
 } from '../../components/CustomSelects/concrete-class-type-select';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   CalculateConcreteBendRebarAssortmentResult,
   calculateConcreteBendRebarAssortment
@@ -130,8 +130,14 @@ export default function ConcreteBendRebarAssortment() {
     defaultValues: initialData
   });
 
-  const { formState, register } = methods;
+  const { formState, register, resetField } = methods;
   const { errors } = formState;
+
+  useEffect(() => {
+    if (!freeGamma) {
+      resetField('gamma');
+    }
+  }, [freeGamma, resetField]);
 
   const fieldControl = function <T>(fieldName: ConcreteBendRebarAssortmentKeys) {
     return {
