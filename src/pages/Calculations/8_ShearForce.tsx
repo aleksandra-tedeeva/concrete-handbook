@@ -21,7 +21,10 @@ import * as Yup from 'yup';
 import { regOnlyNumbers } from '../../util/regOnlyNumbers';
 import { MPaToKgCm2 } from '../../calculations/util';
 import { useAppSelector } from '../../store/hooks';
-import CalculateShearForce from '../../calculations/8_calc-shear-force';
+import CalculateShearForce, {
+  CalculateShearForceResult
+} from '../../calculations/8_calc-shear-force';
+import ShearForceResultLayout from '../../calculations/result-layouts/8_shear-force-result-layout';
 
 export type ShearForceKeys =
   | 'M'
@@ -115,7 +118,9 @@ const initialData = {
 export default function ShearForce() {
   const [freeGamma, setFreeGamma] = useState(false);
   const [concreteClassData, setConcreteClassData] = useState<ComplexConcreteClassSelectResult>();
-  const [calculationResult, setCalculationResult] = useState<React.ReactNode>();
+  const [calculationResult, setCalculationResult] = useState<CalculateShearForceResult | undefined>(
+    undefined
+  );
 
   const { classes: reinforcementClassesData } = useAppSelector((state) => state.reinforcement);
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
@@ -592,7 +597,7 @@ export default function ShearForce() {
             />
           </Stack>
 
-          {calculationResult && calculationResult}
+          {calculationResult && <ShearForceResultLayout {...calculationResult} sx={{ mb: 2 }} />}
 
           <Stack spacing={2} direction="row" alignItems="center" flexWrap="wrap">
             <Button variant="outlined" sx={{ minWidth: '214px' }} type="submit">
