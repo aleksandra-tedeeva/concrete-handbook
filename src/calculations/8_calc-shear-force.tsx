@@ -1,64 +1,119 @@
 import { Typography } from '@mui/material';
 
-const TEXT_INEXECUTED = 'Требование не выполняется.';
+const TEXT_UNEXECUTED = 'Требование не выполняется.';
 
 const ERROR_QMAX_MORE_THAN_Q = 'Qmax > Q';
 const ERROR_QMAX_MORE_THAN_QULT = 'Qmax > Qult';
 const ERROR_M_MORE_THAN_MULT = 'M > Mult';
-const ERROR_A_A_C_MORE_THAN_H = 'a + a_c >= h';
+const ERROR_A_PLUS_A_C_MORE_THAN_H = 'a + a_c >= h';
 
-export default function CalculateShearForce() {
+export interface CalculateShearForceParams {
+  M: number;
+  Qmax: number;
+  N: number;
+  q: number;
+
+  h: number;
+  b: number;
+  a: number;
+  a_c: number;
+
+  As: number;
+  As_c: number;
+  Asw: number;
+  sw: number;
+
+  gamma: number;
+
+  Rb: number;
+  Rbt: number;
+  Eb: number;
+
+  Rs: number;
+  Es: number;
+  Rsw: number;
+}
+
+export default function CalculateShearForce({
+  M,
+  Qmax,
+  N,
+  q,
+
+  h,
+  b,
+  a,
+  a_c,
+
+  As,
+  As_c,
+  Asw,
+  sw,
+
+  gamma,
+
+  Rb: Rb_raw,
+  Rbt: Rbt_raw,
+  Eb,
+
+  Rs,
+  Es,
+  Rsw
+}: CalculateShearForceParams) {
   /** Внешние усилия */
   //Изгибающий момент действующий в сечении:
-  const M = 5.5 * Math.pow(10, 5);
-  //Максимальная поперечная сила в начале наклонной трещины:
-  const Qmax = 20000;
-  //Продольное усилие (обжатие со знаком минус):
-  const N = -3000;
-  //Равномерная нагрузка на верхней грани балки:
-  const q = 10;
+  // const M = 5.5 * Math.pow(10, 5);
+  // //Максимальная поперечная сила в начале наклонной трещины:
+  // const Qmax = 20000;
+  // //Продольное усилие (обжатие со знаком минус):
+  // const N = -3000;
+  // //Равномерная нагрузка на верхней грани балки:
+  // const q = 10;
 
-  /** Геометрические характеристики сечения и элемента */
-  //Высота сечения:
-  const h = 60;
-  //Ширина сечения:
-  const b = 30;
-  //Защитный слой бетона растянутой зоны:
-  const a = 4;
-  //Защитный слой бетона сжатой зоны:
-  const a_c = 4;
-  //Площадь растянутой арматуры:
-  const As = 10;
-  //Площадь сжатой арматуры:
-  const As_c = 3;
-  //Площадь поперечной арматуры:
-  const Asw = 2.1;
-  //Шаг поперечной армаруры:
-  const sw = 20;
+  // /** Геометрические характеристики сечения и элемента */
+  // //Высота сечения:
+  // const h = 60;
+  // //Ширина сечения:
+  // const b = 30;
+  // //Защитный слой бетона растянутой зоны:
+  // const a = 4;
+  // //Защитный слой бетона сжатой зоны:
+  // const a_c = 4;
+  // //Площадь растянутой арматуры:
+  // const As = 10;
+  // //Площадь сжатой арматуры:
+  // const As_c = 3;
+  // //Площадь поперечной арматуры:
+  // const Asw = 2.1;
+  // //Шаг поперечной армаруры:
+  // const sw = 20;
 
-  /** Характеристики арматуры и бетона */
-  //Коэффициент условий работы бетона (γb1×γb3×γb5):
-  const gamma = 1;
-  //Класс бетона на сжатие: B20
-  const Rb = 117.3 * gamma;
-  const Rbt = 9.2 * gamma;
-  const Eb = 2.8 * Math.pow(10, 5);
-  //Класс продольной арматуры: A400
-  const Rs = 3569;
-  const Es = 2.04 * Math.pow(10, 6);
-  //Класс поперечной арматуры: A240
-  const Rsw = 1734;
+  // /** Характеристики арматуры и бетона */
+  // //Коэффициент условий работы бетона (γb1×γb3×γb5):
+  // const gamma = 1;
+  // //Класс бетона на сжатие: B20
+  // const Rb = 117.3 * gamma;
+  // const Rbt = 9.2 * gamma;
+  // const Eb = 2.8 * Math.pow(10, 5);
+  // //Класс продольной арматуры: A400
+  // const Rs = 3569;
+  // const Es = 2.04 * Math.pow(10, 6);
+  // //Класс поперечной арматуры: A240
+  // const Rsw = 1734;
+
+  const Rb = Rb_raw * gamma;
+  const Rbt = Rbt_raw * gamma;
 
   /** Определение коэффициента 𝜙𝑛 */
   const alpha = Es / Eb;
   const Ab = b * h - As - As_c;
-  const σcp = Math.abs(N) / (Ab + alpha * (As + As_c));
+  const sigma_cp = Math.abs(N) / (Ab + alpha * (As + As_c));
 
   const a_a_c = a + a_c;
   if (a_a_c >= h) {
     return (
       <Typography mt={1}>
-        {ERROR_A_A_C_MORE_THAN_H} {TEXT_INEXECUTED}
+        {ERROR_A_PLUS_A_C_MORE_THAN_H} {TEXT_UNEXECUTED}
       </Typography>
     );
   }
@@ -67,9 +122,9 @@ export default function CalculateShearForce() {
   //Проверка на знак у N
   let fi_n = 1;
   if (N < 0) {
-    fi_n = 1 + σcp / Rb;
+    fi_n = 1 + sigma_cp / Rb;
   } else if (N > 0) {
-    fi_n = 1 - σcp / Rbt;
+    fi_n = 1 - sigma_cp / Rbt;
   }
 
   //фиксированные значения
@@ -86,7 +141,7 @@ export default function CalculateShearForce() {
   if (Q < Qmax) {
     return (
       <Typography mt={1}>
-        {ERROR_QMAX_MORE_THAN_Q} {TEXT_INEXECUTED}
+        {ERROR_QMAX_MORE_THAN_Q} {TEXT_UNEXECUTED}
       </Typography>
     );
   }
@@ -123,7 +178,7 @@ export default function CalculateShearForce() {
 
     Qult = Qb + Qsw + q * c_start;
     //самопроверка
-    console.log({ c_start }, { Qb }, { Qsw }, { Qult });
+    console.log({ c_start, Qb, Qsw, Qult });
 
     x = x + n;
     c_start = c_start + n;
@@ -165,7 +220,7 @@ export default function CalculateShearForce() {
   if (Qult < Qmax) {
     return (
       <Typography mt={1}>
-        {ERROR_QMAX_MORE_THAN_QULT} {TEXT_INEXECUTED}
+        {ERROR_QMAX_MORE_THAN_QULT} {TEXT_UNEXECUTED}
       </Typography>
     );
   }
@@ -191,7 +246,7 @@ export default function CalculateShearForce() {
   if (Mult < M) {
     return (
       <Typography mt={1}>
-        {ERROR_M_MORE_THAN_MULT} {TEXT_INEXECUTED}
+        {ERROR_M_MORE_THAN_MULT} {TEXT_UNEXECUTED}
       </Typography>
     );
   }
@@ -211,7 +266,7 @@ export default function CalculateShearForce() {
         Ab = {Ab}
       </Typography>
       <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-        σcp = {σcp}
+        σcp = {sigma_cp}
       </Typography>
       <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
         fi_n = {fi_n}

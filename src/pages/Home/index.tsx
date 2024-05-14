@@ -10,7 +10,7 @@ const Home = () => {
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
   return (
-    <Stack mt={2}>
+    <Stack mt={2} spacing={2}>
       <Typography variant={isMobile ? 'h6' : 'h5'} align="left">
         Списки классов и марок бетона
       </Typography>
@@ -38,7 +38,7 @@ const Home = () => {
       </Typography>
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
         {calculationMenuItems.map((item) => (
-          <Grid item xs={isMobile ? 12 : 4} key={item.link}>
+          <Grid item xs={isMobile ? 12 : 3} key={item.link}>
             <CardLink {...item} />
           </Grid>
         ))}

@@ -9,15 +9,20 @@ import {
 } from '@mui/material';
 import { useAppSelector } from '../../store/hooks';
 
-export interface ReinforcementClassSelectProps extends SelectProps {}
+export interface ReinforcementClassSelectProps extends SelectProps {
+  text?: string;
+}
 
-export default function ReinforcementClassSelect(props: ReinforcementClassSelectProps) {
+export default function ReinforcementClassSelect({
+  text = 'Класс арматуры',
+  ...props
+}: ReinforcementClassSelectProps) {
   const { headers } = useAppSelector((state) => state.reinforcement);
 
   return (
     <Stack spacing={3.8} direction="row" alignItems="center" flexWrap="wrap">
       <Stack width={500}>
-        <Typography>Класс арматуры:</Typography>
+        <Typography>{text}:</Typography>
       </Stack>
       <Stack spacing={1} direction="row" alignItems="center" pl={4.2} py="8px">
         <FormControl sx={{ minWidth: '214px' }} size="small">
