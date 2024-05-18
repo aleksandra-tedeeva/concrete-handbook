@@ -7,12 +7,16 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Stack } from '@mui/material';
-import Searchbar from '../Search/searchbar';
+import { Stack, Theme, useMediaQuery } from '@mui/material';
 import SearchAutocomplete from '../SearchAutocomplete/SearchAutocomplete';
+import MobileMenu from './mobile-menu';
+import { Search } from '@mui/icons-material';
+import MobileSearchAutocomplete from '../SearchAutocomplete/MobileSearchAutocomplete';
 const AppBar = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-  const [value, setValue] = useState('');
+  const [showSearch, setShowSearch] = useState<boolean>(false);
+
+  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
   const navigate = useNavigate();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -21,6 +25,14 @@ const AppBar = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const handleShowMobileSearch = () => {
+    setShowSearch(true);
+  };
+
+  const handleCloseMobileSearch = () => {
+    setShowSearch(false);
   };
 
   return (
@@ -61,11 +73,15 @@ const AppBar = () => {
               display: { xs: 'block', md: 'none' }
             }}
           >
-            {/* <Searchbar value={value} setValue={setValue} /> */}
+            <MobileMenu onClose={handleCloseNavMenu} />
           </Menu>
+          <IconButton onClick={handleShowMobileSearch} sx={{ color: 'white' }}>
+            <Search />
+          </IconButton>
+          <MobileSearchAutocomplete open={showSearch} onClose={handleCloseMobileSearch} />
         </Box>
 
-        <Box sx={{ padding: '0px 16px' }}>
+        <Box sx={{ padding: '0px 16px' }} width="100%">
           <Typography
             onClick={() => navigate('/')}
             sx={{
@@ -74,9 +90,18 @@ const AppBar = () => {
               alignItems: 'center'
             }}
           >
-            <Stack justifyContent="center">
-              <Typography variant="h5">СЖБК</Typography>
-              <Typography variant="caption">Справочник Железобетонных Конструкций</Typography>
+            <Stack
+              width="100%"
+              spacing={isMobile ? 2 : 0}
+              justifyContent={isMobile ? 'space-between' : 'center'}
+              alignItems={isMobile ? 'center' : 'flex-start'}
+              direction={isMobile ? 'row' : 'column'}
+              textAlign={isMobile ? 'right' : 'left'}
+            >
+              {!isMobile && <Typography variant="h5">СЖБК</Typography>}
+              <Typography variant="caption" width={isMobile ? '100%' : 'auto'}>
+                Справочник Железобетонных Конструкций
+              </Typography>
             </Stack>
           </Typography>
         </Box>
@@ -89,7 +114,6 @@ const AppBar = () => {
           }}
         >
           <SearchAutocomplete />
-          {/* <Searchbar value={value} setValue={setValue} sx={{ maxWidth: '300px', color: 'white' }} /> */}
         </Box>
       </Toolbar>
     </MuiAppBar>

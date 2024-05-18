@@ -15,7 +15,19 @@ import { getIcon, getType } from './util';
 
 type ValueType = { label: string; type: string } | '';
 
-export default function SearchAutocomplete() {
+export interface SearchAutocompleteProps {
+  onClose?: () => void;
+  color?: string;
+  faintColor?: string;
+  mt?: number;
+}
+
+export default function SearchAutocomplete({
+  onClose,
+  color = 'white',
+  faintColor = 'rgba(255,255,255,0.4)',
+  mt = 0
+}: SearchAutocompleteProps) {
   const [value] = useState<ValueType | ''>('');
 
   const { headers: reinforcementHeaders } = useAppSelector((state) => state.reinforcement);
@@ -37,6 +49,10 @@ export default function SearchAutocomplete() {
     }
     const { label, type } = value;
     navigate(`${type}_list/${label}`);
+
+    if (onClose) {
+      onClose();
+    }
   };
 
   return (
@@ -54,10 +70,13 @@ export default function SearchAutocomplete() {
       id="combo-box-demo"
       options={allHeaders as ValueType[]}
       sx={{
+        mt,
         width: 400,
         '.MuiAutocomplete-endAdornment': {
-          color: 'white'
-        }
+          color
+        },
+        ml: 'auto',
+        mr: 'auto'
       }}
       renderInput={(params) => (
         <TextField
@@ -68,17 +87,17 @@ export default function SearchAutocomplete() {
           InputProps={{
             ...params.InputProps,
             sx: {
-              color: 'rgba(255,255,255,1)',
-              ':before': { borderBottomColor: 'rgba(255,255,255,.4)' },
+              color: color,
+              ':before': { borderBottomColor: faintColor },
               ':after': {
-                borderBottomColor: 'white'
+                borderBottomColor: color
               },
               'MuiAutocomplete-endAdornment': {
-                color: 'white'
+                color
               }
             },
             startAdornment: (
-              <InputAdornment position="start" sx={{ color: 'rgba(255,255,255,.4)' }}>
+              <InputAdornment position="start" sx={{ color: faintColor }}>
                 <Search />
               </InputAdornment>
             )
