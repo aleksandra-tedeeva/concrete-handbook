@@ -10,21 +10,13 @@ import AppBar from '../components/AppBar';
 import Container from '@mui/material/Container/Container';
 import ConcreteBendStrength from '../pages/Calculations/1_ConcreteBendStrength';
 import ConcreteBendRebarAssortment from '../pages/Calculations/2_ConcreteBendRebarAssortment';
-import EccentricallyCompressedElement from '../pages/Calculations/3_EccentricallyCompressedElement copy 2';
-import EccentricallyStretchedElement from '../pages/Calculations/4_EccentricallyStretchedElement';
-import PushingColumnCenter from '../pages/Calculations/5_PushingColumnCenter';
-import PushingColumnEdge from '../pages/Calculations/6_PushingColumnEdge copy';
-import PushingColumnCorner from '../pages/Calculations/7_PushingColumnCorner';
 import ShearForce from '../pages/Calculations/8_ShearForce';
 import LocalCompression from '../pages/Calculations/9_LocalCompression';
-import CrackingWidth from '../pages/Calculations/10_CrackingWidth';
-import Deflection from '../pages/Calculations/11_Deflection';
 import { CssBaseline } from '@mui/material';
 import ConcreteClasses from '../pages/ConcreteClasses/ConcreteClasses';
 import ConcreteMarks from '../pages/ConcreteMarks/ConcreteMarks';
 import DetailedMark from '../components/DetailedMark';
 import DetailedClass from '../components/DetailedClass';
-import AlexCalcDebug from '../pages/alex-calc-debug';
 import Reinforcements from '../pages/Reinforcements/Reinforcements';
 import DetailedReinforcement from '../components/DetailedReinforcement/DetailedRainforcement';
 
@@ -60,8 +52,6 @@ const Router = () => {
         <Route path="reinforcement_list" element={<Reinforcements />} />
         <Route path="reinforcement_list/:id" element={<DetailedReinforcement />} />
 
-        {/* Подбор арматуры
-        <Route path="reinforcement" element={<Reinforcement />} /> */}
         {/* Коэф Условий Работы */}
         <Route path="service_factor" element={<ServiceFactor />} />
         {/* Предельные Прогибы */}
@@ -70,21 +60,8 @@ const Router = () => {
         {/* Ссылки на Расчеты */}
         <Route path="concrete_bend_strength" element={<ConcreteBendStrength />} />
         <Route path="concrete_bend_rebar_assortment" element={<ConcreteBendRebarAssortment />} />
-        <Route
-          path="eccentrically_compressed_element"
-          element={<EccentricallyCompressedElement />}
-        />
-        <Route path="eccentrically_stretched_element" element={<EccentricallyStretchedElement />} />
-        <Route path="pushing_column_center" element={<PushingColumnCenter />} />
-        <Route path="pushing_column_edge" element={<PushingColumnEdge />} />
-        <Route path="pushing_column_corner" element={<PushingColumnCorner />} />
         <Route path="shear_force" element={<ShearForce />} />
         <Route path="local_compression" element={<LocalCompression />} />
-        <Route path="cracking_width" element={<CrackingWidth />} />
-        <Route path="deflection" element={<Deflection />} />
-
-        {/* Alex calculation debug page */}
-        <Route path="debug" element={<AlexCalcDebug />} />
 
         <Route path="*" element={<Error />} />
       </Route>
