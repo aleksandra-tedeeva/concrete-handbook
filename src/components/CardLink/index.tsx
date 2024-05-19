@@ -1,5 +1,6 @@
 import {
   Card,
+  CardProps,
   Stack,
   SvgIconProps,
   Theme,
@@ -10,20 +11,20 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-export interface CardLinkProps {
+export interface CardLinkProps extends CardProps {
   name: string;
   link: string;
   Icon?: (props: SvgIconProps) => JSX.Element;
 }
 
-export default function CardLink({ name, link, Icon }: CardLinkProps) {
+export default function CardLink({ name, link, Icon, ...other }: CardLinkProps) {
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const { palette } = useTheme();
-  const iconColor = palette.secondary.main;
+  const iconColor = palette.text.primary;
 
   const StyledLink = styled(Link)({
     textDecoration: 'none',
-    color: palette.secondary.main
+    color: palette.text.primary
   });
 
   return (
@@ -31,24 +32,24 @@ export default function CardLink({ name, link, Icon }: CardLinkProps) {
       <Card
         variant="elevation"
         sx={{
-          p: 2,
-          '&:hover': {
-            background: 'rgba(60, 83, 164,0.1)',
-            transition: 'ease-in-out 0.3s'
-          }
+          p: 2
+          // '&:hover': {
+          //   background: 'rgba(60, 83, 164,0.1)',
+          //   transition: 'ease-in-out 0.3s'
+          // }
         }}
+        {...other}
       >
         <Stack
-          direction="row"
+          direction="column"
           spacing={2}
           alignItems="center"
           justifyContent="flex-start"
-          textAlign="left"
-          sx={(theme) => ({
-            textDecoration: 'none',
-            color: theme.palette.secondary.main,
-            height: isMobile ? '30px' : '60px'
-          })}
+          textAlign="center"
+          // sx={(theme) => ({
+          //   textDecoration: 'none',
+          //   color: theme.palette.secondary.main
+          // })}
         >
           {Icon && (
             <Icon

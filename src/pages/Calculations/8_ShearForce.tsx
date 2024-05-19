@@ -6,9 +6,7 @@ import {
   TextField,
   Tooltip,
   Checkbox,
-  Button,
-  Theme,
-  useMediaQuery
+  Button
 } from '@mui/material';
 import ComplexConcreteClassSelect, {
   ComplexConcreteClassSelectResult
@@ -25,6 +23,7 @@ import CalculateShearForce, {
   CalculateShearForceResult
 } from '../../calculations/8_calc-shear-force';
 import ShearForceResultLayout from '../../calculations/result-layouts/8_shear-force-result-layout';
+import useIsMobile from '../../hooks/useIsMobile';
 
 export type ShearForceKeys =
   | 'M'
@@ -123,7 +122,7 @@ export default function ShearForce() {
   );
 
   const { classes: reinforcementClassesData } = useAppSelector((state) => state.reinforcement);
-  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+  const isMobile = useIsMobile();
 
   const FormSchema = Yup.object().shape({
     M: Yup.string()

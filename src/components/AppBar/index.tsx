@@ -7,16 +7,17 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Stack, Theme, useMediaQuery } from '@mui/material';
+import { Stack } from '@mui/material';
 import SearchAutocomplete from '../SearchAutocomplete/SearchAutocomplete';
 import MobileMenu from './mobile-menu';
 import { Search } from '@mui/icons-material';
 import MobileSearchAutocomplete from '../SearchAutocomplete/MobileSearchAutocomplete';
+import useIsMobile from '../../hooks/useIsMobile';
 const AppBar = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [showSearch, setShowSearch] = useState<boolean>(false);
 
-  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+  const isMobile = useIsMobile();
   const navigate = useNavigate();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {

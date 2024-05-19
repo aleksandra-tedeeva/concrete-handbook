@@ -12,18 +12,30 @@ declare module '@mui/material/Typography' {
   }
 }
 
+const COLOR_PRIMARY = '#8293cb';
+const COLOR_SECONDARY = '#a5c1e6';
+const COLOR_GREY = '#545454';
+
+const FONT_MAIN = 'Nunito';
+const FONT_FALLBACK = 'Roboto, Myriad Pro, Arial, sans-serif';
+
+const FONT_FAMILY = `${FONT_MAIN}, ${FONT_FALLBACK}`;
+
 export const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#3c53a4'
+      main: COLOR_PRIMARY
     },
     secondary: {
-      main: '#42428e'
+      main: COLOR_SECONDARY
+    },
+    text: {
+      primary: COLOR_GREY
     }
   },
   typography: {
-    fontFamily: 'Nunito',
+    fontFamily: FONT_FAMILY,
     h1: {
       padding: 0,
       margin: 0
@@ -50,6 +62,16 @@ export const theme = createTheme({
     }
   },
   components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          background: 'none',
+          color: COLOR_GREY,
+          border: 'none',
+          boxShadow: 'none'
+        }
+      }
+    },
     MuiTypography: {
       variants: [
         {

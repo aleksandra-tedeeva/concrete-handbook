@@ -7,12 +7,11 @@ import DeflectionLimits from '../pages/5_DeflectionLimits';
 import Home from '../pages/Home';
 import Error from '../pages/Error';
 import AppBar from '../components/AppBar';
-import Container from '@mui/material/Container/Container';
 import ConcreteBendStrength from '../pages/Calculations/1_ConcreteBendStrength';
 import ConcreteBendRebarAssortment from '../pages/Calculations/2_ConcreteBendRebarAssortment';
 import ShearForce from '../pages/Calculations/8_ShearForce';
 import LocalCompression from '../pages/Calculations/9_LocalCompression';
-import { CssBaseline } from '@mui/material';
+import { Box, CssBaseline, Stack } from '@mui/material';
 import ConcreteClasses from '../pages/ConcreteClasses/ConcreteClasses';
 import ConcreteMarks from '../pages/ConcreteMarks/ConcreteMarks';
 import DetailedMark from '../components/DetailedMark';
@@ -26,13 +25,13 @@ const Router = () => {
       <Route
         path="/"
         element={
-          <>
+          <Stack alignItems="center" justifyContent="center" sx={{ height: '100%' }}>
             <CssBaseline />
             <AppBar />
-            <Container maxWidth={false}>
+            <Box sx={{ height: '100%', flex: 1 }}>
               <Outlet />
-            </Container>
-          </>
+            </Box>
+          </Stack>
         }
       >
         <Route index element={<Home />} />

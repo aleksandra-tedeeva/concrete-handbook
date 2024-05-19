@@ -24,8 +24,8 @@ export interface SearchAutocompleteProps {
 
 export default function SearchAutocomplete({
   onClose,
-  color = 'white',
-  faintColor = 'rgba(255,255,255,0.4)',
+  color = '#545454',
+  faintColor = 'rgba(0,0,0,0.2)',
   mt = 0
 }: SearchAutocompleteProps) {
   const [value] = useState<ValueType | ''>('');
@@ -82,7 +82,7 @@ export default function SearchAutocomplete({
         <TextField
           ref={params.InputProps.ref}
           variant="standard"
-          placeholder="Поиск по марке или классу бетона"
+          placeholder="Поиск бетона/арматуры"
           {...params}
           InputProps={{
             ...params.InputProps,

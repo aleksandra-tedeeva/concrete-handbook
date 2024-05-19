@@ -1,0 +1,95 @@
+.cls-1 {
+  fill: #adc0e4;
+}
+
+.cls-1,
+.cls-2,
+.cls-3,
+.cls-4,
+.cls-5,
+.cls-6,
+.cls-7,
+.cls-8,
+.cls-9 {
+  stroke-width: 0px;
+}
+
+.cls-10 {
+  isolation: isolate;
+}
+
+.cls-2 {
+  fill: #e6ebf5;
+}
+
+.cls-11 {
+  font-size: 0px; /*6px;
+*/
+}
+
+.cls-11,
+.cls-12,
+.cls-13,
+.cls-14,
+.cls-15,
+.cls-16 {
+  fill: #e2f2f9;
+  font-family: 'Nunito Sans', sans-serif !important;
+}
+
+.cls-12 {
+  font-size: 0px; /*14px;*/
+}
+
+.cls-3 {
+  fill: #8691c8;
+}
+
+.cls-13 {
+  font-size: 0px; /*10px;*/
+}
+
+.cls-4,
+.cls-8 {
+  fill: gray;
+}
+
+.cls-5 {
+  fill: #000;
+}
+
+.cls-5,
+.cls-8 {
+  fill-rule: evenodd;
+}
+
+.cls-6 {
+  fill: #dee5f2;
+}
+
+.cls-14 {
+  font-size: 0px; /*7px;
+*/
+}
+
+.cls-15 {
+  font-size: 0px; /*12px;*/
+}
+
+.cls-17 {
+  fill: none;
+  stroke: gray;
+  stroke-miterlimit: 100;
+}
+
+.cls-7 {
+  fill: #fff;
+}
+
+.cls-9 {
+  fill: #c1cde4;
+}
+
+.cls-16 {
+  font-size: 0px; /*16px;*/
+}

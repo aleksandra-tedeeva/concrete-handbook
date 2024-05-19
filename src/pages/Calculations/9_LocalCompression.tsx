@@ -10,9 +10,7 @@ import {
   MenuItem,
   Button,
   FormControlLabel,
-  Checkbox,
-  Theme,
-  useMediaQuery
+  Checkbox
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import ReinforcementClassSelect from '../../components/CustomSelects/reinforcement-class-select';
@@ -31,6 +29,7 @@ import calculateLocalCompression, {
 import { MPaToKgCm2 } from '../../calculations/util';
 import { LocalCompressionDiagram, LocalCompressionLoad } from '../../calculations/types';
 import LocalCompressionResultLayout from '../../calculations/result-layouts/9_local-compression-result-layout';
+import useIsMobile from '../../hooks/useIsMobile';
 
 export type LocalCompressionKeys =
   | 'type_diagram'
@@ -286,7 +285,7 @@ export default function LocalCompression() {
     }
   });
 
-  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+  const isMobile = useIsMobile();
   return (
     <Box m={2}>
       <FormProvider {...methods}>
