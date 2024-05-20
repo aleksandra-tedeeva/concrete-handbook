@@ -4,7 +4,12 @@ import './homepage-splash.css';
 export default function HomepageSplash(props: SvgIconProps) {
   return (
     <SvgIcon {...props} inheritViewBox>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460.8 259.2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 460.8 259.2"
+        width="inherit"
+        height="inherit"
+      >
         <g id="Shape_2" data-name="Shape 2" className="cls-10">
           <g id="Shape_2-2" data-name="Shape 2">
             <path

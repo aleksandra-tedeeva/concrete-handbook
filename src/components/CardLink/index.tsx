@@ -30,13 +30,9 @@ export default function CardLink({ name, link, Icon, ...other }: CardLinkProps) 
   return (
     <StyledLink to={link}>
       <Card
-        variant="elevation"
+        variant="blue"
         sx={{
           p: 2
-          // '&:hover': {
-          //   background: 'rgba(60, 83, 164,0.1)',
-          //   transition: 'ease-in-out 0.3s'
-          // }
         }}
         {...other}
       >
@@ -46,10 +42,6 @@ export default function CardLink({ name, link, Icon, ...other }: CardLinkProps) 
           alignItems="center"
           justifyContent="flex-start"
           textAlign="center"
-          // sx={(theme) => ({
-          //   textDecoration: 'none',
-          //   color: theme.palette.secondary.main
-          // })}
         >
           {Icon && (
             <Icon

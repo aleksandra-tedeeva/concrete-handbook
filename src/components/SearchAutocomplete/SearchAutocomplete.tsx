@@ -82,7 +82,7 @@ export default function SearchAutocomplete({
         <TextField
           ref={params.InputProps.ref}
           variant="standard"
-          placeholder="Поиск бетона/арматуры"
+          placeholder="Поиск..."
           {...params}
           InputProps={{
             ...params.InputProps,

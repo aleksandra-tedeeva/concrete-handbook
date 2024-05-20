@@ -25,7 +25,7 @@ const Router = () => {
       <Route
         path="/"
         element={
-          <Stack alignItems="center" justifyContent="center" sx={{ height: '100%' }}>
+          <Stack sx={{ height: '100%' }}>
             <CssBaseline />
             <AppBar />
             <Box sx={{ height: '100%', flex: 1 }}>

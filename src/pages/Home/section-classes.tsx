@@ -1,10 +1,10 @@
-import { Stack, Typography, Grid } from '@mui/material';
+import { Grid, Stack, Typography } from '@mui/material';
 import CardLink from '../../components/CardLink';
 import { concreteListsMenuItems } from '../../constants/menu-items';
 import HomepageSplash from '../../icons/homepage-splash';
 import useIsMobile from '../../hooks/useIsMobile';
 
-export default function SectionClasses({ spacing = 0 }: { spacing?: number }) {
+export default function SectionClasses() {
   const isMobile = useIsMobile();
 
   return (
@@ -14,15 +14,17 @@ export default function SectionClasses({ spacing = 0 }: { spacing?: number }) {
       justifyContent="center"
       spacing={isMobile ? 2 : 8}
       width="100%"
+      px={isMobile ? 1 : 6}
+      pb={1}
     >
-      {!isMobile && <HomepageSplash sx={{ width: '690px', height: '390px' }} />}
+      {!isMobile && <HomepageSplash sx={{ width: '700px', height: '400px' }} />}
       <Stack
         alignItems="center"
         justifyContent="center"
         maxWidth={isMobile ? '100%' : '60%'}
-        spacing={2}
+        spacing={isMobile ? 2 : 4}
       >
-        <Stack spacing={2}>
+        <Stack spacing={isMobile ? 2 : 4}>
           <Typography variant="h5">Lorem Ipsum</Typography>
           <Typography>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elit felis, convallis
@@ -35,24 +37,26 @@ export default function SectionClasses({ spacing = 0 }: { spacing?: number }) {
           </Typography>
         </Stack>
 
-        <Stack
+        {/* <Stack
           direction={isMobile ? 'column' : 'row'}
-          alignItems="center"
-          justifyContent="space-between"
+          alignItems={isMobile ? 'flex-start' : 'center'}
+          justifyContent={isMobile ? 'flex-start' : 'space-between'}
           width={isMobile ? '100%' : '80%'}
+          spacing={isMobile ? 1 : 4}
+          flexWrap="wrap"
         >
           {concreteListsMenuItems.map((item) => (
-            <CardLink {...item} sx={{ width: isMobile ? '100%' : '240px', p: 2 }} />
+            <CardLink {...item} sx={{ width: isMobile ? '100%' : '140px', py: 2, px: 10 }} />
           ))}
-        </Stack>
+        </Stack> */}
 
-        {/* <Grid container spacing={spacing}>
+        <Grid container spacing={1}>
           {concreteListsMenuItems.map((item) => (
-            <Grid item xs={isMobile ? 12 : 4} key={item.link} spacing={1}>
-              <CardLink {...item} sx={{ maxWidth: isMobile ? '100%' : '240px', p: 2 }} />
+            <Grid item xs key={item.link} spacing={1}>
+              <CardLink {...item} sx={{ width: '100%', py: 2, px: 10 }} />
             </Grid>
           ))}
-        </Grid> */}
+        </Grid>
       </Stack>
     </Stack>
   );

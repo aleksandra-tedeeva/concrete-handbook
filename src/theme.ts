@@ -6,14 +6,20 @@ declare module '@mui/material/Typography' {
     formula: true;
   }
 }
-declare module '@mui/material/Typography' {
-  interface TypographyPropsVariant {
-    formula_now: true;
+
+declare module '@mui/material/Paper' {
+  interface PaperPropsVariantOverrides {
+    white: true;
+    blue: true;
   }
 }
 
-const COLOR_PRIMARY = '#8293cb';
-const COLOR_SECONDARY = '#a5c1e6';
+const COLOR_PRIMARY = '#8691C8';
+const COLOR_SECONDARY = '#C1CDE4';
+const COLOR_TERTIARY = '#ADC0E4';
+const COLOR_LIGHT_BLUE = '#DEE5F2';
+
+const COLOR_DARK_GREY = '#373737';
 const COLOR_GREY = '#545454';
 
 const FONT_MAIN = 'Nunito';
@@ -54,14 +60,92 @@ export const theme = createTheme({
     },
     h5: {
       padding: 0,
-      margin: 0
+      margin: 0,
+      color: COLOR_DARK_GREY
     },
     h6: {
       padding: 0,
-      margin: 0
+      margin: 0,
+      color: COLOR_DARK_GREY
     }
   },
   components: {
+    MuiCard: {
+      variants: [
+        {
+          props: { variant: 'white' },
+          style: {
+            background: 'white',
+            borderRadius: '10px',
+            filter: `drop-shadow(0 1px 1px ${COLOR_DARK_GREY})`,
+            overflow: 'hidden',
+            transition: '0.6s ease-in',
+            position: 'relative',
+            zIndex: '0',
+            '.MuiTypography-root,.MuiSvgIcon-root': {
+              color: COLOR_GREY,
+              ':hover': {
+                color: COLOR_DARK_GREY
+              }
+            },
+            '::before': {
+              content: '" "',
+              position: 'absolute',
+              zIndex: '-1',
+              top: '-15px',
+              right: '-15px',
+              background: COLOR_LIGHT_BLUE,
+              height: '220px',
+              width: '25px',
+              borderRadius: '32px',
+              transform: 'scale(1)',
+              transformOrigin: '50% 50%',
+              transition: 'transform 0.25s ease-out'
+            },
+            ':hover::before': {
+              transitionDelay: '0.2s',
+              transform: 'scale(40)'
+            }
+          }
+        },
+        {
+          props: { variant: 'blue' },
+          style: {
+            background: COLOR_SECONDARY,
+            borderRadius: '10px',
+            filter: `drop-shadow(0 1px 1px ${COLOR_DARK_GREY})`,
+            overflow: 'hidden',
+            transition: '0.6s ease-in',
+            position: 'relative',
+            zIndex: '0',
+            '.MuiTypography-root,.MuiSvgIcon-root': {
+              color: COLOR_GREY,
+              ':hover': {
+                color: COLOR_DARK_GREY
+              }
+            },
+            '::before': {
+              content: '" "',
+              position: 'absolute',
+              zIndex: '-1',
+              top: '-15px',
+              right: '-15px',
+              background: COLOR_TERTIARY,
+              height: '220px',
+              width: '25px',
+              borderRadius: '32px',
+              transform: 'scale(1)',
+              transformOrigin: '50% 50%',
+              transition: 'transform 0.25s ease-out'
+            },
+            ':hover::before': {
+              transitionDelay: '0.2s',
+              transform: 'scale(40)'
+            }
+          }
+        }
+      ]
+    },
     MuiAppBar: {
       styleOverrides: {
         root: {
