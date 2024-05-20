@@ -10,8 +10,8 @@ export default function CustomDivider() {
         padding: '0',
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginBottom: '-4px',
-        marginTop: '0',
+        marginTop: '4px',
+        marginBottom: '-16px',
         zIndex: 4,
         outline: 'none',
         boxShadow: 'none'

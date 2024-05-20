@@ -83,7 +83,7 @@ export const theme = createTheme({
             position: 'relative',
             zIndex: '0',
             '.MuiTypography-root,.MuiSvgIcon-root': {
-              color: COLOR_GREY,
+              color: COLOR_DARK_GREY,
               ':hover': {
                 color: COLOR_DARK_GREY
               }
@@ -119,7 +119,7 @@ export const theme = createTheme({
             position: 'relative',
             zIndex: '0',
             '.MuiTypography-root,.MuiSvgIcon-root': {
-              color: COLOR_GREY,
+              color: COLOR_DARK_GREY,
               ':hover': {
                 color: COLOR_DARK_GREY
               }

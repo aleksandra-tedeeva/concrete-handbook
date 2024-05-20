@@ -1,7 +1,6 @@
-import { Grid, Stack, Typography } from '@mui/material';
+import { Box, Grid, Stack, Typography } from '@mui/material';
 import CardLink from '../../components/CardLink';
 import { concreteListsMenuItems } from '../../constants/menu-items';
-import HomepageSplash from '../../icons/homepage-splash';
 import useIsMobile from '../../hooks/useIsMobile';
 
 export default function SectionClasses() {
@@ -17,7 +16,11 @@ export default function SectionClasses() {
       px={isMobile ? 1 : 6}
       pb={1}
     >
-      {!isMobile && <HomepageSplash sx={{ width: '700px', height: '400px' }} />}
+      {!isMobile && (
+        <Box maxHeight="400px">
+          <img src="./assets/splash.png" alt="Справочник жбк" width="100%" height="auto" />
+        </Box>
+      )}
       <Stack
         alignItems="center"
         justifyContent="center"
@@ -37,19 +40,6 @@ export default function SectionClasses() {
           </Typography>
         </Stack>
 
-        {/* <Stack
-          direction={isMobile ? 'column' : 'row'}
-          alignItems={isMobile ? 'flex-start' : 'center'}
-          justifyContent={isMobile ? 'flex-start' : 'space-between'}
-          width={isMobile ? '100%' : '80%'}
-          spacing={isMobile ? 1 : 4}
-          flexWrap="wrap"
-        >
-          {concreteListsMenuItems.map((item) => (
-            <CardLink {...item} sx={{ width: isMobile ? '100%' : '140px', py: 2, px: 10 }} />
-          ))}
-        </Stack> */}
-
         <Grid container spacing={1}>
           {concreteListsMenuItems.map((item) => (
             <Grid item xs key={item.link} spacing={1}>
@@ -60,4 +50,20 @@ export default function SectionClasses() {
       </Stack>
     </Stack>
   );
+}
+
+// eslint-disable-next-line no-lone-blocks
+{
+  /* <Stack
+          direction={isMobile ? 'column' : 'row'}
+          alignItems={isMobile ? 'flex-start' : 'center'}
+          justifyContent={isMobile ? 'flex-start' : 'space-between'}
+          width={isMobile ? '100%' : '80%'}
+          spacing={isMobile ? 1 : 4}
+          flexWrap="wrap"
+        >
+          {concreteListsMenuItems.map((item) => (
+            <CardLink {...item} sx={{ width: isMobile ? '100%' : '140px', py: 2, px: 10 }} />
+          ))}
+        </Stack> */
 }

@@ -18,7 +18,10 @@ export interface CardLinkProps extends CardProps {
 }
 
 export default function CardLink({ name, link, Icon, ...other }: CardLinkProps) {
-  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+  const isDesktop = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
+  const isTablet = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+
   const { palette } = useTheme();
   const iconColor = palette.text.primary;
 
@@ -28,22 +31,28 @@ export default function CardLink({ name, link, Icon, ...other }: CardLinkProps) 
   });
 
   return (
-    <StyledLink to={link}>
+    <StyledLink to={link} sx={{ width: '100%' }}>
       <Card
         variant="blue"
         sx={{
-          p: 2
+          width: '100%',
+          py: 1,
+          height: '180px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
         }}
         {...other}
       >
         <Stack
           direction="column"
-          spacing={2}
+          spacing={0.5}
           alignItems="center"
           justifyContent="flex-start"
           textAlign="center"
+          width="100%"
         >
-          {Icon && (
+          {Icon && !isMobile && (
             <Icon
               sx={{
                 width: '30px',
@@ -52,7 +61,9 @@ export default function CardLink({ name, link, Icon, ...other }: CardLinkProps) 
               }}
             />
           )}
-          <Typography variant={isMobile ? 'body1' : 'h6'}>{name}</Typography>
+          <Typography variant={isMobile ? 'body1' : 'h6'} sx={{ width: '100%' }}>
+            {name}
+          </Typography>
         </Stack>
       </Card>
     </StyledLink>
