@@ -11,7 +11,7 @@ export interface CalculateConcreteBendStrengthTestData {
 }
 
 // допустимая погрешность в %
-export const control_acceptable_error = 5;
+export const control_acceptable_error = 1;
 
 export const testData: CalculateConcreteBendStrengthTestData[] = [
   // 1
