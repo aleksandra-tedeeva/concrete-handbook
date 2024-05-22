@@ -24,6 +24,7 @@ import CalculateShearForce, {
 } from '../../calculations/8_calc-shear-force';
 import ShearForceResultLayout from '../../calculations/result-layouts/8_shear-force-result-layout';
 import useIsMobile from '../../hooks/useIsMobile';
+import ReturnButton from '../../components/ReturnButton';
 
 export type ShearForceKeys =
   | 'M'
@@ -309,6 +310,7 @@ export default function ShearForce() {
 
   return (
     <Box m={2}>
+      <ReturnButton label="Вернуться на главную страницу" to="/" />
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit}>
           <Stack px="24px" spacing={2}>

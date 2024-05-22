@@ -30,6 +30,7 @@ import { MPaToKgCm2 } from '../../calculations/util';
 import { LocalCompressionDiagram, LocalCompressionLoad } from '../../calculations/types';
 import LocalCompressionResultLayout from '../../calculations/result-layouts/9_local-compression-result-layout';
 import useIsMobile from '../../hooks/useIsMobile';
+import ReturnButton from '../../components/ReturnButton';
 
 export type LocalCompressionKeys =
   | 'type_diagram'
@@ -288,6 +289,7 @@ export default function LocalCompression() {
   const isMobile = useIsMobile();
   return (
     <Box m={2}>
+      <ReturnButton label="Вернуться на главную страницу" to="/" />
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit}>
           <Stack px="24px" spacing={2}>

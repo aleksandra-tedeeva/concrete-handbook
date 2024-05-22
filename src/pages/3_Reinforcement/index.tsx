@@ -5,7 +5,7 @@ import ReturnButton from '../../components/ReturnButton';
 const Reinforcement = () => {
   return (
     <Stack spacing={1} pt={1} alignItems="flex-start">
-      <ReturnButton label="Вернуться" to="/" />
+      <ReturnButton label="Вернуться на главную страницу" to="/" />
       <ReinforcementSortament />
     </Stack>
   );

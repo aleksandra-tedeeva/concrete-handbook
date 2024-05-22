@@ -19,7 +19,7 @@ export default function SectionClasses() {
       pb={1}
     >
       {!isMobile && (
-        <Box maxHeight="400px">
+        <Box>
           <LazyLoadImage
             effect="blur"
             src="./assets/splash.png"
@@ -32,7 +32,7 @@ export default function SectionClasses() {
       <Stack
         alignItems="center"
         justifyContent="center"
-        maxWidth={isMobile ? '100%' : '60%'}
+        maxWidth={isMobile ? '100%' : '54%'}
         spacing={isMobile ? 2 : 4}
       >
         <Stack spacing={isMobile ? 2 : 4}>
@@ -48,13 +48,15 @@ export default function SectionClasses() {
           </Typography>
         </Stack>
 
-        <Grid container spacing={2} sx={{ width: '100%' }}>
-          {concreteListsMenuItems.map((item) => (
-            <Grid item xs key={item.link}>
-              <CardLink {...item} sx={{ width: '100%', py: 2, px: 10 }} />
-            </Grid>
-          ))}
-        </Grid>
+        <Stack maxWidth="600px" alignItems="center" justifyContent="center">
+          <Grid container spacing={isMobile ? 1 : 2} sx={{ width: '100%' }}>
+            {concreteListsMenuItems.map((item) => (
+              <Grid item xs={isMobile ? 12 : 4} key={item.link}>
+                <CardLink {...item} sx={{ width: '100%', px: 4, py: 2 }} />
+              </Grid>
+            ))}
+          </Grid>
+        </Stack>
       </Stack>
     </Stack>
   );

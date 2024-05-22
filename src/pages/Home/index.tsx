@@ -29,7 +29,7 @@ const Home = () => {
           backgroundSize: isMobile ? '50%' : '20%',
           backgroundRepeat: 'repeat',
           flex: 1,
-          height: '100%',
+
           marginTop: '16px',
           width: '100%'
         })}

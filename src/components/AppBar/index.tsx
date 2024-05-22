@@ -92,7 +92,7 @@ const AppBar = () => {
               alignItems: 'center'
             }}
           >
-            {!isMobile && <Logo sx={{ mr: 2, color: '#333' }} />}
+            {!isMobile && <Logo sx={{ mr: 2, color: '#333', width: '44px', height: '44px' }} />}
             <Stack
               width="100%"
               spacing={isMobile ? 2 : 0}

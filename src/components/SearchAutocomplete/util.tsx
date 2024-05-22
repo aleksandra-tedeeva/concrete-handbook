@@ -5,11 +5,11 @@ import IconM from '../../icons/icon-m';
 export const getIcon = (type: string) => {
   switch (type) {
     case 'mark':
-      return <IconM sx={{ width: '16px', height: '16px' }} />;
+      return <IconM sx={{ width: '20px', height: '20px' }} />;
     case 'class':
-      return <IconK sx={{ width: '16px', height: '16px' }} />;
+      return <IconK sx={{ width: '20px', height: '20px' }} />;
     case 'reinforcement':
-      return <IconA sx={{ width: '16px', height: '16px' }} />;
+      return <IconA sx={{ width: '20px', height: '20px' }} />;
     default:
       return '';
   }
