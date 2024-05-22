@@ -18,6 +18,8 @@ import DetailedMark from '../components/DetailedMark';
 import DetailedClass from '../components/DetailedClass';
 import Reinforcements from '../pages/Reinforcements/Reinforcements';
 import DetailedReinforcement from '../components/DetailedReinforcement/DetailedRainforcement';
+import Footer from '../pages/Footer/footer';
+import AboutPage from '../pages/About/about';
 
 const Router = () => {
   return (
@@ -25,12 +27,20 @@ const Router = () => {
       <Route
         path="/"
         element={
-          <Stack sx={{ height: '100%' }}>
+          <Stack sx={{ height: '100%', boxSizing: 'border-box' }}>
             <CssBaseline />
             <AppBar />
-            <Box sx={{ height: '100%', flex: 1 }}>
+            <Box
+              sx={{
+                flex: 1,
+                height: '100%',
+                boxSizing: 'border-box',
+                overflow: 'auto'
+              }}
+            >
               <Outlet />
             </Box>
+            <Footer />
           </Stack>
         }
       >
@@ -61,6 +71,8 @@ const Router = () => {
         <Route path="concrete_bend_rebar_assortment" element={<ConcreteBendRebarAssortment />} />
         <Route path="shear_force" element={<ShearForce />} />
         <Route path="local_compression" element={<LocalCompression />} />
+
+        <Route element={<AboutPage />} path="/about" />
 
         <Route path="*" element={<Error />} />
       </Route>

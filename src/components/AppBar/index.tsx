@@ -7,12 +7,13 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Stack } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 import SearchAutocomplete from '../SearchAutocomplete/SearchAutocomplete';
 import MobileMenu from './mobile-menu';
 import { Search } from '@mui/icons-material';
 import MobileSearchAutocomplete from '../SearchAutocomplete/MobileSearchAutocomplete';
 import useIsMobile from '../../hooks/useIsMobile';
+import Logo from '../../icons/logo';
 const AppBar = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [showSearch, setShowSearch] = useState<boolean>(false);
@@ -77,13 +78,13 @@ const AppBar = () => {
             <MobileMenu onClose={handleCloseNavMenu} />
           </Menu>
           <IconButton onClick={handleShowMobileSearch} sx={{ color: 'white' }}>
-            <Search />
+            <Search sx={{ color: '#333' }} />
           </IconButton>
           <MobileSearchAutocomplete open={showSearch} onClose={handleCloseMobileSearch} />
         </Box>
 
         <Box sx={{ padding: '0px 16px' }} width="100%">
-          <Typography
+          <Button
             onClick={() => navigate('/')}
             sx={{
               cursor: 'pointer',
@@ -91,6 +92,7 @@ const AppBar = () => {
               alignItems: 'center'
             }}
           >
+            {!isMobile && <Logo sx={{ mr: 2, color: '#333' }} />}
             <Stack
               width="100%"
               spacing={isMobile ? 2 : 0}
@@ -100,11 +102,15 @@ const AppBar = () => {
               textAlign={isMobile ? 'right' : 'left'}
             >
               {!isMobile && <Typography variant="h5">СЖБК</Typography>}
-              <Typography variant="caption" width={isMobile ? '100%' : 'auto'}>
+              <Typography
+                variant="caption"
+                width={isMobile ? '100%' : 'auto'}
+                color="text.secondary"
+              >
                 Справочник Железобетонных Конструкций
               </Typography>
             </Stack>
-          </Typography>
+          </Button>
         </Box>
         <Box
           sx={{

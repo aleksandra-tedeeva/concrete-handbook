@@ -9,7 +9,6 @@ import ClassResilience from '../../components/ClassResilience';
 import ClassProtectiveLayer from '../../components/ClassProtectiveLayer';
 import { Stack } from '@mui/material';
 import ReturnButton from '../../components/ReturnButton';
-import { useNavigate } from 'react-router-dom';
 
 const headings = [
   'Предельные Состояния Второй Группы',
@@ -20,11 +19,6 @@ const headings = [
 
 const ConcreteClass = () => {
   const [value, setValue] = useState<number>(0);
-  const navigate = useNavigate();
-
-  const returnToHome = () => {
-    navigate('/');
-  };
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -32,7 +26,7 @@ const ConcreteClass = () => {
 
   return (
     <Stack spacing={1} pt={1} alignItems="flex-start">
-      <ReturnButton label="Вернуться" returnFunction={returnToHome} />
+      <ReturnButton label="Вернуться" to="/" />
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} variant="scrollable">

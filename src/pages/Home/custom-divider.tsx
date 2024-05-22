@@ -1,4 +1,9 @@
-export default function CustomDivider() {
+export interface CustomDividerProps {
+  top?: string;
+  bottom?: string;
+}
+
+export default function CustomDivider({ top = '4px', bottom = '-16px' }: CustomDividerProps) {
   return (
     <hr
       style={{
@@ -10,8 +15,8 @@ export default function CustomDivider() {
         padding: '0',
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginTop: '4px',
-        marginBottom: '-16px',
+        marginTop: top,
+        marginBottom: bottom,
         zIndex: 4,
         outline: 'none',
         boxShadow: 'none'

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 import {
   Stack,
@@ -16,16 +16,10 @@ export default function DetailedReinforcement() {
   const { classes } = useAppSelector((state) => state.reinforcement);
   const data = classes.find((el) => el.class === id);
 
-  const navigate = useNavigate();
-
-  const returnToSearch = () => {
-    navigate('/reinforcement_list/');
-  };
-
   if (!data) {
     return (
       <Stack spacing={1} pt={1} alignItems="flex-start">
-        <ReturnButton label="Вернуться к списку классов арматуры" returnFunction={returnToSearch} />
+        <ReturnButton label="Вернуться к списку классов арматуры" to="/reinforcement_list/" />
         <Typography>Нет данных по классу арматуры.</Typography>
       </Stack>
     );
@@ -33,7 +27,7 @@ export default function DetailedReinforcement() {
 
   return (
     <Stack spacing={1} pt={1} alignItems="flex-start">
-      <ReturnButton label="Вернуться к списку классов арматуры" returnFunction={returnToSearch} />
+      <ReturnButton label="Вернуться к списку классов арматуры" to="/reinforcement_list/" />
       <TableContainer>
         <Table size="small">
           <TableBody>

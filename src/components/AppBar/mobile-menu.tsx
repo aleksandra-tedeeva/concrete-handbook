@@ -23,7 +23,7 @@ export default function MobileMenu({ onClose }: MobileMenuProps) {
   return (
     <MenuList>
       {concreteListsMenuItems.map((item) => (
-        <MenuItem>
+        <MenuItem key={item.link}>
           <ListItemText inset key={item.link} onClick={() => handleLinkClick(item.link)}>
             {item.name}
           </ListItemText>
@@ -33,7 +33,7 @@ export default function MobileMenu({ onClose }: MobileMenuProps) {
       <Divider />
 
       {menuItems.map((item) => (
-        <MenuItem>
+        <MenuItem key={item.link}>
           <ListItemText inset key={item.link} onClick={() => handleLinkClick(item.link)}>
             {item.name}
           </ListItemText>
@@ -43,7 +43,7 @@ export default function MobileMenu({ onClose }: MobileMenuProps) {
       <Divider />
 
       {calculationMenuItems.map((item) => (
-        <MenuItem>
+        <MenuItem key={item.link}>
           <ListItemText inset key={item.link} onClick={() => handleLinkClick(item.link)}>
             {item.name}
           </ListItemText>

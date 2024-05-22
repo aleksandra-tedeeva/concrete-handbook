@@ -1,15 +1,6 @@
-import {
-  Card,
-  CardProps,
-  Stack,
-  SvgIconProps,
-  Theme,
-  Typography,
-  styled,
-  useMediaQuery,
-  useTheme
-} from '@mui/material';
+import { Card, CardProps, Stack, SvgIconProps, Typography, styled, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
+import useIsMobile from '../../hooks/useIsMobile';
 
 export interface CardLinkProps extends CardProps {
   name: string;
@@ -18,9 +9,7 @@ export interface CardLinkProps extends CardProps {
 }
 
 export default function CardLink({ name, link, Icon, ...other }: CardLinkProps) {
-  const isDesktop = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
-  const isTablet = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
-  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+  const isMobile = useIsMobile();
 
   const { palette } = useTheme();
   const iconColor = palette.text.primary;
@@ -37,7 +26,7 @@ export default function CardLink({ name, link, Icon, ...other }: CardLinkProps) 
         sx={{
           width: '100%',
           py: 1,
-          height: '180px',
+          minHeight: '100px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
@@ -50,7 +39,9 @@ export default function CardLink({ name, link, Icon, ...other }: CardLinkProps) 
           alignItems="center"
           justifyContent="flex-start"
           textAlign="center"
-          width="100%"
+          width="80%"
+          marginLeft="auto"
+          marginRight="auto"
         >
           {Icon && !isMobile && (
             <Icon

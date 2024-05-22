@@ -15,10 +15,6 @@ const DetailedClass = () => {
 
   const navigate = useNavigate();
 
-  const returnToSearch = () => {
-    navigate('/class_list');
-  };
-
   const showFullResult = (name: string) => {
     navigate(`/mark_list/${name}`);
   };
@@ -28,7 +24,7 @@ const DetailedClass = () => {
   if (!data) {
     return (
       <Stack spacing={1} pt={1} alignItems="flex-start">
-        <ReturnButton label="Вернуться к списку классов бетона" returnFunction={returnToSearch} />
+        <ReturnButton label="Вернуться к списку классов бетона" to="/class_list" />
         <Typography>Нет данных по классу бетона.</Typography>
       </Stack>
     );
@@ -36,7 +32,7 @@ const DetailedClass = () => {
 
   return (
     <Stack spacing={1} pt={1} alignItems="flex-start">
-      <ReturnButton label="Вернуться к списку классов бетона" returnFunction={returnToSearch} />
+      <ReturnButton label="Вернуться к списку классов бетона" to="/class_list" />
       <TableContainer>
         <Table size="small">
           <TableBody>

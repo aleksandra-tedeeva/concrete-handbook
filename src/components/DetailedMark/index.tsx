@@ -16,10 +16,6 @@ const DetailedMark = () => {
 
   const navigate = useNavigate();
 
-  const returnToSearch = () => {
-    navigate('/mark_list/');
-  };
-
   const showFullResult = (name: string) => {
     navigate(`/class_list/${name}`);
   };
@@ -27,14 +23,14 @@ const DetailedMark = () => {
   if (!data) {
     return (
       <Stack spacing={1} pt={1} alignItems="flex-start">
-        <ReturnButton label="Вернуться к списку марок бетона" returnFunction={returnToSearch} />
+        <ReturnButton label="Вернуться к списку марок бетона" to="/mark_list/" />
         <Typography>Нет данных по марке бетона.</Typography>
       </Stack>
     );
   }
   return (
     <Stack spacing={1} pt={1} alignItems="flex-start">
-      <ReturnButton label="Вернуться к списку марок бетона" returnFunction={returnToSearch} />
+      <ReturnButton label="Вернуться к списку марок бетона" to="/mark_list/" />
       <TableContainer>
         <Table size="small">
           <TableBody>

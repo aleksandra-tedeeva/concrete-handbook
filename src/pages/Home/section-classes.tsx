@@ -2,6 +2,8 @@ import { Box, Grid, Stack, Typography } from '@mui/material';
 import CardLink from '../../components/CardLink';
 import { concreteListsMenuItems } from '../../constants/menu-items';
 import useIsMobile from '../../hooks/useIsMobile';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function SectionClasses() {
   const isMobile = useIsMobile();
@@ -18,7 +20,13 @@ export default function SectionClasses() {
     >
       {!isMobile && (
         <Box maxHeight="400px">
-          <img src="./assets/splash.png" alt="Справочник жбк" width="100%" height="auto" />
+          <LazyLoadImage
+            effect="blur"
+            src="./assets/splash.png"
+            alt="Справочник жбк"
+            width="100%"
+            height="auto"
+          />
         </Box>
       )}
       <Stack
@@ -40,9 +48,9 @@ export default function SectionClasses() {
           </Typography>
         </Stack>
 
-        <Grid container spacing={1}>
+        <Grid container spacing={2} sx={{ width: '100%' }}>
           {concreteListsMenuItems.map((item) => (
-            <Grid item xs key={item.link} spacing={1}>
+            <Grid item xs key={item.link}>
               <CardLink {...item} sx={{ width: '100%', py: 2, px: 10 }} />
             </Grid>
           ))}

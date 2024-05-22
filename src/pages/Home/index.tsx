@@ -8,16 +8,25 @@ import useIsMobile from '../../hooks/useIsMobile';
 const Home = () => {
   const isMobile = useIsMobile();
   return (
-    <Stack sx={{ flex: 1, height: '100%' }}>
+    <Stack
+      className="DEBUG"
+      sx={{
+        flex: 1,
+        height: '100%',
+        minHeight: '100%',
+        boxSizing: 'border-box'
+      }}
+    >
       <SectionClasses />
 
       <CustomDivider />
 
       <Box
         sx={(theme) => ({
+          boxSizing: 'border-box',
           background: theme.palette.primary.main,
           backgroundImage: `url("./assets/bg_pattern.png")`,
-          backgroundSize: '15%',
+          backgroundSize: isMobile ? '50%' : '20%',
           backgroundRepeat: 'repeat',
           flex: 1,
           height: '100%',

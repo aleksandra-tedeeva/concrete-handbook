@@ -1,15 +1,21 @@
 import Button, { ButtonProps } from '@mui/material/Button';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { useNavigate } from 'react-router-dom';
 
 interface IReturnButtonProps extends ButtonProps {
-  returnFunction: () => void;
   label: string;
+  to: string;
 }
 
-const ReturnButton = ({ returnFunction, label, ...other }: IReturnButtonProps) => {
+const ReturnButton = ({ label, to, ...other }: IReturnButtonProps) => {
+  const navigate = useNavigate();
+
+  const returnFunction = () => {
+    navigate(to);
+  };
+
   return (
-    <Button {...other} onClick={returnFunction}>
-      <ChevronLeftIcon sx={{ marginRight: '8px' }}></ChevronLeftIcon>
+    <Button {...other} onClick={returnFunction} startIcon={<ChevronLeftIcon />}>
       {label}
     </Button>
   );
