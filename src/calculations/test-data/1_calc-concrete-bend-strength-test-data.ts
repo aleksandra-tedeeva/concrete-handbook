@@ -2,6 +2,7 @@ import {
   CalculateConcreteBendStrengthParams,
   CalculateConcreteBendStrengthResult
 } from '../1_calc-concrete-bend-strength';
+import { MPaToKgCm2 } from '../util';
 
 export interface CalculateConcreteBendStrengthTestData {
   input: CalculateConcreteBendStrengthParams;
@@ -27,16 +28,17 @@ export const testData: CalculateConcreteBendStrengthTestData[] = [
       As_c: 3,
       gamma: 1,
       // A500
-      Rs: 435,
-      Rsc: 400,
-      Es: 200000,
+      Rs: MPaToKgCm2(435),
+      Rsc: MPaToKgCm2(400),
+      Es: MPaToKgCm2(200000),
       // B20
-      Rb: 11.5,
-      Rbt: 0.9
+      Rb: MPaToKgCm2(11.5)
     },
     expected_output: {
       Mult: 1563017.95,
-      calc_result: true
+      calc_result: true,
+      calc_result_text: 'Прочность бетона достаточна для выдерживания изгибающего момента',
+      M: 1400000
     },
     control_output: {
       Mult: 1562000,
@@ -57,16 +59,17 @@ export const testData: CalculateConcreteBendStrengthTestData[] = [
       As_c: 3,
       gamma: 0.9,
       // A500
-      Rs: 435,
-      Rsc: 400,
-      Es: 200000,
+      Rs: MPaToKgCm2(435),
+      Rsc: MPaToKgCm2(400),
+      Es: MPaToKgCm2(200000),
       // B20
-      Rb: 11.5,
-      Rbt: 0.9
+      Rb: MPaToKgCm2(11.5)
     },
     expected_output: {
       Mult: 1536481.58,
-      calc_result: true
+      calc_result: true,
+      calc_result_text: 'Прочность бетона достаточна для выдерживания изгибающего момента',
+      M: 1400000
     },
     control_output: {
       Mult: 1536000,
@@ -87,12 +90,11 @@ export const testData: CalculateConcreteBendStrengthTestData[] = [
       As_c: 3,
       gamma: 0.9,
       // A500
-      Rs: 435,
-      Rsc: 400,
-      Es: 200000,
+      Rs: MPaToKgCm2(435),
+      Rsc: MPaToKgCm2(400),
+      Es: MPaToKgCm2(200000),
       // B20
-      Rb: 11.5,
-      Rbt: 0.9
+      Rb: MPaToKgCm2(11.5)
     },
     expected_output: {
       error: 'xi > xiR'
@@ -116,12 +118,11 @@ export const testData: CalculateConcreteBendStrengthTestData[] = [
       As_c: 3,
       gamma: 1,
       // A500
-      Rs: 435,
-      Rsc: 400,
-      Es: 200000,
+      Rs: MPaToKgCm2(435),
+      Rsc: MPaToKgCm2(400),
+      Es: MPaToKgCm2(200000),
       // B10
-      Rb: 6,
-      Rbt: 0.56
+      Rb: MPaToKgCm2(6)
     },
     expected_output: {
       error: 'xi > xiR'
@@ -145,15 +146,14 @@ export const testData: CalculateConcreteBendStrengthTestData[] = [
       As_c: 3,
       gamma: 1,
       // A240
-      Rs: 210,
-      Rsc: 210,
-      Es: 200000,
+      Rs: MPaToKgCm2(210),
+      Rsc: MPaToKgCm2(210),
+      Es: MPaToKgCm2(200000),
       // B30
-      Rb: 17,
-      Rbt: 1.15
+      Rb: MPaToKgCm2(17)
     },
     expected_output: {
-      Mult: 81547.94,
+      Mult: 831560.67,
       calc_result: false,
       M: 1400000,
       calc_result_text: 'Прочность бетона не достаточна для выдерживания изгибающего момента'
