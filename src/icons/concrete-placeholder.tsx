@@ -24,7 +24,7 @@ export default function IconConcretePlaceholder(props: SvgIconProps) {
                 id="Shape_109_"
                 d="m182.886 50.802c-16.834 0-30.481 13.647-30.481 30.481s13.647 30.481 30.481 30.481 30.481-13.647 30.481-30.481-13.646-30.481-30.481-30.481zm0 40.642c-5.611 0-10.16-4.549-10.16-10.16s4.549-10.16 10.16-10.16 10.16 4.549 10.16 10.16c.001 5.611-4.548 10.16-10.16 10.16z"
               ></path>
-              <g clip-rule="evenodd" fill-rule="evenodd">
+              <g clip-rule="evenodd" fillRule="evenodd">
                 <circle id="Oval" cx="91.443" cy="467.376" r="10.16"></circle>
                 <circle id="Oval_1_" cx="162.566" cy="142.245" r="10.16"></circle>
                 <circle id="Oval_2_" cx="548.659" cy="406.414" r="10.16"></circle>

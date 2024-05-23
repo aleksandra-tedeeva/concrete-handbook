@@ -1,4 +1,5 @@
 import { Box, BoxProps, Typography } from '@mui/material';
+import useIsMobile from '../../hooks/useIsMobile';
 
 export interface BorderedWrapperProps extends BoxProps {
   children: React.ReactNode;
@@ -6,6 +7,8 @@ export interface BorderedWrapperProps extends BoxProps {
 }
 
 export default function BorderedWrapper({ children, label, ...other }: BorderedWrapperProps) {
+  const isMobile = useIsMobile();
+
   return (
     <Box
       sx={{
@@ -20,7 +23,7 @@ export default function BorderedWrapper({ children, label, ...other }: BorderedW
       {...other}
     >
       <Typography
-        variant="h5"
+        variant={isMobile ? 'h6' : 'h5'}
         sx={{
           color: 'white',
           position: 'absolute',

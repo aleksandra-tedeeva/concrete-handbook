@@ -20,15 +20,17 @@ export interface SearchAutocompleteProps {
   color?: string;
   faintColor?: string;
   mt?: number;
+  width?: string;
 }
 
 export default function SearchAutocomplete({
   onClose,
   color = '#545454',
   faintColor = 'rgba(0,0,0,0.2)',
-  mt = 0
+  mt = 0,
+  width = '400px'
 }: SearchAutocompleteProps) {
-  const [value] = useState<ValueType | ''>('');
+  const [value] = useState<ValueType | undefined>();
 
   const { headers: reinforcementHeaders } = useAppSelector((state) => state.reinforcement);
   const { headers: concreteMarkHeaders } = useAppSelector((state) => state.mark);
@@ -71,7 +73,7 @@ export default function SearchAutocomplete({
       options={allHeaders as ValueType[]}
       sx={{
         mt,
-        width: 400,
+        width,
         '.MuiAutocomplete-endAdornment': {
           color
         },
