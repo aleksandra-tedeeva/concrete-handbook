@@ -19,7 +19,14 @@ export default function MobileSearchAutocomplete({ onClose, ...props }: DialogPr
           </IconButton>
         </Toolbar>
       </AppBar>
-      <SearchAutocomplete onClose={handleClose} color="black" faintColor="rgba(0,0,0,0.4)" mt={1} />
+
+      <SearchAutocomplete
+        onClose={handleClose}
+        color="black"
+        faintColor="rgba(0,0,0,0.4)"
+        mt={1}
+        width="360px"
+      />
     </Dialog>
   );
 }

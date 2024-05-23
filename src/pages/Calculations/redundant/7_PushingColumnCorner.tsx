@@ -12,13 +12,12 @@ import {
   Select,
   MenuItem,
   Checkbox,
-  Button,
-  Theme,
-  useMediaQuery
+  Button
 } from '@mui/material';
+import useIsMobile from '../../../hooks/useIsMobile';
 
 export default function PushingColumnCorner() {
-  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+  const isMobile = useIsMobile();
   return (
     <Box m={2}>
       <Stack px="24px" spacing={2}>

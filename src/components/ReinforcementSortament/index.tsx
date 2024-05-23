@@ -10,6 +10,7 @@ import { useAppSelector } from '../../store/hooks';
 import TextField from '@mui/material/TextField';
 import { useEffect, useState } from 'react';
 import InputAdornment from '@mui/material/InputAdornment';
+import { Stack } from '@mui/material';
 
 const ReinforcementSortament = () => {
   const [value, setValue] = useState('');
@@ -44,39 +45,38 @@ const ReinforcementSortament = () => {
 
   return (
     <>
-      <Box sx={{ paddingTop: '8px' }}>
+      <Box sx={{ pt: 1, px: 1 }}>
         <Typography component="div" variant="h6">
-          Сортамент арматуры
-        </Typography>
-      </Box>
-      <Box sx={{ paddingTop: '8px' }}>
-        <Typography component="div" variant="subtitle2">
           Поиск расчетной площади
         </Typography>
-        <TextField
-          onChange={(e) => setValue(e.target.value)}
-          value={value}
-          label="Искомое значение"
-          variant="standard"
-          type="number"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                mm<sup>2</sup>
-              </InputAdornment>
-            )
-          }}
-        ></TextField>
-        <TextField
-          onChange={(e) => setEpsilon(e.target.value)}
-          value={epsilon}
-          label="Погрешность"
-          variant="standard"
-          type="number"
-          InputProps={{
-            startAdornment: <InputAdornment position="start">%</InputAdornment>
-          }}
-        ></TextField>
+      </Box>
+      <Box sx={{ px: 1 }}>
+        <Stack direction="row" spacing={2} pt={1}>
+          <TextField
+            onChange={(e) => setValue(e.target.value)}
+            value={value}
+            label="Искомое значение"
+            variant="outlined"
+            type="number"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  mm<sup>2</sup>
+                </InputAdornment>
+              )
+            }}
+          ></TextField>
+          <TextField
+            onChange={(e) => setEpsilon(e.target.value)}
+            value={epsilon}
+            label="Погрешность"
+            variant="outlined"
+            type="number"
+            InputProps={{
+              startAdornment: <InputAdornment position="start">%</InputAdornment>
+            }}
+          ></TextField>
+        </Stack>
       </Box>
       <TableContainer className="big-table-height-fix">
         <Table stickyHeader size="small">
@@ -160,7 +160,7 @@ const ReinforcementSortament = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <Box>
+      <Box sx={{ px: 1 }}>
         <Typography component="div">Стандарты: </Typography>
         <Typography component="div">при классе арматуры А240 - СТО АСЧМ 8-93 </Typography>
         <Typography component="div">при классе арматуры А400 - СТО АСЧМ 7-93 </Typography>

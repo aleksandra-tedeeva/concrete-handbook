@@ -1,56 +1,50 @@
-import { Grid, Stack, Theme, Typography, useMediaQuery } from '@mui/material';
-import {
-  calculationMenuItems,
-  concreteListsMenuItems,
-  menuItems
-} from '../../constants/menu-items';
-import CardLink from '../../components/CardLink';
+import { Box, Stack } from '@mui/material';
+import SectionClasses from './section-classes';
+import SectionTables from './section-tables';
+import SectionCalculations from './section-calculations';
+import CustomDivider from './custom-divider';
+import useIsMobile from '../../hooks/useIsMobile';
 
 const Home = () => {
-  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
-
-  const spacing = isMobile ? 1 : 2;
-
+  const isMobile = useIsMobile();
   return (
-    <Stack spacing={spacing} mt={1}>
-      <Stack>
-        <Typography variant={isMobile ? 'h6' : 'h5'} align="left" mb={1}>
-          Списки классов и марок бетона
-        </Typography>
-        <Grid container spacing={spacing}>
-          {concreteListsMenuItems.map((item) => (
-            <Grid item xs={isMobile ? 12 : 4} key={item.link}>
-              <CardLink {...item} />
-            </Grid>
-          ))}
-        </Grid>
-      </Stack>
+    <Stack
+      className="DEBUG"
+      sx={{
+        flex: 1,
+        height: '100%',
+        minHeight: '100%',
+        boxSizing: 'border-box'
+      }}
+    >
+      <SectionClasses />
 
-      <Stack>
-        <Typography variant={isMobile ? 'h6' : 'h5'} align="left" mb={1}>
-          Справочная Информация
-        </Typography>
-        <Grid container spacing={spacing}>
-          {menuItems.map((item) => (
-            <Grid item xs={isMobile ? 12 : true} key={item.link}>
-              <CardLink {...item} />
-            </Grid>
-          ))}
-        </Grid>
-      </Stack>
+      <CustomDivider />
 
-      <Stack>
-        <Typography variant={isMobile ? 'h6' : 'h5'} align="left" mb={1}>
-          Расчеты
-        </Typography>
-        <Grid container spacing={spacing}>
-          {calculationMenuItems.map((item) => (
-            <Grid item xs={isMobile ? 12 : 3} key={item.link}>
-              <CardLink {...item} />
-            </Grid>
-          ))}
-        </Grid>
-      </Stack>
+      <Box
+        sx={(theme) => ({
+          boxSizing: 'border-box',
+          background: theme.palette.primary.main,
+          backgroundImage: `url("./assets/bg_pattern.png")`,
+          backgroundSize: isMobile ? '50%' : '20%',
+          backgroundRepeat: 'repeat',
+          flex: 1,
+
+          marginTop: '16px',
+          width: '100%'
+        })}
+      >
+        <Stack
+          direction={isMobile ? 'column' : 'row'}
+          alignItems="flex-start"
+          justifyContent="center"
+          spacing={4}
+          p={4}
+        >
+          <SectionTables />
+          <SectionCalculations />
+        </Stack>
+      </Box>
     </Stack>
   );
 };

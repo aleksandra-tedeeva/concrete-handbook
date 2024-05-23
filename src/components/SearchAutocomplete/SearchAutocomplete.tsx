@@ -20,13 +20,15 @@ export interface SearchAutocompleteProps {
   color?: string;
   faintColor?: string;
   mt?: number;
+  width?: string;
 }
 
 export default function SearchAutocomplete({
   onClose,
-  color = 'white',
-  faintColor = 'rgba(255,255,255,0.4)',
-  mt = 0
+  color = '#545454',
+  faintColor = 'rgba(0,0,0,0.2)',
+  mt = 0,
+  width = '400px'
 }: SearchAutocompleteProps) {
   const [value] = useState<ValueType | ''>('');
 
@@ -71,7 +73,7 @@ export default function SearchAutocomplete({
       options={allHeaders as ValueType[]}
       sx={{
         mt,
-        width: 400,
+        width,
         '.MuiAutocomplete-endAdornment': {
           color
         },
@@ -82,7 +84,7 @@ export default function SearchAutocomplete({
         <TextField
           ref={params.InputProps.ref}
           variant="standard"
-          placeholder="Поиск по марке или классу бетона"
+          placeholder="Поиск..."
           {...params}
           InputProps={{
             ...params.InputProps,

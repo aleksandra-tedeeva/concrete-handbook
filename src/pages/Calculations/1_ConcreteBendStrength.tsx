@@ -30,6 +30,7 @@ import ConcreteClassTypeSelect, {
 import ConcreteClassSelect from '../../components/CustomSelects/concrete-class-select';
 import ReinforcementClassSelect from '../../components/CustomSelects/reinforcement-class-select';
 import { regOnlyNumbers } from '../../util/regOnlyNumbers';
+import ReturnButton from '../../components/ReturnButton';
 
 export type ConcreteBendStrengthKeys =
   | 'M'
@@ -351,6 +352,7 @@ export default function ConcreteBendStrength() {
 
   return (
     <Box m={2}>
+      <ReturnButton label="Вернуться на главную страницу" to="/" />
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit}>
           <Stack px="24px" spacing={1}>
