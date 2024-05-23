@@ -30,7 +30,7 @@ export default function SearchAutocomplete({
   mt = 0,
   width = '400px'
 }: SearchAutocompleteProps) {
-  const [value] = useState<ValueType | undefined>();
+  const [value] = useState<ValueType | ''>('');
 
   const { headers: reinforcementHeaders } = useAppSelector((state) => state.reinforcement);
   const { headers: concreteMarkHeaders } = useAppSelector((state) => state.mark);

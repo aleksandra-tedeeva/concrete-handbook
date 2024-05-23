@@ -25,6 +25,7 @@ export default function Reinforcements() {
           <Stack>
             {headers.map((header) => (
               <SearchListItem
+                key={header}
                 option={{ label: header, type: 'reinforcement' }}
                 onClick={() => handleClick(header)}
               />

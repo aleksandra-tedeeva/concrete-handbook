@@ -25,6 +25,7 @@ export default function ConcreteClasses() {
           <Stack>
             {headers.map((header) => (
               <SearchListItem
+                key={header}
                 option={{ label: header, type: 'class' }}
                 onClick={() => handleClick(header)}
               />
