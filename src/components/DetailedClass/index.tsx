@@ -7,6 +7,7 @@ import { Button, Stack, Typography } from '@mui/material';
 import { useAppSelector } from '../../store/hooks';
 import ReturnButton from '../ReturnButton';
 import { useNavigate, useParams } from 'react-router-dom';
+import t from '../../util/transformTableValues';
 
 const DetailedClass = () => {
   const { id } = useParams();
@@ -42,13 +43,13 @@ const DetailedClass = () => {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Класс бетона</TableCell>
+              <TableCell>&nbsp; Класс бетона</TableCell>
               <TableCell>
                 <strong>{data.name}</strong>
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Соответствующая марка бетона</TableCell>
+              <TableCell>&nbsp; Соответствующая марка бетона</TableCell>
               <TableCell>
                 {data.corresponding_mark ? (
                   <Button
@@ -65,175 +66,177 @@ const DetailedClass = () => {
             </TableRow>
             <TableRow>
               <TableCell colSpan={2} className="highlight-cell--dark-gray font-weight-600">
-                Предельные состояния второй группы - МПа
+                Предельные состояния второй группы (МПа)
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={2} className="highlight-cell--gray font-weight-500">
-                Сжатие
+                &nbsp; Сжатие (R<sub>bn</sub> и R<sub>b,ser</sub>)
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Тяжелый и мелкозернистый и напрягающий</TableCell>
-              <TableCell>{data.second_group.compression.heavy || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Тяжелый и мелкозернистый и напрягающий</TableCell>
+              <TableCell>{t`${data.second_group.compression.heavy} МПа`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Легкий</TableCell>
-              <TableCell>{data.second_group.compression.light || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Легкий</TableCell>
+              <TableCell>{t`${data.second_group.compression.light} МПа`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Ячеистый</TableCell>
-              <TableCell>{data.second_group.compression.cellular || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Ячеистый</TableCell>
+              <TableCell>{t`${data.second_group.compression.cellular} МПа`}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={2} className="highlight-cell--gray font-weight-500">
-                Растяжение
+                &nbsp; Растяжение (R<sub>btn</sub> и R<sub>bt,ser</sub>)
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Тяжелый и мелкозернистый и напрягающий</TableCell>
-              <TableCell>{data.second_group.expansion.heavy || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Тяжелый и мелкозернистый и напрягающий</TableCell>
+              <TableCell>{t`${data.second_group.expansion.heavy} МПа`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Легкий</TableCell>
-              <TableCell>{data.second_group.expansion.light || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Легкий</TableCell>
+              <TableCell>{t`${data.second_group.expansion.light} МПа`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Ячеистый</TableCell>
-              <TableCell>{data.second_group.expansion.cellular || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Ячеистый</TableCell>
+              <TableCell>{t`${data.second_group.expansion.cellular} МПа`}</TableCell>
             </TableRow>
 
             <TableRow>
               <TableCell colSpan={2} className="highlight-cell--dark-gray font-weight-600">
-                Предельные состояния первой группы - МПа
+                Предельные состояния первой группы (МПа)
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={2} className="highlight-cell--gray font-weight-500">
-                Сжатие
+                &nbsp; Сжатие (R<sub>b</sub>)
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Тяжелый и мелкозернистый и напрягающий</TableCell>
-              <TableCell>{data.first_group.compression.heavy || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Тяжелый и мелкозернистый и напрягающий</TableCell>
+              <TableCell>{t`${data.first_group.compression.heavy} МПа`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Легкий</TableCell>
-              <TableCell>{data.first_group.compression.light || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Легкий</TableCell>
+              <TableCell>{t`${data.first_group.compression.light} МПа`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Ячеистый</TableCell>
-              <TableCell>{data.first_group.compression.cellular || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Ячеистый</TableCell>
+              <TableCell>{t`${data.first_group.compression.cellular} МПа`}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={2} className="highlight-cell--gray font-weight-500">
-                Растяжение
+                &nbsp; Растяжение (R<sub>bt</sub>)
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Тяжелый и мелкозернистый и напрягающий</TableCell>
-              <TableCell>{data.first_group.expansion.heavy || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Тяжелый и мелкозернистый и напрягающий</TableCell>
+              <TableCell>{t`${data.first_group.expansion.heavy} МПа`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Легкий</TableCell>
-              <TableCell>{data.first_group.expansion.light || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Легкий</TableCell>
+              <TableCell>{t`${data.first_group.expansion.light} МПа`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Ячеистый</TableCell>
-              <TableCell>{data.first_group.expansion.cellular || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Ячеистый</TableCell>
+              <TableCell>{t`${data.first_group.expansion.cellular} МПа`}</TableCell>
             </TableRow>
 
             <TableRow>
               <TableCell colSpan={2} className="highlight-cell--dark-gray font-weight-600">
-                Модуль упругости - МПа/1000
+                Модуль упругости (E<sub>b</sub> - МПа/1000)
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Тяжелый</TableCell>
-              <TableCell>{data.resilience.heavy || '-'} </TableCell>
+              <TableCell className="highlight-cell--gray font-weight-500">&nbsp; Тяжелый</TableCell>
+              <TableCell sx={{ background: ' #eee' }}>
+                {t`${data.resilience.heavy} МПа/1000`}{' '}
+              </TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={2} className="highlight-cell--gray font-weight-500">
-                Мелкозернистый групп:
+                &nbsp; Мелкозернистый групп:
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>А - естественного твердения</TableCell>
-              <TableCell>{data.resilience.light_grain.natural || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; А - естественного твердения</TableCell>
+              <TableCell>{t`${data.resilience.light_grain.natural} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Б - автоклавного твердения</TableCell>
-              <TableCell>{data.resilience.light_grain.autoclave || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Б - автоклавного твердения</TableCell>
+              <TableCell>{t`${data.resilience.light_grain.autoclave} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={2} className="highlight-cell--gray font-weight-500">
-                Легкий и поризованый марки по средней плотности D:
+                &nbsp; Легкий и поризованый марки по средней плотности D:
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>800</TableCell>
-              <TableCell>{data.resilience.light_aerated_by_density.d_800 || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; 800</TableCell>
+              <TableCell>{t`${data.resilience.light_aerated_by_density.d_800} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>1000</TableCell>
-              <TableCell>{data.resilience.light_aerated_by_density.d_1000 || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; 1000</TableCell>
+              <TableCell>{t`${data.resilience.light_aerated_by_density.d_1000} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>1200</TableCell>
-              <TableCell>{data.resilience.light_aerated_by_density.d_1200 || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; 1200</TableCell>
+              <TableCell>{t`${data.resilience.light_aerated_by_density.d_1200} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>1400</TableCell>
-              <TableCell>{data.resilience.light_aerated_by_density.d_1400 || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; 1400</TableCell>
+              <TableCell>{t`${data.resilience.light_aerated_by_density.d_1400} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>1600</TableCell>
-              <TableCell>{data.resilience.light_aerated_by_density.d_1600 || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; 1600</TableCell>
+              <TableCell>{t`${data.resilience.light_aerated_by_density.d_1600} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>1800</TableCell>
-              <TableCell>{data.resilience.light_aerated_by_density.d_1800 || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; 1800</TableCell>
+              <TableCell>{t`${data.resilience.light_aerated_by_density.d_1800} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>2000</TableCell>
-              <TableCell>{data.resilience.light_aerated_by_density.d_2000 || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; 2000</TableCell>
+              <TableCell>{t`${data.resilience.light_aerated_by_density.d_2000} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={2} className="highlight-cell--gray font-weight-500">
-                Ячеистый автоклавного твердения марки по средней плотности D:
+                &nbsp; Ячеистый автоклавного твердения марки по средней плотности D:
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>500</TableCell>
-              <TableCell>{data.resilience.cellular_autoclave_by_density.d_500 || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; 500</TableCell>
+              <TableCell>{t`${data.resilience.cellular_autoclave_by_density.d_500} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>600</TableCell>
-              <TableCell>{data.resilience.cellular_autoclave_by_density.d_600 || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; 600</TableCell>
+              <TableCell>{t`${data.resilience.cellular_autoclave_by_density.d_600} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>700</TableCell>
-              <TableCell>{data.resilience.cellular_autoclave_by_density.d_700 || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; 700</TableCell>
+              <TableCell>{t`${data.resilience.cellular_autoclave_by_density.d_700} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>800</TableCell>
-              <TableCell>{data.resilience.cellular_autoclave_by_density.d_800 || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; 800</TableCell>
+              <TableCell>{t`${data.resilience.cellular_autoclave_by_density.d_800} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>900</TableCell>
-              <TableCell>{data.resilience.cellular_autoclave_by_density.d_900 || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; 900</TableCell>
+              <TableCell>{t`${data.resilience.cellular_autoclave_by_density.d_900} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>1000</TableCell>
-              <TableCell>{data.resilience.cellular_autoclave_by_density.d_1000 || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; 1000</TableCell>
+              <TableCell>{t`${data.resilience.cellular_autoclave_by_density.d_1000} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>1100</TableCell>
-              <TableCell>{data.resilience.cellular_autoclave_by_density.d_1100 || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; 1100</TableCell>
+              <TableCell>{t`${data.resilience.cellular_autoclave_by_density.d_1100} МПа/1000`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>1200</TableCell>
-              <TableCell>{data.resilience.cellular_autoclave_by_density.d_1200 || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; 1200</TableCell>
+              <TableCell>{t`${data.resilience.cellular_autoclave_by_density.d_1200} МПа/1000`}</TableCell>
             </TableRow>
           </TableBody>
         </Table>

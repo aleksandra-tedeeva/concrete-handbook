@@ -184,11 +184,11 @@ export const theme = createTheme({
         root: {
           border: '1px solid rgba(224, 224, 224, 1)',
           padding: '8px',
-          '&:first-child': {
-            borderRedius: '16px 0 0 16px'
+          '&.highlight-cell--dark-gray': {
+            color: 'black'
           },
-          '&:last-child': {
-            borderRedius: '0 16px 16px 0'
+          '&.highlight-cell--gray': {
+            color: '#222'
           }
         }
       }
