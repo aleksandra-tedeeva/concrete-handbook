@@ -4,10 +4,10 @@ import { roundNumber } from './util';
 
 const TEXT_UNEXECUTED = 'Требование не выполняется.';
 
-const ERROR_QMAX_MORE_THAN_Q = 'Qmax > Q';
-const ERROR_QMAX_MORE_THAN_QULT = 'Qmax > Qult';
-const ERROR_M_MORE_THAN_MULT = 'M > Mult';
-const ERROR_A_PLUS_A_C_MORE_THAN_H = 'a + a` >= h';
+const ERROR_QMAX_MORE_THAN_Q = '( Qmax > Q ) Прочность по полосе между наклонными трещинами не обеспечена.';
+const ERROR_QMAX_MORE_THAN_QULT = '( Qmax > Qult ) Прочность наклонного сечения на действие поперечной силы не обеспечена.';
+const ERROR_M_MORE_THAN_MULT = '( M > Mult ) Прочность наклонного сечения на действие момента не обеспечена.';
+const ERROR_A_PLUS_A_C_MORE_THAN_H = 'Высота сечения (h) должна превышать сумму защитного слоя бетона растянутой и сжатой зоны (a + a`).';
 
 export interface CalculateShearForceParams {
   M: number;
