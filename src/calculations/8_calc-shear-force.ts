@@ -116,9 +116,12 @@ export default function CalculateShearForce({
   const Rbt = Rbt_raw * gamma;
 
   /** Определение коэффициента 𝜙𝑛 */
-  const alpha = Es / Eb;
+  const alpha = Es / (Eb* 1000);
   const Ab = b * h - As - As_c;
-  const sigma_cp = Math.abs(N) / (Ab + alpha * (As + As_c));
+  const sigma_cp = (Math.abs(N)) / (Ab + alpha * (As + As_c));
+
+  const cpde = Ab + (alpha * (As + As_c));
+  console.log({ Es, Eb, alpha, Ab, sigma_cp, cpde, As, As_c, N });
 
   const a_a_c = a + a_c;
   if (a_a_c >= h) {
@@ -159,6 +162,8 @@ export default function CalculateShearForce({
   const qsw = (Rsw * Asw) / sw;
   const qsw_0_25 = 0.25 * Rbt * b;
 
+
+
   //значения интервала [h0; 3*h0]
   const c_end = 3 * h0;
   let c_start = h0;
@@ -171,8 +176,10 @@ export default function CalculateShearForce({
   let Qsw = fi_sw * qsw * h0;
   let Qult = Qb + Qsw + q * h0;
 
+  console.log({ sw, sw_Q, qsw, qsw_0_25, Qsw, Qb});
+
   //переменные для минимальных значений Qult и C
-  let Qb_min = Qb;
+  let Qult_min = Qult;
   let c_min = h0;
   //коэффициент для поиска
   const n = (c_end - h0) / 8;
@@ -194,20 +201,24 @@ export default function CalculateShearForce({
       x = 2 * h0;
     }
 
-    if (Qb_min > Qb) {
-      Qb_min = Qb;
+    if (Qult_min > Qult) {
+      Qult_min = Qult;
       c_min = c_start - n;
     }
+    console.log({ c_min });
   }
 
   //расчет с учетом минимальных значений
   Qb = (fi_n * fi_b2 * Rbt * b * Math.pow(h0, 2)) / c_min;
 
+  const c0 = c_min;
   if (c_min >= 2 * h0) {
     c_min = 2 * h0;
   }
   Qsw = fi_sw * qsw * c_min;
+  Qult = Qb + Qsw + q * c0;
 
+  console.log({ Qult, sw, sw_Q, qsw, qsw_0_25, Qsw, Qb, c_min});
   //только для корректоного отображения в верстке
   // let c = 0;
   // if (c_min >= 2 * h0) {
