@@ -25,21 +25,22 @@ export default function ShearForceResultLayout({
   ) : (
     <Alert color="success" {...other}>
       <Typography>
-        Q<sub>max</sub> = {Qmax} кг {'<='} {Q} кг = Q.
+        Q<sub>max</sub> = {Qmax} кг {'<='} φ<sub>n</sub>φ<sub>b1</sub>R<sub>b</sub>bh<sub>0</sub> ={' '}
+        {Q} кг.
       </Typography>
       <Typography>
         Требование выполняется. Прочность по полосе между наклонными трещинами обеспечена.
       </Typography>
 
       <Typography>
-        Q<sub>max</sub> = {Qmax} кг {'<='} {Qult} кг = Q<sub>ult</sub>.
+        Q<sub>max</sub> = {Qmax} кг {'<='} Q<sub>b</sub> + Q<sub>sw</sub> + qC = {Qult} кг.
       </Typography>
       <Typography>
         Требование выполняется. Прочность наклонного сечения на действие поперечной силы обеспечена.
       </Typography>
 
       <Typography>
-        M = {M} кг · см {'<='} {Mult} кг · см = M<sub>ult</sub>.
+        M = {M} кг · см {'<='} M<sub>s</sub> + M<sub>sw</sub> = {Mult} кг · см.
       </Typography>
       <Typography>
         Требование выполняется. Прочность наклонного сечения на действие момента обеспечена.

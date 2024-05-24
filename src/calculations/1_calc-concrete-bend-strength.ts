@@ -1,11 +1,13 @@
 import { Duration, Shape } from './types';
 import { roundNumber } from './util';
 
-const TEXT_SUFFICIENT = 'Прочность бетона достаточна для выдерживания изгибающего момента';
-const TEXT_INSUFFICIENT = 'Прочность бетона не достаточна для выдерживания изгибающего момента';
+const TEXT_SUFFICIENT =
+  'Требование выполняется. Прочность бетона достаточна для выдерживания изгибающего момента.';
+const TEXT_INSUFFICIENT =
+  'Требование не выполняется. Прочность бетона не достаточна для выдерживания изгибающего момента.';
 
-const ERROR_XI_MORE_THAN_XIR = 'xi > xiR';
-const ERROR_RSCASC_MORE_THAN_RSAS = 'RscAs_c > RsAs';
+const ERROR_XI_MORE_THAN_XIR = '( ξ > ξR ) Требование не выполняется.';
+const ERROR_RSCASC_MORE_THAN_RSAS = '( RscAs` > RsAs ) Требование не выполняется.';
 
 export interface CalculateConcreteBendStrengthParams {
   // Входные с формы

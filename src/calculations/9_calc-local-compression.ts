@@ -24,6 +24,7 @@ export interface CalculateLocalCompressionParams {
 
 export interface CalculateLocalCompressionResult {
   error?: string;
+  N?: number;
   Rb_loc?: number;
   fi_sxy?: number;
   Rsxy?: number;
@@ -137,6 +138,7 @@ export default function calculateLocalCompression({
     if (N <= psi_Rb_Ab) {
       return {
         error: '',
+        N: roundNumber(N),
         Rb_loc: roundNumber(Rb_loc),
         psi_Rb_Ab: roundNumber(psi_Rb_Ab),
         cos_arm
@@ -162,10 +164,12 @@ export default function calculateLocalCompression({
   if (type_load !== 'even') {
     psi = 0.75;
   }
+
   const psi_Rbs_Ab = psi * Rbs_loc * Ab_loc;
   if (N <= psi_Rbs_Ab) {
     return {
       error: '',
+      N: roundNumber(N),
       Rb_loc: roundNumber(Rb_loc),
       fi_sxy: roundNumber(fi_sxy),
       Rsxy: roundNumber(Rsxy!),
