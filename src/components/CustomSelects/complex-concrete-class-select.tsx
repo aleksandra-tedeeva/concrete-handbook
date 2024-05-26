@@ -15,6 +15,8 @@ export interface ComplexConcreteClassSelectProps {
   onChange: (result: ComplexConcreteClassSelectResult) => void;
 }
 
+const classes_without_heavy = ['B1,5', 'B2', 'B2,5'];
+
 const defaultInitialData = {
   concreteClass: 'B20',
   concreteType: 'heavy',
@@ -114,7 +116,7 @@ export default function ComplexConcreteClassSelect({
   const handleConcreteClassChange = (e: SelectChangeEvent<unknown>) => {
     const target = e.target as HTMLSelectElement;
     setConcreteClass(target.value);
-    setConcreteType('heavy');
+    setConcreteType(classes_without_heavy.includes(target.value) ? 'light_grain' : 'heavy');
     setConcreteSubtype('');
   };
 
@@ -147,6 +149,11 @@ export default function ComplexConcreteClassSelect({
               sx={{ maxWidth: '214px' }}
             >
               {typeData.map((key) => {
+                // @ts-ignore
+                if (!classData || !classData.resilience[key]) {
+                  return null;
+                }
+
                 // @ts-ignore
                 const availableSubtypes = Object.values(classData!.resilience[key]).filter(
                   (subtype) => subtype
