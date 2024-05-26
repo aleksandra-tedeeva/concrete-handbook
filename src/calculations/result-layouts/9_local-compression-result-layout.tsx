@@ -2,6 +2,7 @@ import { Alert, AlertProps, Typography } from '@mui/material';
 
 export interface LocalCompressionResultLayoutProps extends AlertProps {
   error?: string;
+  N?: number;
   Rb_loc?: number;
   fi_sxy?: number;
   Rsxy?: number;
@@ -16,6 +17,7 @@ export interface LocalCompressionResultLayoutProps extends AlertProps {
 
 export default function LocalCompressionResultLayout({
   error,
+  N,
   Rb_loc,
   fi_sxy,
   Rsxy,
@@ -40,16 +42,16 @@ export default function LocalCompressionResultLayout({
   if (cos_arm) {
     return (
       <Alert color="success" {...other}>
-        <Typography mt={1}>
-          R<sub>b,loc</sub>= {Rb_loc} кг/см<sup>2</sup>; φ<sub>sxy</sub>= {fi_sxy}; R<sub>sxy</sub>{' '}
+        {/* <Typography mt={1}>
+          R<sub>b,loc</sub> = {Rb_loc} кг/см<sup>2</sup>; φ<sub>sxy</sub>= {fi_sxy}; R<sub>sxy</sub>{' '}
           = {Rsxy} кг/см<sup>2</sup>; μ<sub>s,xy</sub> = {mu_sxy}
         </Typography>
         <Typography mt={1}>
           ψ = {psi}; R<sub>bs,loc</sub> = {Rbs_loc} кг/см<sup>2</sup>; A<sub>b,loc</sub> = {Ab_loc}{' '}
           см<sup>2</sup>
-        </Typography>
+        </Typography> */}
         <Typography mt={1}>
-          ψR<sub>b,loc</sub>A<sub>b,loc</sub> = {psi_Rbs_Ab} кг
+          N = {N} кг {'<='} ψR<sub>b,loc</sub>A<sub>b,loc</sub> = {psi_Rbs_Ab} кг.
         </Typography>
         <Typography mt={1}>Требование выполняется. Прочность обеспечена.</Typography>
       </Alert>
@@ -58,11 +60,11 @@ export default function LocalCompressionResultLayout({
 
   return (
     <Alert color="success" {...other}>
+      {/* <Typography mt={1}>
+        R<sub>b,loc</sub> = {Rb_loc} кг/см<sup>2</sup>
+      </Typography> */}
       <Typography mt={1}>
-        R<sub>b,loc</sub>= {Rb_loc} кг/см<sup>2</sup>
-      </Typography>
-      <Typography mt={1}>
-        ψR<sub>b,loc</sub>A<sub>b,loc</sub>= {psi_Rb_Ab} кг
+        N = {N} кг {'<='} ψR<sub>b,loc</sub>A<sub>b,loc</sub> = {psi_Rb_Ab} кг.
       </Typography>
       <Typography mt={1}>Требование выполняется. Прочность обеспечена.</Typography>
     </Alert>
