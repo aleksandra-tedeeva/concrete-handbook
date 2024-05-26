@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import store from './store';
-import { Provider } from 'react-redux';
+import { Provider as StoreProvider } from 'react-redux';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './theme';
 
@@ -14,9 +14,9 @@ root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Provider store={store}>
+        <StoreProvider store={store}>
           <App />
-        </Provider>
+        </StoreProvider>
       </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>

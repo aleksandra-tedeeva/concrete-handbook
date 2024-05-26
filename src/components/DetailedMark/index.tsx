@@ -7,6 +7,7 @@ import { Button, Stack, Typography } from '@mui/material';
 import { useAppSelector } from '../../store/hooks';
 import ReturnButton from '../ReturnButton';
 import { useParams, useNavigate } from 'react-router-dom';
+import t from '../../util/transformTableValues';
 
 const DetailedMark = () => {
   const { headers: availableClasses } = useAppSelector((state) => state.class);
@@ -16,10 +17,6 @@ const DetailedMark = () => {
 
   const navigate = useNavigate();
 
-  const returnToSearch = () => {
-    navigate('/mark_list/');
-  };
-
   const showFullResult = (name: string) => {
     navigate(`/class_list/${name}`);
   };
@@ -27,14 +24,14 @@ const DetailedMark = () => {
   if (!data) {
     return (
       <Stack spacing={1} pt={1} alignItems="flex-start">
-        <ReturnButton label="Вернуться к списку марок бетона" returnFunction={returnToSearch} />
+        <ReturnButton label="Вернуться к списку марок бетона" to="/mark_list/" />
         <Typography>Нет данных по марке бетона.</Typography>
       </Stack>
     );
   }
   return (
     <Stack spacing={1} pt={1} alignItems="flex-start">
-      <ReturnButton label="Вернуться к списку марок бетона" returnFunction={returnToSearch} />
+      <ReturnButton label="Вернуться к списку марок бетона" to="/mark_list/" />
       <TableContainer>
         <Table size="small">
           <TableBody>
@@ -44,13 +41,13 @@ const DetailedMark = () => {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Марка бетона</TableCell>
+              <TableCell>&nbsp; Марка бетона</TableCell>
               <TableCell>
                 <strong>{data.name}</strong>
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Соответствующий класс бетона</TableCell>
+              <TableCell>&nbsp; Соответствующий класс бетона</TableCell>
               <TableCell>
                 {data.corresponding_class ? (
                   <Button
@@ -67,54 +64,58 @@ const DetailedMark = () => {
             </TableRow>
             <TableRow>
               <TableCell colSpan={2} className="highlight-cell--dark-gray font-weight-600">
-                Предельные состояния второй группы - кгс/см<sup>2</sup>
+                Предельные состояния второй группы (кгс/см<sup>2</sup>)
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={2} className="highlight-cell--gray font-weight-500">
-                Сжатие
+                &nbsp; Сжатие (R<sub>np</sub> и R<sub>npll</sub>)
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Тяжелый</TableCell>
-              <TableCell>{data.second_group.compression.heavy || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Тяжелый</TableCell>
+              <TableCell>{t`${data.second_group.compression.heavy} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>На пористых заполнителях</TableCell>
-              <TableCell>{data.second_group.compression.aerated || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; На пористых заполнителях</TableCell>
+              <TableCell>{t`${data.second_group.compression.aerated} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Ячеистый вида А</TableCell>
-              <TableCell>{data.second_group.compression.cellular_a || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Ячеистый вида А</TableCell>
+              <TableCell>{t`${data.second_group.compression.cellular_a} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Ячеистый вида Б</TableCell>
-              <TableCell>{data.second_group.compression.cellular_b || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Ячеистый вида Б</TableCell>
+              <TableCell>{t`${data.second_group.compression.cellular_b} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={2} className="highlight-cell--gray font-weight-500">
-                Растяжение
+                &nbsp; Растяжение (R<sub>p</sub> и R<sub>pll</sub>)
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Тяжелый</TableCell>
-              <TableCell>{data.second_group.expansion.heavy || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Тяжелый</TableCell>
+              <TableCell>{t`${data.second_group.expansion.heavy} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>На пористых заполнителях при мелком плотном заполнителе</TableCell>
-              <TableCell>{data.second_group.expansion.aerated_dense || '-'}</TableCell>
+              <TableCell>
+                &nbsp; &nbsp; На пористых заполнителях при мелком плотном заполнителе
+              </TableCell>
+              <TableCell>{t`${data.second_group.expansion.aerated_dense} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>На пористых заполнителях при мелком пористом заполнителе</TableCell>
-              <TableCell>{data.second_group.expansion.aerated_porous || '-'}</TableCell>
+              <TableCell>
+                &nbsp; &nbsp; На пористых заполнителях при мелком пористом заполнителе
+              </TableCell>
+              <TableCell>{t`${data.second_group.expansion.aerated_porous} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Ячеистый вида А</TableCell>
-              <TableCell>{data.second_group.expansion.cellular_a || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Ячеистый вида А</TableCell>
+              <TableCell>{t`${data.second_group.expansion.cellular_a} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Ячеистый вида Б</TableCell>
-              <TableCell>{data.second_group.expansion.cellular_b || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Ячеистый вида Б</TableCell>
+              <TableCell>{t`${data.second_group.expansion.cellular_b} кгс/см2`}</TableCell>
             </TableRow>
 
             <TableRow>
@@ -124,53 +125,53 @@ const DetailedMark = () => {
             </TableRow>
             <TableRow>
               <TableCell colSpan={2} className="highlight-cell--gray font-weight-500">
-                Сжатие
+                &nbsp; Сжатие (R<sub>np</sub>)
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Тяжелый</TableCell>
-              <TableCell>{data.first_group.compression.heavy || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Тяжелый</TableCell>
+              <TableCell>{t`${data.first_group.compression.heavy} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>На пористых заполнителях</TableCell>
-              <TableCell>{data.first_group.compression.aerated || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; На пористых заполнителях</TableCell>
+              <TableCell>{t`${data.first_group.compression.aerated} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Ячеистый вида А</TableCell>
-              <TableCell>{data.first_group.compression.cellular_a || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Ячеистый вида А</TableCell>
+              <TableCell>{t`${data.first_group.compression.cellular_a} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Ячеистый вида Б</TableCell>
-              <TableCell>{data.first_group.compression.cellular_b || '-'}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Крупнопористый</TableCell>
-              <TableCell>{data.first_group.compression.large_porous || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Ячеистый вида Б</TableCell>
+              <TableCell>{t`${data.first_group.compression.cellular_b} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={2} className="highlight-cell--gray font-weight-500">
-                Растяжение
+                &nbsp; Растяжение (R<sub>p</sub>)
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Тяжелый</TableCell>
-              <TableCell>{data.first_group.expansion.heavy || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Тяжелый</TableCell>
+              <TableCell>{t`${data.first_group.expansion.heavy} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>На пористых заполнителях при мелком плотном заполнителе</TableCell>
-              <TableCell>{data.first_group.expansion.aerated_dense || '-'}</TableCell>
+              <TableCell>
+                &nbsp; &nbsp; На пористых заполнителях при мелком плотном заполнителе
+              </TableCell>
+              <TableCell>{t`${data.first_group.expansion.aerated_dense} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>На пористых заполнителях при мелком пористом заполнителе</TableCell>
-              <TableCell>{data.first_group.expansion.aerated_porous || '-'}</TableCell>
+              <TableCell>
+                &nbsp; &nbsp; На пористых заполнителях при мелком пористом заполнителе
+              </TableCell>
+              <TableCell>{t`${data.first_group.expansion.aerated_porous} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Ячеистый вида А</TableCell>
-              <TableCell>{data.first_group.expansion.cellular_a || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Ячеистый вида А</TableCell>
+              <TableCell>{t`${data.first_group.expansion.cellular_a} кгс/см2`}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Ячеистый вида Б</TableCell>
-              <TableCell>{data.first_group.expansion.cellular_b || '-'}</TableCell>
+              <TableCell>&nbsp; &nbsp; Ячеистый вида Б</TableCell>
+              <TableCell>{t`${data.first_group.expansion.cellular_b} кгс/см2`}</TableCell>
             </TableRow>
           </TableBody>
         </Table>

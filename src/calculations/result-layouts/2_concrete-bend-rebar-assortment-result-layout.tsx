@@ -18,12 +18,13 @@ export default function ConcreteBendRebarAssortmentResultLayout({
     </Alert>
   ) : (
     <Alert color="success" {...other}>
+      <Typography>Требуемая площадь арматуры составляет:</Typography>
       <Typography>
-        Требуемая площадь арматуры составляет: A<sub>s</sub> = {As} cm<sup>2</sup>
+        A<sub>s</sub> = {As} см<sup>2</sup>.
       </Typography>
       {As_c ? (
         <Typography>
-          A`<sub>s</sub> = {As_c} cm<sup>2</sup>
+          A`<sub>s</sub> = {As_c} см<sup>2</sup>.
         </Typography>
       ) : (
         <Typography>Сжатой арматуры по расчету не требуется.</Typography>

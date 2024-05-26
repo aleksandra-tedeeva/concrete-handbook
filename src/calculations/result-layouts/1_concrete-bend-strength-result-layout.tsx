@@ -22,9 +22,8 @@ export default function ConcreteBendStrengthResultLayout({
     </Alert>
   ) : (
     <Alert color={calc_result ? 'success' : 'error'} {...other}>
-      <Typography>M = {M}</Typography>
       <Typography>
-        M<sub>ult</sub> = {Mult}
+        M = {M} кг · см {'<='} M<sub>ult</sub> = {Mult} кг · см.
       </Typography>
       <Typography>{calc_result_text}</Typography>
     </Alert>

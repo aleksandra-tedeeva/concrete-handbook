@@ -11,13 +11,12 @@ import {
   MenuItem,
   Button,
   Radio,
-  RadioGroup,
-  Theme,
-  useMediaQuery
+  RadioGroup
 } from '@mui/material';
+import useIsMobile from '../../../hooks/useIsMobile';
 
 export default function Deflection() {
-  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+  const isMobile = useIsMobile();
   return (
     <Box m={2}>
       <Stack px="24px" spacing={2}>

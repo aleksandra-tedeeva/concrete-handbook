@@ -30,6 +30,7 @@ import { useAppSelector } from '../../store/hooks';
 import { MPaToKgCm2 } from '../../calculations/util';
 import { Duration } from '../../calculations/types';
 import ConcreteBendRebarAssortmentResultLayout from '../../calculations/result-layouts/2_concrete-bend-rebar-assortment-result-layout';
+import ReturnButton from '../../components/ReturnButton';
 
 export type ConcreteBendRebarAssortmentKeys =
   | 'M'
@@ -221,6 +222,7 @@ export default function ConcreteBendRebarAssortment() {
 
   return (
     <Box m={2}>
+      <ReturnButton label="Вернуться на главную страницу" to="/" />
       <form onSubmit={handleSubmit}>
         <Stack px="24px" spacing={1}>
           <Typography variant="h5">

@@ -4,10 +4,14 @@ import { roundNumber } from './util';
 
 const TEXT_UNEXECUTED = 'Требование не выполняется.';
 
-const ERROR_QMAX_MORE_THAN_Q = 'Qmax > Q';
-const ERROR_QMAX_MORE_THAN_QULT = 'Qmax > Qult';
-const ERROR_M_MORE_THAN_MULT = 'M > Mult';
-const ERROR_A_PLUS_A_C_MORE_THAN_H = 'a + a` >= h';
+const ERROR_QMAX_MORE_THAN_Q =
+  '( Qmax > Q ) Прочность по полосе между наклонными трещинами не обеспечена.';
+const ERROR_QMAX_MORE_THAN_QULT =
+  '( Qmax > Qult ) Прочность наклонного сечения на действие поперечной силы не обеспечена.';
+const ERROR_M_MORE_THAN_MULT =
+  '( M > Mult ) Прочность наклонного сечения на действие момента не обеспечена.';
+const ERROR_A_PLUS_A_C_MORE_THAN_H =
+  'Высота сечения (h) должна превышать сумму защитного слоя бетона растянутой и сжатой зоны (a + a`).';
 
 export interface CalculateShearForceParams {
   M: number;
@@ -116,9 +120,12 @@ export default function CalculateShearForce({
   const Rbt = Rbt_raw * gamma;
 
   /** Определение коэффициента 𝜙𝑛 */
-  const alpha = Es / Eb;
+  const alpha = Es / (Eb * 1000);
   const Ab = b * h - As - As_c;
   const sigma_cp = Math.abs(N) / (Ab + alpha * (As + As_c));
+
+  const cpde = Ab + alpha * (As + As_c);
+  // console.log({ Es, Eb, alpha, Ab, sigma_cp, cpde, As, As_c, N });
 
   const a_a_c = a + a_c;
   if (a_a_c >= h) {
@@ -171,8 +178,10 @@ export default function CalculateShearForce({
   let Qsw = fi_sw * qsw * h0;
   let Qult = Qb + Qsw + q * h0;
 
+  // console.log({ sw, sw_Q, qsw, qsw_0_25, Qsw, Qb});
+
   //переменные для минимальных значений Qult и C
-  let Qb_min = Qb;
+  let Qult_min = Qult;
   let c_min = h0;
   //коэффициент для поиска
   const n = (c_end - h0) / 8;
@@ -185,7 +194,7 @@ export default function CalculateShearForce({
 
     Qult = Qb + Qsw + q * c_start;
     //самопроверка
-    console.log({ c_start, Qb, Qsw, Qult });
+    // console.log({ c_start, Qb, Qsw, Qult });
 
     x = x + n;
     c_start = c_start + n;
@@ -194,19 +203,24 @@ export default function CalculateShearForce({
       x = 2 * h0;
     }
 
-    if (Qb_min > Qb) {
-      Qb_min = Qb;
+    if (Qult_min > Qult) {
+      Qult_min = Qult;
       c_min = c_start - n;
     }
+    // console.log({ c_min });
   }
 
   //расчет с учетом минимальных значений
   Qb = (fi_n * fi_b2 * Rbt * b * Math.pow(h0, 2)) / c_min;
 
+  const c0 = c_min;
   if (c_min >= 2 * h0) {
     c_min = 2 * h0;
   }
   Qsw = fi_sw * qsw * c_min;
+  Qult = Qb + Qsw + q * c0;
+
+  // console.log({ Qult, sw, sw_Q, qsw, qsw_0_25, Qsw, Qb, c_min});
 
   //только для корректоного отображения в верстке
   // let c = 0;

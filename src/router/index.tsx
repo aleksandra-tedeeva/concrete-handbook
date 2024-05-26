@@ -7,18 +7,19 @@ import DeflectionLimits from '../pages/5_DeflectionLimits';
 import Home from '../pages/Home';
 import Error from '../pages/Error';
 import AppBar from '../components/AppBar';
-import Container from '@mui/material/Container/Container';
 import ConcreteBendStrength from '../pages/Calculations/1_ConcreteBendStrength';
 import ConcreteBendRebarAssortment from '../pages/Calculations/2_ConcreteBendRebarAssortment';
 import ShearForce from '../pages/Calculations/8_ShearForce';
 import LocalCompression from '../pages/Calculations/9_LocalCompression';
-import { CssBaseline } from '@mui/material';
+import { Box, CssBaseline, Stack } from '@mui/material';
 import ConcreteClasses from '../pages/ConcreteClasses/ConcreteClasses';
 import ConcreteMarks from '../pages/ConcreteMarks/ConcreteMarks';
 import DetailedMark from '../components/DetailedMark';
 import DetailedClass from '../components/DetailedClass';
 import Reinforcements from '../pages/Reinforcements/Reinforcements';
 import DetailedReinforcement from '../components/DetailedReinforcement/DetailedRainforcement';
+import Footer from '../pages/Footer/footer';
+import AboutPage from '../pages/About/about';
 
 const Router = () => {
   return (
@@ -26,13 +27,21 @@ const Router = () => {
       <Route
         path="/"
         element={
-          <>
+          <Stack sx={{ height: '100%', boxSizing: 'border-box' }}>
             <CssBaseline />
             <AppBar />
-            <Container maxWidth={false}>
+            <Box
+              sx={{
+                flex: 1,
+                height: '100%',
+                boxSizing: 'border-box',
+                overflow: 'auto'
+              }}
+            >
               <Outlet />
-            </Container>
-          </>
+            </Box>
+            <Footer />
+          </Stack>
         }
       >
         <Route index element={<Home />} />
@@ -62,6 +71,8 @@ const Router = () => {
         <Route path="concrete_bend_rebar_assortment" element={<ConcreteBendRebarAssortment />} />
         <Route path="shear_force" element={<ShearForce />} />
         <Route path="local_compression" element={<LocalCompression />} />
+
+        <Route element={<AboutPage />} path="/about" />
 
         <Route path="*" element={<Error />} />
       </Route>
