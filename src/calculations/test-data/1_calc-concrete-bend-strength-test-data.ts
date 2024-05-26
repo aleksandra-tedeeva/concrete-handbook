@@ -37,7 +37,8 @@ export const testData: CalculateConcreteBendStrengthTestData[] = [
     expected_output: {
       Mult: 1563017.95,
       calc_result: true,
-      calc_result_text: 'Прочность бетона достаточна для выдерживания изгибающего момента',
+      calc_result_text:
+        'Требование выполняется. Прочность бетона достаточна для выдерживания изгибающего момента.',
       M: 1400000
     },
     control_output: {
@@ -68,7 +69,8 @@ export const testData: CalculateConcreteBendStrengthTestData[] = [
     expected_output: {
       Mult: 1536481.58,
       calc_result: true,
-      calc_result_text: 'Прочность бетона достаточна для выдерживания изгибающего момента',
+      calc_result_text:
+        'Требование выполняется. Прочность бетона достаточна для выдерживания изгибающего момента.',
       M: 1400000
     },
     control_output: {
@@ -97,7 +99,7 @@ export const testData: CalculateConcreteBendStrengthTestData[] = [
       Rb: MPaToKgCm2(11.5)
     },
     expected_output: {
-      error: 'xi > xiR'
+      error: '( ξ > ξR ) Требование не выполняется.'
     },
     control_output: {
       Mult: 211000,
@@ -125,7 +127,7 @@ export const testData: CalculateConcreteBendStrengthTestData[] = [
       Rb: MPaToKgCm2(6)
     },
     expected_output: {
-      error: 'xi > xiR'
+      error: '( ξ > ξR ) Требование не выполняется.'
     },
     control_output: {
       Mult: 1202000,
@@ -156,7 +158,8 @@ export const testData: CalculateConcreteBendStrengthTestData[] = [
       Mult: 831560.67,
       calc_result: false,
       M: 1400000,
-      calc_result_text: 'Прочность бетона не достаточна для выдерживания изгибающего момента'
+      calc_result_text:
+        'Требование не выполняется. Прочность бетона не достаточна для выдерживания изгибающего момента.'
     },
     control_output: {
       Mult: 831000,

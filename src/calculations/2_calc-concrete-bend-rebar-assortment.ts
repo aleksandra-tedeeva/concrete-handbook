@@ -4,8 +4,8 @@ import { roundNumber } from './util';
 export interface CalculateConcreteBendRebarAssortmentParams {
   M: number;
   // ~~~
-  duration: Duration;
-  shape: Shape;
+  duration?: Duration;
+  shape?: Shape;
   // ~~~
   b: number;
   h: number;
@@ -28,9 +28,6 @@ export interface CalculateConcreteBendRebarAssortmentResult {
 export const calculateConcreteBendRebarAssortment = ({
   M,
   // ~~~
-  duration,
-  shape,
-  // ~~~
   b,
   h,
   a,
@@ -43,22 +40,7 @@ export const calculateConcreteBendRebarAssortment = ({
   gamma
 }: CalculateConcreteBendRebarAssortmentParams): CalculateConcreteBendRebarAssortmentResult => {
   const Rb = Rb_raw * gamma;
-  //const M = 1400000;
-  //const duration: Duration = 'short';
-  //const shape: Shape = 'rectangle';
-
-  //const b = 30;
-  //const h = 40;
-  //const a = 5;
-  //const a_c = 5;
-
   const h0 = h - a;
-
-  // from data
-  //const Rs = 4434;
-  //const Rsc = 4077;
-  //const Es = 2000000;
-  //const Rb = 117.2;
 
   const epsilon_s_el = Rs / Es;
   const epsilon_b2 = 0.0035;
