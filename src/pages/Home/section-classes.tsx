@@ -20,7 +20,7 @@ export default function SectionClasses() {
       pb={1}
     >
       {!isMobile && (
-        <Box maxWidth="45%">
+        <Box maxWidth="800px">
           <LazyLoadImage
             effect="blur"
             src="./assets/splash.png"

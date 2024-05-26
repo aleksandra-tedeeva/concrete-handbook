@@ -228,11 +228,6 @@ export default function ConcreteBendStrength() {
         Rb: Rb_kgcm2
       });
 
-      // if (calcResult.error) {
-      //   alert(calcResult.error);
-      //   return;
-      // }
-
       // Вывод результата
       setCalculationResult(calcResult);
     } catch (e) {
@@ -353,12 +348,10 @@ export default function ConcreteBendStrength() {
 
           <Stack my="16px" spacing={1}>
             <Typography>
-              Методика расчета принята согласно СП 63.13330.2018 пп.8.1.8-8.1.13. Сечение
-              прямоугольное. Элемент изгибаемый. Арматура ненапрягаемая.
+              Методика расчета принята согласно СП 63.13330.2018 пп.8.1.8-8.1.13.
             </Typography>
             <Typography>
-              Характеристики арматуры классов А500СП, Ау500СП и А600СП приняты согласно СТО
-              36554501-065-2020*.
+              Сечение прямоугольное. Элемент изгибаемый. Арматура ненапрягаемая.
             </Typography>
           </Stack>
 
