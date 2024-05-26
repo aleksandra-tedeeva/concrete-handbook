@@ -1,6 +1,6 @@
 import { Box, Grid, Link as MuiLink, List, ListItemText, Stack, Typography } from '@mui/material';
 import CardLink from '../../components/CardLink';
-import { calculationMenuItems, concreteListsMenuItems } from '../../constants/menu-items';
+import { concreteListsMenuItems } from '../../constants/menu-items';
 import useIsMobile from '../../hooks/useIsMobile';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
