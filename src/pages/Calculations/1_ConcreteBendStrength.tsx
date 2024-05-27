@@ -211,18 +211,10 @@ export default function ConcreteBendStrength() {
       }
       const Rb = Number.parseFloat(Rb_string);
 
-      const Rbt_string = cc.first_group.expansion[concreteClassType];
-      if (!Rbt_string) {
-        alert('Значение сопротивления Rbt для класса бетона не найдено');
-        throw new Error('Значение сопротивления Rbt для класса бетона не найдено');
-      }
-      const Rbt = Number.parseFloat(Rb_string);
-
       // перевод Мпа в кг*см2
       const Rs_kgcm2 = MPaToKgCm2(Rs);
       const Rsc_kgcm2 = MPaToKgCm2(duration === 'short' ? Rsc_short : Rsc);
       const Rb_kgcm2 = MPaToKgCm2(Rb);
-      const Rbt_kgcm2 = MPaToKgCm2(Rbt);
       const Es_kgcm2 = MPaToKgCm2(Es);
 
       // Вычисления
@@ -233,14 +225,8 @@ export default function ConcreteBendStrength() {
         Rs: Rs_kgcm2,
         Rsc: Rsc_kgcm2,
         Es: Es_kgcm2,
-        Rb: Rb_kgcm2,
-        Rbt: Rbt_kgcm2
+        Rb: Rb_kgcm2
       });
-
-      // if (calcResult.error) {
-      //   alert(calcResult.error);
-      //   return;
-      // }
 
       // Вывод результата
       setCalculationResult(calcResult);
@@ -362,12 +348,10 @@ export default function ConcreteBendStrength() {
 
           <Stack my="16px" spacing={1}>
             <Typography>
-              Методика расчета принята согласно СП 63.13330.2018 пп.8.1.8-8.1.13. Сечение
-              прямоугольное. Элемент изгибаемый. Арматура ненапрягаемая.
+              Методика расчета принята согласно СП 63.13330.2018 пп.8.1.8-8.1.13.
             </Typography>
             <Typography>
-              Характеристики арматуры классов А500СП, Ау500СП и А600СП приняты согласно СТО
-              36554501-065-2020*.
+              Сечение прямоугольное. Элемент изгибаемый. Арматура ненапрягаемая.
             </Typography>
           </Stack>
 

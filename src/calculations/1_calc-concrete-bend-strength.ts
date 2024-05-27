@@ -31,7 +31,6 @@ export interface CalculateConcreteBendStrengthParams {
 
   // С класса бетона
   Rb: number;
-  Rbt: number;
 }
 
 export interface CalculateConcreteBendStrengthResult {

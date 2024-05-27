@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Typography } from '@mui/material';
 import { roundNumber } from './util';
 
 const TEXT_UNEXECUTED = 'Требование не выполняется.';
@@ -75,47 +74,6 @@ export default function CalculateShearForce({
   Es,
   Rsw
 }: CalculateShearForceParams): CalculateShearForceResult {
-  /** Внешние усилия */
-  //Изгибающий момент действующий в сечении:
-  // const M = 5.5 * Math.pow(10, 5);
-  // //Максимальная поперечная сила в начале наклонной трещины:
-  // const Qmax = 20000;
-  // //Продольное усилие (обжатие со знаком минус):
-  // const N = -3000;
-  // //Равномерная нагрузка на верхней грани балки:
-  // const q = 10;
-
-  // /** Геометрические характеристики сечения и элемента */
-  // //Высота сечения:
-  // const h = 60;
-  // //Ширина сечения:
-  // const b = 30;
-  // //Защитный слой бетона растянутой зоны:
-  // const a = 4;
-  // //Защитный слой бетона сжатой зоны:
-  // const a_c = 4;
-  // //Площадь растянутой арматуры:
-  // const As = 10;
-  // //Площадь сжатой арматуры:
-  // const As_c = 3;
-  // //Площадь поперечной арматуры:
-  // const Asw = 2.1;
-  // //Шаг поперечной армаруры:
-  // const sw = 20;
-
-  // /** Характеристики арматуры и бетона */
-  // //Коэффициент условий работы бетона (γb1×γb3×γb5):
-  // const gamma = 1;
-  // //Класс бетона на сжатие: B20
-  // const Rb = 117.3 * gamma;
-  // const Rbt = 9.2 * gamma;
-  // const Eb = 2.8 * Math.pow(10, 5);
-  // //Класс продольной арматуры: A400
-  // const Rs = 3569;
-  // const Es = 2.04 * Math.pow(10, 6);
-  // //Класс поперечной арматуры: A240
-  // const Rsw = 1734;
-
   const Rb = Rb_raw * gamma;
   const Rbt = Rbt_raw * gamma;
 
@@ -125,7 +83,6 @@ export default function CalculateShearForce({
   const sigma_cp = Math.abs(N) / (Ab + alpha * (As + As_c));
 
   const cpde = Ab + alpha * (As + As_c);
-  // console.log({ Es, Eb, alpha, Ab, sigma_cp, cpde, As, As_c, N });
 
   const a_a_c = a + a_c;
   if (a_a_c >= h) {
@@ -160,8 +117,6 @@ export default function CalculateShearForce({
     };
   }
 
-  // const C0 = 2 * h0;
-
   const sw_Q = (Rbt * b * Math.pow(h0, 2)) / Qmax;
   const qsw = (Rsw * Asw) / sw;
   const qsw_0_25 = 0.25 * Rbt * b;
@@ -178,8 +133,6 @@ export default function CalculateShearForce({
   let Qsw = fi_sw * qsw * h0;
   let Qult = Qb + Qsw + q * h0;
 
-  // console.log({ sw, sw_Q, qsw, qsw_0_25, Qsw, Qb});
-
   //переменные для минимальных значений Qult и C
   let Qult_min = Qult;
   let c_min = h0;
@@ -193,8 +146,6 @@ export default function CalculateShearForce({
     Qsw = fi_sw * qsw * x;
 
     Qult = Qb + Qsw + q * c_start;
-    //самопроверка
-    // console.log({ c_start, Qb, Qsw, Qult });
 
     x = x + n;
     c_start = c_start + n;
@@ -207,7 +158,6 @@ export default function CalculateShearForce({
       Qult_min = Qult;
       c_min = c_start - n;
     }
-    // console.log({ c_min });
   }
 
   //расчет с учетом минимальных значений
@@ -219,15 +169,6 @@ export default function CalculateShearForce({
   }
   Qsw = fi_sw * qsw * c_min;
   Qult = Qb + Qsw + q * c0;
-
-  // console.log({ Qult, sw, sw_Q, qsw, qsw_0_25, Qsw, Qb, c_min});
-
-  //только для корректоного отображения в верстке
-  // let c = 0;
-  // if (c_min >= 2 * h0) {
-  //   c = 2 * h0;
-  // }
-  // Qsw = fi_sw * qsw * c;
 
   //проверка Qb
   if (Qb >= Qb_2_5) {
@@ -276,77 +217,4 @@ export default function CalculateShearForce({
     Mult: roundNumber(Mult),
     error: ''
   };
-
-  // return (
-  //   <>
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       Es = {Es}
-  //     </Typography>
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       Eb = {Eb}
-  //     </Typography>
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       alpha = {alpha}
-  //     </Typography>
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       Ab = {Ab}
-  //     </Typography>
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       σcp = {sigma_cp}
-  //     </Typography>
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       fi_n = {fi_n}
-  //     </Typography>
-  //     <Typography sx={{ color: 'red', fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       Q = {Qmax} {'< ='} {Q} Требование выполняется. Прочность по полосе между наклонными
-  //       трещинами обеспечена.
-  //     </Typography>
-
-  //     {/* <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       c_min = {c_min}
-  //     </Typography> */}
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       Qb = {Qb} {'<='} {Qb_2_5}
-  //     </Typography>
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       Qb = {Qb} {'>='} {Qb_0_5}
-  //     </Typography>
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       sw = {sw} {'<='} {sw_Q}
-  //     </Typography>
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       qsw = {qsw} {'>='} {qsw_0_25}
-  //     </Typography>
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       Qsw = {Qsw}
-  //     </Typography>
-  //     <Typography sx={{ color: 'red', fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       Qult = {Qmax} {'<='} {Qult} Требование выполняется. Прочность наклонного сечения на действие
-  //       поперечной силы обеспечена.
-  //     </Typography>
-
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       zs = {zs}
-  //     </Typography>
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       Ns = {Ns}
-  //     </Typography>
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       Ms = {Ms}
-  //     </Typography>
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       qsw_end = {qsw_end}
-  //     </Typography>
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       Qsw = {Qsw_end}
-  //     </Typography>
-  //     <Typography sx={{ fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       Msw = {Msw}
-  //     </Typography>
-  //     <Typography sx={{ color: 'red', fontStyle: 'italic', fontFamily: 'Times New Roman' }} mt={1}>
-  //       Mult = {M} {'<='} {Mult} Требование выполняется. Прочность наклонного сечения на действие
-  //       момента обеспечена.
-  //     </Typography>
-  //   </>
-  // );
 }

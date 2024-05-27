@@ -1,9 +1,10 @@
-import { Box, Grid, Stack, Typography } from '@mui/material';
+import { Box, Grid, Link as MuiLink, List, ListItemText, Stack, Typography } from '@mui/material';
 import CardLink from '../../components/CardLink';
 import { concreteListsMenuItems } from '../../constants/menu-items';
 import useIsMobile from '../../hooks/useIsMobile';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { Link } from 'react-router-dom';
 
 export default function SectionClasses() {
   const isMobile = useIsMobile();
@@ -19,7 +20,7 @@ export default function SectionClasses() {
       pb={1}
     >
       {!isMobile && (
-        <Box>
+        <Box maxWidth="800px">
           <LazyLoadImage
             effect="blur"
             src="./assets/splash.png"
@@ -35,16 +36,31 @@ export default function SectionClasses() {
         maxWidth={isMobile ? '100%' : '54%'}
         spacing={isMobile ? 2 : 4}
       >
-        <Stack spacing={isMobile ? 2 : 4}>
-          <Typography variant="h5">Lorem Ipsum</Typography>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elit felis, convallis
-            ut accumsan id, aliquam sed ante. Etiam non ultricies dui. Donec vitae felis magna. In
-            rhoncus mauris justo, non consequat purus auctor consectetur. Donec dictum turpis et
-            lacinia lobortis. Praesent auctor in ipsum ac pellentesque. In eu arcu mauris. Quisque
-            vitae justo purus. Etiam id mauris nec purus feugiat rutrum ut id lorem. Pellentesque
-            vulputate urna ipsum, eu tempor dolor gravida nec. Duis ut molestie turpis. Mauris
-            rutrum faucibus imperdiet.
+        <Stack spacing={0}>
+          <Typography variant="h5">Справочник и расчет железобетонных конструкций</Typography>
+          <Typography variant="subtitle1">
+            Приложение СЖБК предназначено, в первую очередь, для предоставления справочной
+            информации* по классам/маркам бетона и классам арматуры в удобном формате для любых
+            устройств (в т.ч. и мобильных).
+            <br />В качестве дополнительного функционала приложение может произовдить расчеты*:
+          </Typography>
+          <List disablePadding dense>
+            <ListItemText inset>• &nbsp; Прочности изгибаемого элемента</ListItemText>
+            <ListItemText inset>• &nbsp; Арматуры изгибаемого элемента</ListItemText>
+            <ListItemText inset>• &nbsp; На действие поперечной силы</ListItemText>
+            <ListItemText inset>• &nbsp; На местное сжатие</ListItemText>
+          </List>
+          <Typography variant="caption">
+            * согласно требованиям нормативного документа{' '}
+            <MuiLink
+              component={Link}
+              to="./sp_2018.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{ textDecoration: 'none' }}
+            >
+              СП 63.13330.2018
+            </MuiLink>
           </Typography>
         </Stack>
 
@@ -60,20 +76,4 @@ export default function SectionClasses() {
       </Stack>
     </Stack>
   );
-}
-
-// eslint-disable-next-line no-lone-blocks
-{
-  /* <Stack
-          direction={isMobile ? 'column' : 'row'}
-          alignItems={isMobile ? 'flex-start' : 'center'}
-          justifyContent={isMobile ? 'flex-start' : 'space-between'}
-          width={isMobile ? '100%' : '80%'}
-          spacing={isMobile ? 1 : 4}
-          flexWrap="wrap"
-        >
-          {concreteListsMenuItems.map((item) => (
-            <CardLink {...item} sx={{ width: isMobile ? '100%' : '140px', py: 2, px: 10 }} />
-          ))}
-        </Stack> */
 }

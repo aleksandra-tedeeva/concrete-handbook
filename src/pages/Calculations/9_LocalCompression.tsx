@@ -279,7 +279,6 @@ export default function LocalCompression() {
       });
 
       // Вывод результата
-      // console.log(calcResult);
       setCalculationResult(calcResult);
     } catch (e) {
       console.error(e);
@@ -298,9 +297,7 @@ export default function LocalCompression() {
           </Stack>
 
           <Stack my="16px" spacing={1}>
-            <Typography>
-              Методика расчета принята согласно СП 63.13330.2012 пп.8.1.43-45.
-            </Typography>
+            <Typography>Методика расчета принята согласно СП 63.13330.2018.</Typography>
           </Stack>
 
           <Stack my="16px">
