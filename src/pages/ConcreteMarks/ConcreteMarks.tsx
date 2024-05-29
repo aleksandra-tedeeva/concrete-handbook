@@ -18,7 +18,7 @@ export default function ConcreteMarks() {
       <Container>
         <Stack spacing={1}>
           <Stack alignItems="flex-start" mt={1}>
-            <ReturnButton label="На главную" to="/" />
+            <ReturnButton to="/" />
             <Typography variant="h5" sx={{ ml: '38px' }}>
               Список марок бетона
             </Typography>

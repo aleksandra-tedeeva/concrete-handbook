@@ -15,7 +15,7 @@ const Error = () => {
       <Error404 sx={{ width: '200px', height: '200px', color: 'black' }} />
       <Typography variant="h4">Ошибка 404</Typography>
       <Typography variant="body1">Такой страницы не существует...</Typography>
-      <ReturnButton label="На главную" to="/" />
+      <ReturnButton to="/" />
     </Stack>
   );
 };

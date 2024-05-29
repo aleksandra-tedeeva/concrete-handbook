@@ -26,7 +26,7 @@ const ConcreteClass = () => {
 
   return (
     <Stack spacing={1} pt={1} alignItems="flex-start">
-      <ReturnButton label="Вернуться на главную страницу" to="/" />
+      <ReturnButton to="/" />
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} variant="scrollable">

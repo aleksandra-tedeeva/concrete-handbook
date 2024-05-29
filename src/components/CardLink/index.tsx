@@ -17,7 +17,7 @@ export interface CardLinkProps extends CardProps {
   Icon?: (props: SvgIconProps) => JSX.Element;
 }
 
-export default function CardLink({ name, link, Icon, ...other }: CardLinkProps) {
+export default function CardLink({ name, link, Icon, variant, ...other }: CardLinkProps) {
   const isMobile = useIsMobile();
 
   const { palette } = useTheme();
@@ -32,14 +32,19 @@ export default function CardLink({ name, link, Icon, ...other }: CardLinkProps) 
     <StyledLink to={link} sx={{ width: '100%' }}>
       <CardActionArea>
         <Card
-          variant="blue"
+          variant="outlined"
           sx={{
             width: '100%',
             py: 1,
             minHeight: '100px',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            borderRadius: '12px',
+            '&:hover': {
+              background: '#f1f1f1',
+              transition: 'ease-in-out 0.3s'
+            }
           }}
           {...other}
         >

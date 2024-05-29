@@ -4,7 +4,7 @@ import ReturnButton from '../../components/ReturnButton';
 export default function AboutPage() {
   return (
     <Stack p={2} spacing={1} alignItems="flex-start" maxWidth="800px">
-      <ReturnButton label="На главную страницу" to="/" />
+      <ReturnButton to="/" />
       <Typography variant="h6">О проекте</Typography>
 
       <Typography color="error">

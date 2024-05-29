@@ -6,9 +6,6 @@ const TEXT_SUFFICIENT =
 const TEXT_INSUFFICIENT =
   'Требование не выполняется. Прочность бетона не достаточна для выдерживания изгибающего момента.';
 
-const ERROR_XI_MORE_THAN_XIR = '( ξ > ξR ) Требование не выполняется.';
-const ERROR_RSCASC_MORE_THAN_RSAS = '( RscAs` > RsAs ) Требование не выполняется.';
-
 export interface CalculateConcreteBendStrengthParams {
   // Входные с формы
   M: number;
@@ -84,14 +81,27 @@ export const calculateConcreteBendStrength = ({
   const RsAs = Rs * As;
   const RscAs_c = Rsc * As_c;
 
-  if (RscAs_c > RsAs) {
+  if (RsAs < RscAs_c) {
+    const x = RsAs / (Rb * b);
+    let Mult = 0;
+
+    if (x < 2 * a_c) {
+      Mult = RsAs * (h0 - 0.5 * x);
+    } else {
+      Mult = RsAs * (h0 - a_c);
+      console.log(Mult);
+    }
+
     return {
-      error: ERROR_RSCASC_MORE_THAN_RSAS
+      calc_result: M <= Mult,
+      calc_result_text: M <= Mult ? TEXT_SUFFICIENT : TEXT_INSUFFICIENT,
+      M: roundNumber(M),
+      Mult: roundNumber(Mult)
     };
   }
 
   // высота сжатой зоны бетона в мм
-  const x = (RsAs - RscAs_c) / (Rb * b);
+  let x = (RsAs - RscAs_c) / (Rb * b);
   // относительная высота сжатой зоны бетона
   const xi = x / h0;
 
@@ -104,9 +114,7 @@ export const calculateConcreteBendStrength = ({
   const xiR = 0.8 / (1 + epsilon_s_el / epsilon_b2);
 
   if (xi > xiR) {
-    return {
-      error: ERROR_XI_MORE_THAN_XIR
-    };
+    x = xiR * h0;
   }
 
   // Момент сопротивления сечения бетона

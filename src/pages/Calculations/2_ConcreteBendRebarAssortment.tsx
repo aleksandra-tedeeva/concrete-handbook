@@ -218,7 +218,7 @@ export default function ConcreteBendRebarAssortment() {
 
   return (
     <Box m={2}>
-      <ReturnButton label="Вернуться на главную страницу" to="/" />
+      <ReturnButton to="/" />
       <form onSubmit={handleSubmit}>
         <Stack px="24px" spacing={1}>
           <Typography variant="h5">

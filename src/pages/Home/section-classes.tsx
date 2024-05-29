@@ -68,7 +68,23 @@ export default function SectionClasses() {
           <Grid container spacing={isMobile ? 1 : 2} sx={{ width: '100%' }}>
             {concreteListsMenuItems.map((item) => (
               <Grid item xs={isMobile ? 12 : 4} key={item.link}>
-                <CardLink {...item} sx={{ width: '100%', px: 4, py: 2 }} />
+                <CardLink
+                  {...item}
+                  sx={{
+                    width: '100%',
+                    px: 4,
+                    py: 2,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: '12px',
+                    background: '#C1CDE4',
+                    '&:hover': {
+                      background: '#ADC0E4',
+                      transition: 'ease-in-out 0.3s'
+                    }
+                  }}
+                />
               </Grid>
             ))}
           </Grid>

@@ -3,11 +3,11 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { useNavigate } from 'react-router-dom';
 
 interface IReturnButtonProps extends ButtonProps {
-  label: string;
+  label?: string;
   to: string;
 }
 
-const ReturnButton = ({ label, to, ...other }: IReturnButtonProps) => {
+const ReturnButton = ({ label = 'На главную страницу', to, ...other }: IReturnButtonProps) => {
   const navigate = useNavigate();
 
   const returnFunction = () => {

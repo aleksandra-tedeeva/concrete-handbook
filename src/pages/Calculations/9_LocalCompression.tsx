@@ -288,7 +288,7 @@ export default function LocalCompression() {
   const isMobile = useIsMobile();
   return (
     <Box m={2}>
-      <ReturnButton label="Вернуться на главную страницу" to="/" />
+      <ReturnButton to="/" />
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit}>
           <Stack px="24px" spacing={2}>
