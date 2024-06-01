@@ -36,7 +36,6 @@ export default function SearchAutocomplete({
   const { headers: concreteMarkHeaders } = useAppSelector((state) => state.mark);
   const { headers: concreteClassHeaders } = useAppSelector((state) => state.class);
   const navigate = useNavigate();
-  // const autocompleteRef = useRef<HTMLInputElement>();
 
   const rHeaders = reinforcementHeaders.map((header) => ({ label: header, type: 'reinforcement' }));
   const mHeaders = concreteMarkHeaders.map((header) => ({ label: header, type: 'mark' }));

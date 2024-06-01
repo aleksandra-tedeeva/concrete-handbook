@@ -14,10 +14,11 @@ describe('calculateConcreteBendStrength', () => {
         return;
       }
 
-      const min =
-        data.control_output.Mult! - (data.control_output.Mult! * control_acceptable_error) / 100;
-      const max =
-        data.control_output.Mult! + (data.control_output.Mult! * control_acceptable_error) / 100;
+      const Mult = data.control_output.Mult!;
+      const delta = (Mult * control_acceptable_error) / 100;
+      const min = Mult - delta;
+      const max = Mult + delta;
+
       expect(result.Mult).toBeLessThanOrEqual(max);
       expect(result.Mult).toBeGreaterThanOrEqual(min);
     });

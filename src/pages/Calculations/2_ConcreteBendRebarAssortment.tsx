@@ -102,27 +102,27 @@ export default function ConcreteBendRebarAssortment() {
       .max(20),
     duration: Yup.string().required(),
     b: Yup.string()
-      .required('M должен быть задан')
-      .matches(regOnlyNumbers, 'M должен быть числом')
+      .required('b должен быть задан')
+      .matches(regOnlyNumbers, 'b должен быть числом')
       .max(10),
     h: Yup.string()
-      .required('M должен быть задан')
-      .matches(regOnlyNumbers, 'M должен быть числом')
+      .required('h должен быть задан')
+      .matches(regOnlyNumbers, 'h должен быть числом')
       .max(10),
     a: Yup.string()
-      .required('M должен быть задан')
-      .matches(regOnlyNumbers, 'M должен быть числом')
+      .required('a должен быть задан')
+      .matches(regOnlyNumbers, 'a должен быть числом')
       .max(10),
     a_c: Yup.string()
-      .required('M должен быть задан')
-      .matches(regOnlyNumbers, 'M должен быть числом')
+      .required('a` должен быть задан')
+      .matches(regOnlyNumbers, 'a` должен быть числом')
       .max(10),
     concrete_class: Yup.string().required(),
     concrete_type: Yup.string().required(),
     reinforcement_class: Yup.string().required(),
     gamma: Yup.string()
-      .required('M должен быть задан')
-      .matches(regOnlyNumbers, 'M должен быть числом')
+      .required('gamma должен быть задан')
+      .matches(regOnlyNumbers, 'gamma должен быть числом')
       .max(10)
   });
 
@@ -170,7 +170,7 @@ export default function ConcreteBendRebarAssortment() {
         return acc;
       }, {} as ConcreteBendRebarAssortmentData);
 
-      // Поиск данных класса арматурины
+      // Поиск данных класса арматуры
       const rf = reinforcementClassesData.find((r) => r.class === data.reinforcement_class);
       if (!rf) {
         alert('Арматура не найдена');

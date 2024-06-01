@@ -21,7 +21,7 @@ export interface CalculateConcreteBendStrengthParams {
   As_c: number;
   gamma: number;
 
-  // С арматурины
+  // С арматуры
   Rs: number;
   Rsc: number;
   Es: number;
@@ -89,7 +89,6 @@ export const calculateConcreteBendStrength = ({
       Mult = RsAs * (h0 - 0.5 * x);
     } else {
       Mult = RsAs * (h0 - a_c);
-      console.log(Mult);
     }
 
     return {
@@ -107,7 +106,8 @@ export const calculateConcreteBendStrength = ({
 
   // относительная деформация растянутой арматуры при напряжениях, равных Rs
   const epsilon_s_el = Rs / Es;
-  // относительная деформация сжатого бетона при напряжениях, равных Rb при непродолжительном действии нагрузки, константа
+  // относительная деформация сжатого бетона при напряжениях,
+  // равных Rb при непродолжительном действии нагрузки, константа
   const epsilon_b2 = 0.0035;
 
   //граничная относительная высота сжатой зоны бетона
